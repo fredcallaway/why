@@ -1,3 +1,7 @@
+# Why
+
+This repository contains a set of experiments aimed at investigating "why" questions. How do we answer them? Why do we answer what we do when people ask us "why"?
+
 ## Experiments
 
 - [WhyBot](http://stanford.edu/~erindb/explanations/whybot.html)
@@ -6,12 +10,3 @@
 - AdviceBot
 - GoalBot
 - Explanations
-
-
-## Background
-
-What is "why"?
-
-How do we answer "why" questions?
-
-Why do we answer what we do when people ask us "why"?
