@@ -1,205 +1,168 @@
-/**
-## General styles
-This stuff can be ported from experiment to experiment.*/
+/* General styles */
 
-/** We want the page to sit flush inside the browser window - that means no margins or padding. Also, use a nice-looking serif font. */
+/* We want the page to sit flush inside the browser window - that means no margins or padding. Also, use a nice-looking serif font. */
 body {
-	padding: 20;
-	margin: 20;
-	font-family: Palatino Linotype, Bookman Antiqua, Palatino, serif;
-	font-size: 16px;
-	line-height: 20px;
-	text-align: center;
-	width: 95%;
-	height: 95%;
+    padding: 0;
+    margin: 0;
+    font-family: Palatino Linotype, Bookman Antiqua, Palatino, serif;
+    font-size: 16px;
+    line-height: 20px;
 }
 
-canvas {
-    height: 600;
-    width: 950;
-	width: 100%;
-	height: 100%;
- align: center;
-}
 
-table {
-	font-size: 16px;
-  /*font-size: 24px;
-  font-weight: 600;*/
-    margin-bottom: 0.5em;
-    margin-top: 0.5em;
-}
-
-.slide {
-  text-align: center;
-	width: 90%;
-	height: 90%;
-	display: none;
-	position: absolute;
-	margin: 0.5%;
-	margin-left: 0.5%;
-	padding: 1% 2% 1% 2%;
-}
-
+/* Buttons, one of which is Long's. Royalties due. */
 input, select, button {font-family: Georgia, serif; font-size: 14px;}
 
-button {
-	background: url(../img/button-gradient.png);
-	border: 1px solid #999;
-	border-top: 1px solid #e0e0e0;
-	border-left: 1px solid #e0e0e0;
-	margin: 10px;
-	padding-left: 5px;
-	padding-right: 5px;
-	height: 29px;
-	min-width: 70px;
+button.classic{
+    background-repeat:repeat;
+    border: 1px solid #999;
+    border-top: 1px solid #e0e0e0;
+    border-left: 1px solid #e0e0e0;
+    margin: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding:0px;
+    padding-bottom:0px;
+    font-size: 20px;
+    min-height: 50px;
+    min-width: 80px;
 }
 
-.smallButton {
-	background: #FFFFFF;
-	font-size: 10px;
+button.default {
+    background: url(images/button-gradient.png);
+    background-repeat:repeat;
+    background-size: 200px 500px;
+    border: 1px solid #999;
+    border-top: 1px solid #e0e0e0;
+    border-left: 1px solid #e0e0e0;
+    margin: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top:10px;
+    padding-bottom:10px;
+    min-width: 90px;
+    font-size: 100%;
 }
+
 
 button:active {
-	border-left: 1px solid #c9c9c9;
-	border-top: 1px solid #c9c9c9;
-	background: none;
-	background-color: #c9c9c9;
+    border-left: 1px solid #c9c9c9;
+    border-top: 1px solid #c9c9c9;
+    background: none;
+    background-color: #c9c9c9;
 }
 
 button[disabled] {
-	background: url(zen-button.png);
-	border: 1px solid #999;
-	border-top: 1px solid #e0e0e0;
-	border-left: 1px solid #e0e0e0;
-	cursor: not-allowed;
+    background: url(zen-button.png);
+    border: 1px solid #999;
+    border-top: 1px solid #e0e0e0;
+    border-left: 1px solid #e0e0e0;
+    cursor: not-allowed;
 }
 
-/**
-## Experiment-specific styles
-This stuff will vary by experiment.
-*/
+button.min {
+    padding:0;
+    margin:0;
+}
 
-#centered {
+button.large {
+    height:50px;
+    min-width:100px;
+}
+
+button.space {
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+
+/* sliders */
+
+.slider-lbl1 {
+    position: absolute;
+    font-size : 20px;
+    width:auto;
+}
+
+.slider-lbl2 {
+    position: absolute;
+    font-size: 20px;
+    width:auto;
+}
+
+.slider_outer {
+    width: 100%;
+    height: 50px;
+    margin:50px 0px;
+    padding: 0px;
+}
+
+.slider_holder {
+    width: 100%;
+    height: 50px;
+    margin: 40px 0px;
+    padding: 0px;
+}
+
+
+/* progress */
+#progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
     text-align: center;
+    visibility: hidden;
+    z-index: 100;
 }
 
-#intro {
-    text-align: left;
-}
-
-#stage {
-    text-align: center;
-}
-
-form {
-    text-align: center;
-}
-
-.reponse {
-    text-align: center;
-}
-
-#logo-text {
-  font-weight: bold;
-}
-
-#instructions {
-  text-align: center;
-}
-
-.block-text {
-  width: 500px;
-  text-align: justify;
-  margin: 0 auto;
-  margin-bottom: 1em;
-}
-
-#legal {
-  margin: 0 auto;
-  margin-top: 1.5em;
-  font-size: 0.8em;
-}
-
-/**
- * Dragdealer JS v0.9.5
- * http://code.ovidiu.ch/dragdealer-js
- *
- * Copyright (c) 2010, Ovidiu Chereches
- * MIT License
- * http://legal.ovidiu.ch/licenses/MIT
- */
-
-.dragdealer {
-	position: relative;
-	height: 30px;
-	background: #EEE;
-}
-.dragdealer .handle {
-	position: absolute;
-	cursor: pointer;
-}
-.dragdealer .red-bar {
-	width: 30px;
-	height: 30px;
-	background: #CC0000;
-	color: #FFF;
-	line-height: 30px;
-	text-align: center;
-}
-.dragdealer .disabled {
-	background: #898989;
-}
-.dragdealer .grey-bar {
-        width: 30px;
-        height: 30px;
-        background: #999999;
-        color: #FFF;
-        line-height: 30px;
-        text-align: center;
-}
+.progress_text { font-size : 20px}
 
 
-/* prog bar */
-.progress{
-    float:right;
+
+/*p*/
+p.small {line-height:90%}
+
+p.medium {
+    font-size: 20px;
+    line-height:110%;
+    margin-left:10%;
+    margin-right:10%;
 }
 
-.progress span{
-    position:relative;
-    top: -6px;
+p.big {
+    line-height:130%;
+    margin-left:10%;
+    margin-right:10%;
 }
 
-.bar-wrapper{
-    height:20px;
-    width:200px;
-    border:1px solid #000000;
-    display:inline-block;
+p.bigest {line-height:130%; font-size: 45pt;}
+
+/* /\* tables *\/ */
+/* td { */
+/*     font-family: Arial; */
+/* } */
+
+table {
+    width: 100px; height: 100px; margin: 0 auto;
 }
 
-.bar{
-    position:relative;
-    height:100%;
-    width:0px;
-    background-color:#000000
-}
+/* td.caption { text-align: center; line-height:100%; font-size: 30pt;} */
+/* .tab { text-indent:40px } */
+/* table.image {cellspacing : 10 px;}; */
+/* table.image td { */
+/*     border:solid 5x transparent; */
+/* } */
 
-p {
-	width:70%;
-	position:relative;
-	margin: auto auto;
-    /*margin-bottom: 0.5em;
-    margin-top: 0.5em;*/
-    margin-bottom: 0.2em;
-    margin-top: 0.2em;
-}
+/* div.table_outer { */
+/*     padding-bottom:5px; */
+/* } */
 
-.emph {
-	font-weight:bold;
-	font-style:italic;
-	font-size:18;
-}
+/* table.image td { */
+/*     border-left:solid 30px transparent; */
+/*     border-right:solid 30px transparent; */
+/* } */
 
-.things-you-know {
-	font-weight:500;
+.hidden {
+    display : none;
 }
