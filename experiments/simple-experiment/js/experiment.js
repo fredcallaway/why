@@ -1,7 +1,7 @@
 function make_slides(f) {
     var   slides = {};
 
-    function i0(){}
+    
     slides.i0 = slide(
         {
             name : "i0"
@@ -9,7 +9,7 @@ function make_slides(f) {
     );
 
 
-    function conf_trial(){}
+    
     slides.conf_trial = slide(
         {
             name : "conf_trial",
@@ -31,7 +31,63 @@ function make_slides(f) {
         }
     );
 
-    function repeated_stims(){}
+    slides.show_some_images = slide(
+        {
+            name: "show_some_images",
+            present: _.shuffle([{creature: "fish"}, {creature: "fish"}]),
+            start: function() {},
+            present_handle: function(stim) {
+                $("#creature").html("");
+                Ecosystem.draw(stim.creature, {}, "creature", 0.5);
+            },
+            button: function() { _stream.apply(this); },
+            init_sliders : function() {
+
+                exp.sliderPost=[500,500];
+
+                if (this.version === "baseline") {
+                    $('#test_text').hide();
+                    $('#baseline_test_text').show();
+                }
+                else{
+                    $('#test_text').show();
+                    $('#baseline_test_text').hide();
+                }
+
+                $(".sim_slide").css('width' , 3*(exp.width/4)).centerhin();
+                $(".slider-lbl1 ").css('right' , (exp.width/4) *3.2 +20);
+                $(".slider-lbl2 ").css('left' , (exp.width/4) *3.2 +20);
+                $(".slider-lbl3 ").css('left' , (exp.width/2));
+                $("#test_slide").slider({
+                    range : "min",
+                    value : 50,
+                    min : 0,
+                    max : 100,
+                    slide : function(event, ui) {
+                        exp.sliderPost[0] = ui.value/100;
+                    }
+                });
+                $("#test_slide").mousedown(function(){$("#test_slide a").css('display', 'inherit');});
+                $("#test_slide").slider("option","value",0);//reset slider
+
+
+                $("#confidence_slide").slider({
+                    range : "min",
+                    value : 50,
+                    min : 0,
+                    max : 100,
+                    slide : function(event, ui) {
+                        exp.sliderPost[1] = ui.value/100;
+                    }
+                });
+                $("#confidence_slide").mousedown(function(){$("#confidence_slide a").css('display', 'inherit');});
+                $("#confidence_slide").slider("option","value",0);//reset slider
+                $(".ui-slider-handle").css('display', 'none');
+            }
+        }
+    );
+
+    
     slides.repeated_stims = slide(
         {
             name : "repeated_stims",
@@ -127,7 +183,7 @@ function make_slides(f) {
 
 
     //!subj_info
-    function subj_info(){}
+    
     slides.subj_info =  slide(
         {
             name : "subj_info",
@@ -154,7 +210,7 @@ function make_slides(f) {
         }
     );
 
-    function thanks(){}
+    
     slides.thanks = slide(
         {
             name : "thanks",
@@ -182,7 +238,8 @@ function init() {
     exp.sandbox=0;
     exp.slides = make_slides(exp);
 
-    exp.structure=["i0", 'conf_trial', 'repeated_stims', 'subj_info', 'thanks'];
+    exp.structure=["i0", //'show_some_images',
+      'conf_trial', 'repeated_stims', 'subj_info', 'thanks'];
     set_condition();
 
     //allow to click through experiment
