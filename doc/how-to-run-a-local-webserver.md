@@ -7,7 +7,8 @@ Open up a terminal and type:
     
 That's it! Now your http server will start in port 8000. You will get the message:
 
-Serving HTTP on 0.0.0.0 port 8000 ...
+    Serving HTTP on 0.0.0.0 port 8000 ...
+
 Now open a browser and type the following address:
 
     http://192.168.1.2:8000
