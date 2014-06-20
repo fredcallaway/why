@@ -1,0 +1,52 @@
+;; -*- mode: emacs-lisp; coding: emacs-mule; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Sat Oct 29 04:29:46 2011
+;; Desktop file format version 206
+;; Emacs version 23.3.50.1
+
+;; Global section:
+(setq tabbar-desktop-saved-tabsets '(("index.php" "lfunc.js" "alien")))
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name nil)
+(setq tags-table-list nil)
+(setq search-ring '("frame" "ecb" "require" "Cade" "cadet" "load-file" "semanticdb-search" "'semanticdb-search" "defcust" "matlab" "Desktop"))
+(setq regexp-search-ring nil)
+(setq register-alist (list (desktop-list* 97 (let ((mk (make-marker))) (add-hook 'desktop-delay-hook (list 'lambda '() (list 'set-marker mk nil (get-buffer " *temp*")))) mk)) (desktop-list* 108 (let ((mk (make-marker))) (add-hook 'desktop-delay-hook (list 'lambda '() (list 'set-marker mk nil (get-buffer " *temp*")))) mk)) (desktop-list* 114 (let ((mk (make-marker))) (add-hook 'desktop-delay-hook (list 'lambda '() (list 'set-marker mk nil (get-buffer " *temp*")))) mk)) '(24 . "") '(102 . "") (desktop-list* 116 (let ((mk (make-marker))) (add-hook 'desktop-delay-hook (list 'lambda '() (list 'set-marker mk nil (get-buffer " *temp*")))) mk)) '(14 . "")))
+(setq file-name-history '("~/Research/coco/exp/alien/js/" "~/Research/coco/exp/alien/" "~/Research/coco/exp/alien/js/lfunc.js" "~/Research/coco/exp/alien/index.php" "~/Research/coco/exp/alien/" "~/Downloads/Jim Q2wrkthrough.R" "~/Tools/emacs/emacswiki/emacswiki.org/CustomizeAquamacs" "~/Tools/emacs/emacswiki/emacswiki.org/PreferencesInAquamacs" "~/Tools/emacs/emacswiki/emacswiki.org/CustomizeAquamacs" "~/.emacs.bmk" "~/Downloads/Jim Q2wrkthrough.R" "~/Downloads/" "~/Downloads/Jim Q2wrkthrough.R" "~/Research/coco/exp/alien" "~/Tools/Turk/samples/external_hit/external_hit.question.T.sh" "~/Tools/Turk/samples/external_hit/external_hit.properties.T.sh" "~/Tools/bscripts/setupTurk" "~/.emacs-bmk-bmenu-state.el" "~/.emacs.bmk" "~/Tools/emacs/matlab-emacs/cedet-matlab.el" "~/Tools/emacs/matlab-emacs/README" "~/Tools/emacs/matlab-emacs/cedet-1.0/USING_CEDET_FROM_CVS" "~/.emacs" "~/.emacs.bmk" "~/Tools/emacs/matlab-emacs/cedet-matlab.el" "~/Tools/emacs/matlab-emacs/README" "~/Tools/emacs/matlab-emacs/cedet-1.0/USING_CEDET_FROM_CVS" "~/.emacs" "~/Tools/emacs/matlab-emacs/cedet-matlab.el" "~/Tools/emacs/matlab-emacs/README"))
+
+;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 206
+  "/Users/djthorne/Research/coco/exp/alien/js/lfunc.js"
+  "lfunc.js"
+  'js2-mode
+  '(visual-line-mode ede-minor-mode senator-minor-mode semantic-idle-scheduler-mode semantic-idle-summary-mode semantic-mru-bookmark-mode linum-mode)
+  415
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  nil
+  "alien"
+  'dired-mode
+  '(visual-line-mode linum-mode)
+  745
+  '(nil nil)
+  t
+  '("/Users/djthorne/Research/coco/exp/alien/")
+  nil)
+
+(desktop-create-buffer 206
+  "/Users/djthorne/Research/coco/exp/alien/index.php"
+  "index.php"
+  'php-mode
+  '(abbrev-mode visual-line-mode yas/minor-mode ede-minor-mode senator-minor-mode semantic-idle-scheduler-mode semantic-idle-summary-mode semantic-mru-bookmark-mode linum-mode)
+  3
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix) (case-fold-search . t)))
+
