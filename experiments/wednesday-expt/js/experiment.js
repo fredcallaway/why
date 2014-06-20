@@ -18,7 +18,11 @@ function make_slides(f) {
                       {scen: 2, num_expl:2},
                       {scen: 3, num_expl:2}],
                       
-            present_handle : function() {
+            present_handle : function(stim) {
+            	console.log(stim);
+            	exp.data_trials.push(stim);
+            	
+            	//get scenario
             	exp.scenarios = get_scenario();
             	$('.scenario').each(function(){$(this).text(exp.scenarios['scenario']);});
 				$('.expl1').each(function(){$(this).text(exp.scenarios['expl1']);});
@@ -28,7 +32,7 @@ function make_slides(f) {
             //This makes sure subjects can't move on if they haven't given an answer                   
     		button : function() {
     			if ($('input[type=radio]:checked').size() > 0) {
-					exp.data_val = [{
+					_.last(exp.data_trials)["expl_chosen"] = [{
 					rad_button_resp : $('input[name="rad_button"]:checked').val()
 					}];
 					//This unselects the button for the next trial
@@ -43,12 +47,17 @@ function make_slides(f) {
      	{
      		name : "slider",
      		
+     		start : function() {
+     		},
+     		
             present: [{scen: 0, num_expl:2},
                       {scen: 1, num_expl:2},
                       {scen: 2, num_expl:2},
                       {scen: 3, num_expl:2}],
                       
-            present_handle : function() {
+            present_handle : function(stim) {
+            	exp.data_trials.push(stim);
+                this.init_sliders();
             	exp.scenarios = get_scenario();
             	$('.scenario').each(function(){$(this).text(exp.scenarios['scenario']);});
 				$('.expl1').each(function(){$(this).text(exp.scenarios['expl1']);});
@@ -59,8 +68,8 @@ function make_slides(f) {
                 if(_.all(exp.sliderPost, function(x){return(x<500);})){
                     _.last(exp.data_trials)["version"]= "baseline";
                     _.last(exp.data_trials)["pid"]= this.phaseid;
-                    _.last(exp.data_trials)["prop_estimate"]= exp.sliderPost[0];
-                    _.last(exp.data_trials)["confidence"]= exp.sliderPost[1];
+                    _.last(exp.data_trials)["expl1_rating"]= exp.sliderPost[0];
+                    _.last(exp.data_trials)["expl2_rating"]= exp.sliderPost[1];
                     if(this.version=="pre") exp.data_trials.push($.extend(true, {}, _.last(exp.data_trials)));
                     if(exp.canvas) exp.canvas.remove();
                     _stream.apply(this);
@@ -84,7 +93,7 @@ function make_slides(f) {
                 $(".slider-lbl1 ").css('right' , (exp.width/4) *3.2 +20);
                 $(".slider-lbl2 ").css('left' , (exp.width/4) *3.2 +20);
                 $(".slider-lbl3 ").css('left' , (exp.width/2));
-                $("#test_slide").slider({
+                $("#expl1_slide").slider({
                     range : "min",
                     value : 50,
                     min : 0,
@@ -93,8 +102,20 @@ function make_slides(f) {
                         exp.sliderPost[0] = ui.value/100;
                     }
                 });
-                $("#test_slide").mousedown(function(){$("#test_slide a").css('display', 'inherit');});
-                $("#test_slide").slider("option","value",0);//reset slider
+                $("#expl1_slide").mousedown(function(){$("#expl1_slide a").css('display', 'inherit');});
+                $("#expl1_slide").slider("option","value",0);//reset slider
+                
+                $("#expl2_slide").slider({
+                    range : "min",
+                    value : 50,
+                    min : 0,
+                    max : 100,
+                    slide : function(event, ui) {
+                        exp.sliderPost[0] = ui.value/100;
+                    }
+                });
+                $("#expl2_slide").mousedown(function(){$("#expl2_slide a").css('display', 'inherit');});
+                $("#expl2_slide").slider("option","value",0);//reset slider
                 
                 $(".ui-slider-handle").css('display', 'none');
             }
@@ -330,7 +351,7 @@ function init() {
     exp.sandbox=0;
     exp.slides = make_slides(exp);
 
-    exp.structure=["i0", 'radio_buttons', //'slider',  
+    exp.structure=["i0", 'slider',  
     'conf_trial', 'subj_info', 'thanks'];
     set_condition();
 
