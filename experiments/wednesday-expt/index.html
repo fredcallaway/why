@@ -167,7 +167,9 @@
                 <span class="slider-lbl2">Certain</span>
                 <span class="slider-lbl3">Reasonably Sure</span>
               </div>
+
             </div>
+
 
           </div>
           <button type="button" class="space" onclick=
@@ -297,6 +299,7 @@
           <p id="bonus_feedback" class="big"><p>
         </div>
         
+        <!--radio button slide -->
         <div id="radio_buttons" class="slide js" >
             <div>
               <p id="test_text" class="small mtop">You have the following information: </p>
@@ -314,24 +317,53 @@
 			</div>	
 		</div>
 		
-        <div id="slide" class="slide js" >
-            <div>
-              <p id="test_text" class="small mtop">You have the following information: </p>
-              <br>
-              <p><span class="scenario"></span> </p>
-              <p id="question" class="small mtop">How likely is the following explanation to be true?
-              </p><br>
-        	
-            <div id="slide_response">
-              <div id="slider_outer" class="slider_outer">
-                <div id="test_slide" class="sim_slide"></div>
-                <span class="slider-lbl1">Very Unlikely</span>
-                <span class="slider-lbl2">Very Likely</span>
-                <span class="slider-lbl3">Not Likely or Unlikely</span>
-              </div>
-            </div>
+		<!--(another) slider slide -->
+        <div id="slider" class="slide js" >
+        	<div id="test_sliders">
+				<div>
+				  <p id="test_text" class="small mtop">You have the following information: </p>
+				  <br>
+				  <p><span class="scenario"></span> </p>
+				  <p id="question" class="small mtop">How likely are each of the following explanations?
+				  </p><br>
+				</div>
 			
-			</div>	
+				<div id="sim_resp">
+				<p><span class="expl1"></span></p>
+				  <div id="slider_outer" class="slider_outer">
+					<div id="expl1_slide" class="sim_slide"></div>
+					<span class="slider-lbl1">Very Unlikely</span>
+					<span class="slider-lbl2">Very Likely</span>
+					<span class="slider-lbl3">Neither Likely or Unlikely</span>
+				  </div>
+				</div>
+			
+				<div id="sim_resp">
+				<p><span class="expl2"></span></p>
+				  <div id="slider_outer" class="slider_outer">
+					<div id="expl2_slide" class="sim_slide"></div>
+					<span class="slider-lbl1">Very Unlikely</span>
+					<span class="slider-lbl2">Very Likely</span>
+					<span class="slider-lbl3">Neither Likely or Unlikely</span>
+				  </div>
+				</div>
+			</div>
+
+          <button type="button" class="space" onclick=
+            "_s.button();">Continue</button>
+            				
+		</div>
+		
+		<!--likert scale w/ radio buttons -->
+		<div id="likert" class="slide js">
+		</div>
+		
+		<!--dropdown selections -->
+		<div id="dropdown" class="slide js">
+		</div>
+		
+		<!--drag-and-drop?? -->
+		<div id="drag-drop" class="slide js">
 		</div>
 
 
