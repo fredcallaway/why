@@ -121,6 +121,41 @@ function make_slides(f) {
             }
       	}      
 	);
+	
+	slides.likert = slide(
+		{
+			name : "likert",
+			start : function() {
+			},
+            present: [{scen: 0, num_expl:2},
+                      {scen: 1, num_expl:2},
+                      {scen: 2, num_expl:2},
+                      {scen: 3, num_expl:2}],
+                      
+            present_handle : function(stim) {
+            	console.log(stim);
+            	exp.data_trials.push(stim);
+            	
+            	//get scenario
+            	exp.scenarios = get_scenario();
+            	$('.scenario').each(function(){$(this).text(exp.scenarios['scenario']);});
+				$('.expl1').each(function(){$(this).text(exp.scenarios['expl1']);});
+				$('.expl2').each(function(){$(this).text(exp.scenarios['expl2']);});
+				},
+            
+            //This makes sure subjects can't move on if they haven't given an answer                   
+    		button : function() {
+    			if ($('input[type=radio]:checked').size() > 0) {
+					_.last(exp.data_trials)["rating"] = [{
+					rad_button_resp : $('input[name="rad_button"]:checked').val()
+					}];
+					//This unselects the button for the next trial
+					$('input[name="rad_button"]').attr('checked',false);
+					_stream.apply(this);
+				} 
+    		}
+     	}
+	);
 
     
     slides.conf_trial = slide(
@@ -351,7 +386,7 @@ function init() {
     exp.sandbox=0;
     exp.slides = make_slides(exp);
 
-    exp.structure=["i0", 'slider',  
+    exp.structure=["i0", 'likert', 'slider',  
     'conf_trial', 'subj_info', 'thanks'];
     set_condition();
 

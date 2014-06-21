@@ -356,10 +356,31 @@
 		
 		<!--likert scale w/ radio buttons -->
 		<div id="likert" class="slide js">
-		</div>
+			<div>
+              <p id="test_text" class="small mtop">You have the following information: </p>
+              <br>
+              <p><span class="scenario"></span> </p>
+              <p>You hear the following explanation of the scenario: </p>
+              <br>
+              <p><span class="expl1"></span></p>
+              <p id="question" class="small mtop">How likely do you think the explanation is?
+              </p><br>
+              
+			<form action="">
+			<input type="radio" name="rad_button" value="-2" id="tab_style"/>
+			<input type="radio" name="rad_button" value="-2" id="tab_style"/>
+			<input type="radio" name="rad_button" value="0" id="tab_style"/>
+			<input type="radio" name="rad_button" value="1" id="tab_style"/>
+			<input type="radio" name="rad_button" value="2" id="tab_style"/><br>
+			<p>Very Unlikely&nbsp;&nbsp;Unlikely&nbsp;&nbsp;Neither Likely or Unlikely&nbsp;&nbsp;Likely&nbsp;&nbsp;Very Likely</p>
+			<button type="button" class="space" onclick="_s.button();">Continue</button>
+			</form>
+			
+            </div>
+        </div>
 		
-		<!--dropdown selections -->
-		<div id="dropdown" class="slide js">
+		<!--rating w/ text boxes -->
+		<div id="rating" class="slide js">
 		</div>
 		
 		<!--drag-and-drop?? -->
