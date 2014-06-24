@@ -299,6 +299,42 @@
           <p id="bonus_feedback" class="big"><p>
         </div>
         
+        <!-- instructions slide -->
+        <div id="instructions_causal" class="slide js">
+        	<div>
+        		<p>In this experiment you will learn about blah blah blah.</p>
+        	</div>
+          
+          	<button type="button" class="space" onclick=
+            "_s.button();">Continue</button>
+        </div>
+        
+        <!-- training slides -->
+        <div id="training" class="slide js">
+        	<div>
+        		<p><br>The light switch turns on the lamp 90% of the time it is flipped.
+				<span class="zach_name"></span> flips the light switch 80% of the time 
+				<span class="zach_name"></span> is in the room. If the lamp is on, there 
+				is a 75% chance there is more than one person in the room. If the lamp is 
+				off, there is a 10% chance that there is more than one person in the room.<p>
+        	</div>
+        	
+          <br><button type="button" class="space" onclick="_s.button();">Continue</button>
+        </div>
+        
+        <!-- testing: text box slides -->
+        <div id="txt_box" class="slide js">
+        	<div>
+        		<p><br><span class="why_question"></span><p>
+        		<p><br>Because <input type="text" size="100" name="expl"/>.</p>
+        	</div>
+        
+        	<div>	
+          	<br><button type="button" class="space" onclick=
+            "_s.button();">Continue</button>
+            </div>
+        </div>
+        
         <!--radio button slide -->
         <div id="radio_buttons" class="slide js" >
             <div>
@@ -324,24 +360,14 @@
 				  <p id="test_text" class="small mtop">You have the following information: </p>
 				  <br>
 				  <p><span class="scenario"></span> </p>
-				  <p id="question" class="small mtop">How likely are each of the following explanations?
+				  <p id="question" class="small mtop">How likely is the following explanation?
 				  </p><br>
 				</div>
 			
 				<div id="sim_resp">
-				<p><span class="expl1"></span></p>
+				<p><span class="expl"></span></p>
 				  <div id="slider_outer" class="slider_outer">
-					<div id="expl1_slide" class="sim_slide"></div>
-					<span class="slider-lbl1">Very Unlikely</span>
-					<span class="slider-lbl2">Very Likely</span>
-					<span class="slider-lbl3">Neither Likely or Unlikely</span>
-				  </div>
-				</div>
-			
-				<div id="sim_resp">
-				<p><span class="expl2"></span></p>
-				  <div id="slider_outer" class="slider_outer">
-					<div id="expl2_slide" class="sim_slide"></div>
+					<div id="expl_slide" class="sim_slide"></div>
 					<span class="slider-lbl1">Very Unlikely</span>
 					<span class="slider-lbl2">Very Likely</span>
 					<span class="slider-lbl3">Neither Likely or Unlikely</span>
