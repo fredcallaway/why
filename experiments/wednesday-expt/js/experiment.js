@@ -13,27 +13,21 @@ function make_slides(f) {
     	{
     		name : "radio_buttons",	
     		
-            present: [{scen: 0, expl1: 1, expl2: 2},
-                      {scen: 1, expl1: 1, expl2: 2},
-                      {scen: 2, expl1: 1, expl2: 2},
-                      {scen: 3, expl1: 1, expl2: 2},
-                      {scen: 0, expl1: 1, expl2: 2},
-                      {scen: 1, expl1: 1, expl2: 2},
-                      {scen: 2, expl1: 1, expl2: 2},
-                      {scen: 3, expl1: 1, expl2: 2}],
+            present: [{scen: 0, expl1: "proximal", expl2: "distal"},
+                      {scen: 1, expl1: "distal", expl2: "proximal"},
+                      {scen: 2, expl1: "proximal", expl2: "distal"},
+                      {scen: 3, expl1: "distal", expl2: "proximal"}],
                       
             present_handle : function(stim) {
             	console.log(stim);
             	exp.data_trials.push(stim);
             	
             	//get scenario
-            	exp.scenarios = get_scenarios();
-            	order_trials = exp.scenarios[1];
-            	exp.scenarios = exp.scenarios[0];
+            	exp.questions = get_question();
             	_(stim).shuffle;
-            	$('.scenario').each(function(){$(this).text(exp.scenarios[stim.scen]['scenario']);});
-				$('.expl1').each(function(){$(this).text(exp.scenarios[stim.scen]['expl1']);});
-				$('.expl2').each(function(){$(this).text(exp.scenarios[stim.scen]['expl2']);});
+            	$('.why_question').each(function(){$(this).text(exp.questions['question']);});
+				$('.expl1').each(function(){$(this).text(exp.questions['expl_' + stim.expl1]);});
+				$('.expl2').each(function(){$(this).text(exp.questions['expl_' + stim.expl2]);});
 				},
             
             //This makes sure subjects can't move on if they haven't given an answer                   
@@ -124,24 +118,23 @@ function make_slides(f) {
 			name : "likert",
 			start : function() {
 			},
-            present: [{scen: 0, expl: 1},
-                      {scen: 1, expl: 1},
-                      {scen: 2, expl: 1},
-                      {scen: 3, expl: 1},
-                      {scen: 0, expl: 2},
-                      {scen: 1, expl: 2},
-                      {scen: 2, expl: 2},
-                      {scen: 3, expl: 2}],
+            present: [{scen: 0, expl: "proximal"},
+                      {scen: 1, expl: "proximal"},
+                      {scen: 2, expl: "proximal"},
+                      {scen: 3, expl: "proximal"},
+                      {scen: 0, expl: "distal"},
+                      {scen: 1, expl: "distal"},
+                      {scen: 2, expl: "distal"},
+                      {scen: 3, expl: "distal"}],
                       
             present_handle : function(stim) {
             	console.log(stim);
             	exp.data_trials.push(stim);
             	
             	//get scenario
-            	exp.scenarios = get_scenario();
-            	$('.scenario').each(function(){$(this).text(exp.scenarios['scenario']);});
-				$('.expl1').each(function(){$(this).text(exp.scenarios['expl1']);});
-				$('.expl2').each(function(){$(this).text(exp.scenarios['expl2']);});
+            	exp.question = get_question();
+            	$('.why_question').each(function(){$(this).text(exp.question['question']);});
+				$('.expl').each(function(){$(this).text(exp.question['expl' + stim.expl]);});
 				},
             
             //This makes sure subjects can't move on if they haven't given an answer                   
@@ -161,8 +154,9 @@ function make_slides(f) {
 	slides.instructions_causal = slide(
 		{
 			name : "instructions_causal",
+			present : [0],
 			button : function() {
-				exp.go;
+				_stream.apply(this);
 			}
 		}
 	);
@@ -172,8 +166,15 @@ function make_slides(f) {
 			name : "training",
 			start : function() {
 			},
+			present : [0],
+			present_handle : function() {
+				t1 = Date.now();
+			},
 			button : function() {
-				_stream.apply(this);
+				t2 = Date.now();
+				if ((t2 - t1) > 1000) {
+					_stream.apply(this);
+				}
 			}
 		}
 	);
@@ -186,7 +187,7 @@ function make_slides(f) {
 			present : [0, 1, 2],
 			present_handle : function(stim) {
 				exp.question = get_question();
-            	$('.why_question').each(function(){$(this).text(exp.question);});
+            	$('.why_question').each(function(){$(this).text(exp.question['question']);});
 			},
 			button : function() {
                 var res = {};
@@ -509,9 +510,12 @@ var get_scenarios = function() {
 }();
 
 var get_question = function() {
-	var questions = ["Suppose you know that there is more than one person in the room. Why is there more than one person in the room?", 
-	"Suppose you know that the light switch is on. Why is the light switch on?", 
-	"Suppose you know that the lamp is on. Why is the lamp on?"];
+	var questions = [{question : "You know that an alien has Disease B and has a fever. Why do they have a fever?", 
+	expl_proximal: "Because they have Disease C or Disease D.", expl_distal: "Because they have Disease A."},
+	{question : "You know that an alien has Disease C and has a fever. Why do they have a fever?", 
+	expl_proximal: "Because they have Disease B.", expl_distal: "Because they have Disease A."},
+	{question : "You know that an alien has Disease D and has a fever. Why do they have a fever?",
+	expl_proximal : "Because they have Disease B.", expl_distal: "Because they have Disease A."}];
 	questions = _(questions).shuffle();
 	return function() {
 		return questions.pop();
