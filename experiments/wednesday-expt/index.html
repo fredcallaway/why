@@ -302,21 +302,25 @@
         <!-- instructions slide -->
         <div id="instructions_causal" class="slide js">
         	<div>
-        		<p>In this experiment you will learn about blah blah blah.</p>
+        		<p>In this experiment you will learn about some causal structure.
+        		Then you will be given scenarios and ask why they occurred. You
+        		must spend at least 30 seconds familiarizing yourself with the causal
+        		structure presented before moving on to the questions. This
+        		experiment should take about 3 minutes.</p>
         	</div>
           
-          	<button type="button" class="space" onclick=
-            "_s.button();">Continue</button>
+          	<button type="button" class="space" onclick="_s.button();">Continue</button>
         </div>
         
         <!-- training slides -->
         <div id="training" class="slide js">
         	<div>
-        		<p><br>The light switch turns on the lamp 90% of the time it is flipped.
-				<span class="zach_name"></span> flips the light switch 80% of the time 
-				<span class="zach_name"></span> is in the room. If the lamp is on, there 
-				is a 75% chance there is more than one person in the room. If the lamp is 
-				off, there is a 10% chance that there is more than one person in the room.<p>
+        		<p><br>Suppose you are a doctor on an alien planet. You know that there are five different 
+				diseases that the aliens have. Disease A causes abnormal proteins X and Y to be expressed 
+				in the alien's body. Disease B causes the abnormal protein X to be expressed. Diseases C 
+				and D both cause the abnormal protein Y to be expressed. If both X and Y are expressed, the
+				alien gets a fever. 3 in 100 aliens have Disease E, 10 in 100 aliens have Disease B, 15 
+				in 100 aliens have Disease C, and 10 in 100 aliens have Disease D.<p>
         	</div>
         	
           <br><button type="button" class="space" onclick="_s.button();">Continue</button>
@@ -325,6 +329,13 @@
         <!-- testing: text box slides -->
         <div id="txt_box" class="slide js">
         	<div>
+        		<p><br>Suppose you are a doctor on an alien planet. You know that there are five different 
+				diseases that the aliens have. Disease A causes abnormal proteins X and Y to be expressed 
+				in the alien's body. Disease B causes the abnormal protein X to be expressed. Diseases C 
+				and D both cause the abnormal protein Y to be expressed. If both X and Y are expressed, the
+				alien gets a fever. 3 in 100 aliens have Disease E, 10 in 100 aliens have Disease B, 15 
+				in 100 aliens have Disease C, and 10 in 100 aliens have Disease D.<p>
+				
         		<p><br><span class="why_question"></span><p>
         		<p><br>Because <input type="text" size="100" name="expl"/>.</p>
         	</div>
@@ -338,13 +349,22 @@
         <!--radio button slide -->
         <div id="radio_buttons" class="slide js" >
             <div>
-              <p id="test_text" class="small mtop">You have the following information: </p>
+        		<p><br>Suppose you are a doctor on an alien planet. You know that there are five different 
+				diseases that the aliens have. Disease A causes abnormal proteins X and Y to be expressed 
+				in the alien's body. Disease B causes the abnormal protein X to be expressed. Diseases C 
+				and D both cause the abnormal protein Y to be expressed. If both X and Y are expressed, the
+				alien gets a fever. 3 in 100 aliens have Disease E, 10 in 100 aliens have Disease B, 15 
+				in 100 aliens have Disease C, and 10 in 100 aliens have Disease D.<p>
               <br>
-              <p><span class="scenario"></span> </p>
-              <p id="question" class="small mtop">Which of the following is <strong>more likely</strong> to be true?
+              
+              <p id="question" class="small mtop">Please mark which of the following is a 
+              <strong>better explanation</strong> of the question below.
               </p><br>
+              
+              <p><span class="why_question"></span></p>
         	
 			<form action="">
+			<br>
 			<input type="radio" name="rad_button" value="opt11"/><span class="expl1"></span><br>
 			<input type="radio" name="rad_button" value="opt2"/><span class="expl2"></span><br> <br>
 			<button type="button" class="space" onclick="_s.button();">Continue</button>
@@ -385,11 +405,11 @@
 			<div>
               <p id="test_text" class="small mtop">You have the following information: </p>
               <br>
-              <p><span class="scenario"></span> </p>
+              <p><span class="why_question"></span> </p>
               <p>You hear the following explanation of the scenario: </p>
               <br>
-              <p><span class="expl1"></span></p>
-              <p id="question" class="small mtop">How likely do you think the explanation is? (1 = Very Unlikely, 7 = Very Likely)
+              <p><span class="expl"></span></p>
+              <p id="question" class="small mtop">How acceptable is the explanation? (1 = Very Unacceptable, 7 = Very Acceptable)
               </p><br>
               
 			<form action="">
