@@ -13,20 +13,27 @@ function make_slides(f) {
     	{
     		name : "radio_buttons",	
     		
-            present: [{scen: 0, num_expl:2},
-                      {scen: 1, num_expl:2},
-                      {scen: 2, num_expl:2},
-                      {scen: 3, num_expl:2}],
+            present: [{scen: 0, expl1: 1, expl2: 2},
+                      {scen: 1, expl1: 1, expl2: 2},
+                      {scen: 2, expl1: 1, expl2: 2},
+                      {scen: 3, expl1: 1, expl2: 2},
+                      {scen: 0, expl1: 1, expl2: 2},
+                      {scen: 1, expl1: 1, expl2: 2},
+                      {scen: 2, expl1: 1, expl2: 2},
+                      {scen: 3, expl1: 1, expl2: 2}],
                       
             present_handle : function(stim) {
             	console.log(stim);
             	exp.data_trials.push(stim);
             	
             	//get scenario
-            	exp.scenarios = get_scenario();
-            	$('.scenario').each(function(){$(this).text(exp.scenarios['scenario']);});
-				$('.expl1').each(function(){$(this).text(exp.scenarios['expl1']);});
-				$('.expl2').each(function(){$(this).text(exp.scenarios['expl2']);});
+            	exp.scenarios = get_scenarios();
+            	order_trials = exp.scenarios[1];
+            	exp.scenarios = exp.scenarios[0];
+            	_(stim).shuffle;
+            	$('.scenario').each(function(){$(this).text(exp.scenarios[stim.scen]['scenario']);});
+				$('.expl1').each(function(){$(this).text(exp.scenarios[stim.scen]['expl1']);});
+				$('.expl2').each(function(){$(this).text(exp.scenarios[stim.scen]['expl2']);});
 				},
             
             //This makes sure subjects can't move on if they haven't given an answer                   
@@ -43,6 +50,8 @@ function make_slides(f) {
      	}
      );
      
+     
+     //SLIDER
      slides.slider = slide(
      	{
      		name : "slider",
@@ -50,30 +59,29 @@ function make_slides(f) {
      		start : function() {
      		},
      		
-            present: [{scen: 0, num_expl:2},
-                      {scen: 1, num_expl:2},
-                      {scen: 2, num_expl:2},
-                      {scen: 3, num_expl:2}],
+            present: [0, 1, 2, 3, 4, 5, 6, 7],
                       
             present_handle : function(stim) {
             	exp.data_trials.push(stim);
                 this.init_sliders();
-            	exp.scenarios = get_scenario();
-            	$('.scenario').each(function(){$(this).text(exp.scenarios['scenario']);});
-				$('.expl1').each(function(){$(this).text(exp.scenarios['expl1']);});
-				$('.expl2').each(function(){$(this).text(exp.scenarios['expl2']);});
+            	exp.scenarios = get_scenarios();
+            	order_trials = exp.scenarios[1];
+            	exp.scenarios = exp.scenarios[0];
+            	$('.scenario').each(function(){$(this).text(exp.scenarios[order_trials[stim]]['scenario']);});
+				$('.expl').each(function(){$(this).text(exp.scenarios[order_trials[stim]]['expl' + order_trials.expl]);});
+				//$('.expl2').each(function(){$(this).text(exp.scenarios['expl2']);});
 			},
 			
             button : function() {
-                if(_.all(exp.sliderPost, function(x){return(x<500);})){
+                //if(_.all(exp.sliderPost, function(x){return(x<500);})){
                     _.last(exp.data_trials)["version"]= "baseline";
                     _.last(exp.data_trials)["pid"]= this.phaseid;
-                    _.last(exp.data_trials)["expl1_rating"]= exp.sliderPost[0];
-                    _.last(exp.data_trials)["expl2_rating"]= exp.sliderPost[1];
+                    _.last(exp.data_trials)["expl_rating"]= exp.sliderPost;
+                    //_.last(exp.data_trials)["expl2_rating"]= exp.sliderPost[1];
                     if(this.version=="pre") exp.data_trials.push($.extend(true, {}, _.last(exp.data_trials)));
                     if(exp.canvas) exp.canvas.remove();
                     _stream.apply(this);
-                }
+                //}
             },
             
             init_sliders : function() {
@@ -93,7 +101,7 @@ function make_slides(f) {
                 $(".slider-lbl1 ").css('right' , (exp.width/4) *3.2 +20);
                 $(".slider-lbl2 ").css('left' , (exp.width/4) *3.2 +20);
                 $(".slider-lbl3 ").css('left' , (exp.width/2));
-                $("#expl1_slide").slider({
+                $("#expl_slide").slider({
                     range : "min",
                     value : 50,
                     min : 0,
@@ -102,20 +110,9 @@ function make_slides(f) {
                         exp.sliderPost[0] = ui.value/100;
                     }
                 });
-                $("#expl1_slide").mousedown(function(){$("#expl1_slide a").css('display', 'inherit');});
-                $("#expl1_slide").slider("option","value",0);//reset slider
-                
-                $("#expl2_slide").slider({
-                    range : "min",
-                    value : 50,
-                    min : 0,
-                    max : 100,
-                    slide : function(event, ui) {
-                        exp.sliderPost[0] = ui.value/100;
-                    }
-                });
-                $("#expl2_slide").mousedown(function(){$("#expl2_slide a").css('display', 'inherit');});
-                $("#expl2_slide").slider("option","value",0);//reset slider
+                $("#expl_slide").mousedown(function(){$("#expl_slide a").css('display', 'inherit');});
+                $("#expl_slide").slider("option","value",0);//reset slider
+        
                 
                 $(".ui-slider-handle").css('display', 'none');
             }
@@ -127,10 +124,14 @@ function make_slides(f) {
 			name : "likert",
 			start : function() {
 			},
-            present: [{scen: 0, num_expl:2},
-                      {scen: 1, num_expl:2},
-                      {scen: 2, num_expl:2},
-                      {scen: 3, num_expl:2}],
+            present: [{scen: 0, expl: 1},
+                      {scen: 1, expl: 1},
+                      {scen: 2, expl: 1},
+                      {scen: 3, expl: 1},
+                      {scen: 0, expl: 2},
+                      {scen: 1, expl: 2},
+                      {scen: 2, expl: 2},
+                      {scen: 3, expl: 2}],
                       
             present_handle : function(stim) {
             	console.log(stim);
@@ -157,6 +158,53 @@ function make_slides(f) {
      	}
 	);
 
+	slides.instructions_causal = slide(
+		{
+			name : "instructions_causal",
+			button : function() {
+				exp.go;
+			}
+		}
+	);
+	
+	slides.training = slide(
+		{
+			name : "training",
+			start : function() {
+			},
+			button : function() {
+				_stream.apply(this);
+			}
+		}
+	);
+	
+	slides.txt_box = slide(
+		{
+			name : "txt_box",
+			start : function() {
+			},
+			present : [0, 1, 2],
+			present_handle : function(stim) {
+				exp.question = get_question();
+            	$('.why_question').each(function(){$(this).text(exp.question);});
+			},
+			button : function() {
+                var res = {};
+                $('input[name="expl"]').each(
+                    function(){
+                        res[$(this).attr("name")] = $(this).val();
+                    });
+                console.log(res);
+                if(!_.contains(_.values(res), "")){
+                    res["ass"]= 1 * ! _.isEmpty(_.filter(_.values(res), function(x){ return !isNumber(x);}));
+                    exp.data_trials.push(res);
+                //clear text box, move to next trial
+                $('input[name="expl"]').val('');
+				_stream.apply(this);
+				}
+			}
+		}
+	);
     
     slides.conf_trial = slide(
         {
@@ -386,8 +434,7 @@ function init() {
     exp.sandbox=0;
     exp.slides = make_slides(exp);
 
-    exp.structure=["i0", 'likert', 'slider',  
-    'conf_trial', 'subj_info', 'thanks'];
+    exp.structure=["i0", 'training', 'txt_box', 'subj_info', 'thanks'];
     set_condition();
 
     //allow to click through experiment
@@ -444,19 +491,31 @@ var get_horse_name= function(){
     };
 }();
 
-var get_scenario = function() {
+var get_scenarios = function() {
 	var scenarios = [{scenario: "Dummy Scenario 1", 
-					expl1: "Explanation 1", expl2: "Explanation 2"}, 
+					expl1: "Explanation 1", expl2: "Explanation 2"},
 					{scenario: "Dummy Scenario 2", 
-					expl1: "Explanation 1", expl2: "Explanation 2"}, 
+					expl1: "Explanation 1", expl2: "Explanation 2"},  
 					{scenario: "Dummy Scenario 3", 
 					expl1: "Explanation 1", expl2: "Explanation 2"}, 
 					{scenario: "Dummy Scenario 4", 
 					expl1: "Explanation 1", expl2: "Explanation 2"}];
-	scenarios = _(scenarios).shuffle();
+	var order_trials = [{scen: 1, expl: 1}, {scen: 1, expl: 2}, {scen: 2, expl: 1}, {scen: 2, expl: 2},
+						{scen: 3, expl: 1}, {scen: 3, expl: 2}, {scen: 4, expl: 1}, {scen: 4, expl: 2}];
+	order_trials = _(order_trials).shuffle();
 	return function() {
-		return scenarios.pop();
+		return [scenarios, order_trials];
 	};
+}();
+
+var get_question = function() {
+	var questions = ["Suppose you know that there is more than one person in the room. Why is there more than one person in the room?", 
+	"Suppose you know that the light switch is on. Why is the light switch on?", 
+	"Suppose you know that the lamp is on. Why is the lamp on?"];
+	questions = _(questions).shuffle();
+	return function() {
+		return questions.pop();
+	}
 }();
 	
 	
