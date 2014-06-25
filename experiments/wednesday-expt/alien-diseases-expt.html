@@ -56,8 +56,8 @@
         <div class="slide" id="i0" >
           <img src="../_shared/css/images/stanford.png" style="margin-top: 10px">
           <p style="text-align: center; font-weight: bold">Stanford COCO Lab</p>
-          <p id="instruct-text" class="padding">In this HIT you will learn about some causal structure.
-        		Then you will be given scenarios and ask why they occurred. This
+          <p id="instruct-text" class="padding">In this HIT you will learn about an alien planet
+          		and then asked some questions about it. This
         		HIT should take about 3 minutes. Please pay attention, thanks!</p>
           <button id="start-button" type="button">Start Experiment</button>
           <p style="font-size: 0.8em">Legal information: By answering the following questions, you are participating in a study being performed by cognitive scientists in the Stanford Department of Psychology. If you have questions about this research, please contact Daniel Hawthorne at <a href="mailto://djthorne@stanford.edu">djthorne@stanford.edu</a> or Noah Goodman, at ngoodman@stanford.edu. You must be  at least 18 years old to participate. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences. Your anonymity is assured; the researchers who have requested your participation will not receive any personal information about you.</p>
@@ -79,14 +79,14 @@
         <!-- training slides -->
         <div id="training" class="slide js">
         	<div>
-				<p>Suppose you are a doctor on an alien planet. You know that there are four different 
-				diseases that the aliens have. Disease A causes abnormal proteins X and Y to be expressed 
-				in the alien's body. Disease B causes the abnormal protein X to be expressed. Diseases C 
-				and D both cause the abnormal protein Y to be expressed. If both X and Y are expressed, the
-				alien gets a fever. 2 in 100 aliens have Disease A, 10 in 100 aliens have Disease B, 15 
-				in 100 aliens have Disease C, and 10 in 100 aliens have Disease D.<p>
+				<p class="small mtop">You are a doctor on an alien planet. You know that there are four different 
+				diseases that the aliens can have. Disease A causes abnormal proteins X and Y to be expressed 
+				in the alien's body. 2 in 100 aliens have Disease A. Disease B causes the abnormal protein 
+				X to be expressed. 10 in 100 aliens have Disease B. Diseases C and D both cause the abnormal 
+				protein Y to be expressed. 15 in 100 aliens have Disease C, and 10 in 100 aliens have Disease 
+				D. If both X and Y are expressed, the alien gets a fever. <p>
 				
-				<img src="../_shared/css/images/alien-disease-simple.jpg" style="width: 67%; height: 55%; margin-top: 0px">
+				<img src="../_shared/css/images/alien-disease-fig.jpg" style="width: 60%; height: 55%; margin-top: 2px">
         	</div>
         	
           <br><button type="button" class="space" onclick="_s.button();">Continue</button>
@@ -95,16 +95,16 @@
         <!-- text box slides -->
         <div id="txt_box" class="slide js">
         	<div>
-				<p>Suppose you are a doctor on an alien planet. You know that there are four different 
-				diseases that the aliens have. Disease A causes abnormal proteins X and Y to be expressed 
-				in the alien's body. Disease B causes the abnormal protein X to be expressed. Diseases C 
-				and D both cause the abnormal protein Y to be expressed. If both X and Y are expressed, the
-				alien gets a fever. 2 in 100 aliens have Disease A, 10 in 100 aliens have Disease B, 15 
-				in 100 aliens have Disease C, and 10 in 100 aliens have Disease D.<p>
+				<p class="small mtop">You are a doctor on an alien planet. You know that there are four different 
+				diseases that the aliens can have. Disease A causes abnormal proteins X and Y to be expressed 
+				in the alien's body. 2 in 100 aliens have Disease A. Disease B causes the abnormal protein 
+				X to be expressed. 10 in 100 aliens have Disease B. Diseases C and D both cause the abnormal 
+				protein Y to be expressed. 15 in 100 aliens have Disease C, and 10 in 100 aliens have Disease 
+				D. If both X and Y are expressed, the alien gets a fever. <p>
 				
-				<img src="../_shared/css/images/alien-disease-simple.jpg" style="width: 67%; height: 55%; margin-top: 0px">
+				<img src="../_shared/css/images/alien-disease-fig.jpg" style="width: 60%; height: 55%; margin-top: 2px">
 				
-        		<p><span class="why_question"></span><p>
+        		<p class="small mtop"><span class="why_question"></span><p>
         		<p>Because <input type="text" size="100" name="expl"/>.</p>
         	</div>
         
@@ -117,14 +117,14 @@
         <!--radio button slide -->
         <div id="radio_buttons" class="slide js" >
             <div>
-				<p>Suppose you are a doctor on an alien planet. You know that there are four different 
-				diseases that the aliens have. Disease A causes abnormal proteins X and Y to be expressed 
-				in the alien's body. Disease B causes the abnormal protein X to be expressed. Diseases C 
-				and D both cause the abnormal protein Y to be expressed. If both X and Y are expressed, the
-				alien gets a fever. 2 in 100 aliens have Disease A, 10 in 100 aliens have Disease B, 15 
-				in 100 aliens have Disease C, and 10 in 100 aliens have Disease D.<p>
+				<p class="small mtop">You are a doctor on an alien planet. You know that there are four different 
+				diseases that the aliens can have. Disease A causes abnormal proteins X and Y to be expressed 
+				in the alien's body. 2 in 100 aliens have Disease A. Disease B causes the abnormal protein 
+				X to be expressed. 10 in 100 aliens have Disease B. Diseases C and D both cause the abnormal 
+				protein Y to be expressed. 15 in 100 aliens have Disease C, and 10 in 100 aliens have Disease 
+				D. If both X and Y are expressed, the alien gets a fever. <p>
 				
-				<img src="../_shared/css/images/alien-disease-simple.jpg" style="width: 67%; height: 55%; margin-top: 0px">
+				<img src="../_shared/css/images/alien-disease-fig.jpg" style="width: 60%; height: 55%; margin-top: 2px">
               
               <p id="question" class="small mtop">Please mark which of the following is a 
               <strong>better explanation</strong> of the question below.
@@ -157,10 +157,12 @@
                     <input type="radio"  name="assess" value="No"/>
                     No
                   </label>
+                  <br>
                   <label>
                     <input type="radio"  name="assess" value="Yes"/>
                     Yes
                   </label>
+                  <br>
                   <label>
                     <input type="radio"  name="assess" value="Confused"/>
                     I was confused
@@ -172,6 +174,7 @@
                     <input type="radio" name="sex" value="Male"/>
                     Male
                   </label>
+                  <br>
                   <label>
                     <input type="radio" name="sex" value="Female"/>
                     Female
