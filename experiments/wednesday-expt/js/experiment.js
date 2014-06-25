@@ -13,10 +13,7 @@ function make_slides(f) {
     	{
     		name : "radio_buttons",	
     		
-            present: [{scen: 0, expl1: "proximal", expl2: "distal"},
-                      {scen: 1, expl1: "distal", expl2: "proximal"},
-                      {scen: 2, expl1: "proximal", expl2: "distal"},
-                      {scen: 3, expl1: "distal", expl2: "proximal"}],
+            present: [0, 1, 2, 3],
                       
             present_handle : function(stim) {
             	console.log(stim);
@@ -118,14 +115,7 @@ function make_slides(f) {
 			name : "likert",
 			start : function() {
 			},
-            present: [{scen: 0, expl: "proximal"},
-                      {scen: 1, expl: "proximal"},
-                      {scen: 2, expl: "proximal"},
-                      {scen: 3, expl: "proximal"},
-                      {scen: 0, expl: "distal"},
-                      {scen: 1, expl: "distal"},
-                      {scen: 2, expl: "distal"},
-                      {scen: 3, expl: "distal"}],
+            present: [0, 1, 2, 3, 4],
                       
             present_handle : function(stim) {
             	console.log(stim);
@@ -151,7 +141,6 @@ function make_slides(f) {
      	}
 	);
 
-	//not really needed, can insert instruction text in i0
 	slides.instructions_causal = slide(
 		{
 			name : "instructions_causal",
@@ -173,7 +162,7 @@ function make_slides(f) {
 			},
 			button : function() {
 				t2 = Date.now();
-				if ((t2 - t1) > 10000) {
+				if ((t2 - t1) > 1000) {
 					_stream.apply(this);
 				}
 			}
@@ -185,7 +174,7 @@ function make_slides(f) {
 			name : "txt_box",
 			start : function() {
 			},
-			present : [0, 1, 2, 3, 4, 5, 6],
+			present : [0,1,2,3,4,5,6,7,8,9,10,11,12,13],
 			present_handle : function(stim) {
 				exp.questions = get_questions();
 				exp.condition = exp.questions;
@@ -437,7 +426,7 @@ function init() {
     exp.sandbox=0;
     exp.slides = make_slides(exp);
 
-    exp.structure=["i0", 'training', 'txt_box', 'subj_info', 'thanks'];
+    exp.structure=["i0", 'instructions_causal', 'training', 'txt_box', 'subj_info', 'thanks'];
     set_condition();
     exp.condition = [];
 
@@ -513,13 +502,20 @@ var get_scenarios = function() {
 }();
 
 var get_questions = function() {
-	var questions = [{question : "You know that an alien has Disease B and has a fever. Why do they have a fever?"},
+	var questions = [{question : "You know that an alien has Disease A and expresses Protein X. Why do they express Protein X?"},
+	{question : "You know that an alien has Disease B and expresses Protein X. Why do they express Protein X?"},
+	{question : "You know that an alien has Disease C and expresses Protein X. Why do they express Protein X?"},
+	{question : "You know that an alien has Disease D and expresses Protein X. Why do they express Protein X?"},
+	{question : "You know that an alien has Disease A and expresses Protein Y. Why do they express Protein Y?"},
+	{question : "You know that an alien has Disease B and expresses Protein Y. Why do they express Protein Y?"},
+	{question : "You know that an alien has Disease C and expresses Protein Y. Why do they express Protein Y?"},
+	{question : "You know that an alien has Disease D and expresses Protein Y. Why do they express Protein Y?"},
+	{question : "You know that an alien has Disease B and has a fever. Why do they have a fever?"},
 	{question : "You know that an alien has Disease C and has a fever. Why do they have a fever?"},
 	{question : "You know that an alien has Disease D and has a fever. Why do they have a fever?"},
-	{question : "You know that an alien has Disease A and also has a fever. Why do they have a fever?"},
-	{question : "You know that an alien has Disease B and also expresses Protein Y. Why do they express Protein Y?"},
-	{question : "You know that an alien has Disease C and also expresses Protein X. Why do they express Protein X?"},
-	{question : "You know that an alien has Disease D and also expresses Protein X. Why do they express Protein X?"}];
+	{question : "You know that an alien has Disease A and has a fever. Why do they have a fever?"},
+	{question : "You know that an alien expresses Protein X and has a fever. Why do they have a fever?"},
+	{question : "You know that an alien expresses Protein Y and has a fever. Why do they have a fever?"}];
 	questions = _(questions).shuffle();
 	return function() {
 		return questions;
