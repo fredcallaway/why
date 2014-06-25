@@ -132,7 +132,7 @@ function make_slides(f) {
             	exp.data_trials.push(stim);
             	
             	//get scenario
-            	exp.question = get_question();
+            	exp.question = get_questions();
             	$('.why_question').each(function(){$(this).text(exp.question['question']);});
 				$('.expl').each(function(){$(this).text(exp.question['expl' + stim.expl]);});
 				},
@@ -151,6 +151,7 @@ function make_slides(f) {
      	}
 	);
 
+	//not really needed, can insert instruction text in i0
 	slides.instructions_causal = slide(
 		{
 			name : "instructions_causal",
@@ -172,7 +173,7 @@ function make_slides(f) {
 			},
 			button : function() {
 				t2 = Date.now();
-				if ((t2 - t1) > 1000) {
+				if ((t2 - t1) > 10000) {
 					_stream.apply(this);
 				}
 			}
@@ -184,10 +185,11 @@ function make_slides(f) {
 			name : "txt_box",
 			start : function() {
 			},
-			present : [0, 1, 2],
+			present : [0, 1, 2, 3, 4, 5, 6],
 			present_handle : function(stim) {
-				exp.question = get_question();
-            	$('.why_question').each(function(){$(this).text(exp.question['question']);});
+				exp.questions = get_questions();
+				exp.condition = exp.questions;
+            	$('.why_question').each(function(){$(this).text(exp.questions[stim]['question']);});
 			},
 			button : function() {
                 var res = {};
@@ -197,7 +199,7 @@ function make_slides(f) {
                     });
                 console.log(res);
                 if(!_.contains(_.values(res), "")){
-                    res["ass"]= 1 * ! _.isEmpty(_.filter(_.values(res), function(x){ return !isNumber(x);}));
+                    res["answered"]= 1 * ! _.isEmpty(_.filter(_.values(res), function(x){ return !isNumber(x);}));
                     exp.data_trials.push(res);
                 //clear text box, move to next trial
                 $('input[name="expl"]').val('');
@@ -399,7 +401,7 @@ function make_slides(f) {
                         education : $('select[name="education"]').val(),
                         workerId : turk.workerId
                     }];
-
+				exp.end = Date.now();
                 exp.go();
                 return false;
             }
@@ -437,6 +439,7 @@ function init() {
 
     exp.structure=["i0", 'training', 'txt_box', 'subj_info', 'thanks'];
     set_condition();
+    exp.condition = [];
 
     //allow to click through experiment
     exp.debug=1;
@@ -465,9 +468,9 @@ function init() {
 };
 
 function set_condition(){
-    exp.condition={dependent:"hl_num",
-                   bins:"lmh"
-                  };
+    //exp.condition={dependent:"hl_num",
+       //            bins:"lmh"
+         //         };
     var zname = get_zach_name();
     $('.zach_name').each(function(){$(this).text(zname);});
 }
@@ -509,16 +512,17 @@ var get_scenarios = function() {
 	};
 }();
 
-var get_question = function() {
-	var questions = [{question : "You know that an alien has Disease B and has a fever. Why do they have a fever?", 
-	expl_proximal: "Because they have Disease C or Disease D.", expl_distal: "Because they have Disease A."},
-	{question : "You know that an alien has Disease C and has a fever. Why do they have a fever?", 
-	expl_proximal: "Because they have Disease B.", expl_distal: "Because they have Disease A."},
-	{question : "You know that an alien has Disease D and has a fever. Why do they have a fever?",
-	expl_proximal : "Because they have Disease B.", expl_distal: "Because they have Disease A."}];
+var get_questions = function() {
+	var questions = [{question : "You know that an alien has Disease B and has a fever. Why do they have a fever?"},
+	{question : "You know that an alien has Disease C and has a fever. Why do they have a fever?"},
+	{question : "You know that an alien has Disease D and has a fever. Why do they have a fever?"},
+	{question : "You know that an alien has Disease A and also has a fever. Why do they have a fever?"},
+	{question : "You know that an alien has Disease B and also expresses Protein Y. Why do they express Protein Y?"},
+	{question : "You know that an alien has Disease C and also expresses Protein X. Why do they express Protein X?"},
+	{question : "You know that an alien has Disease D and also expresses Protein X. Why do they express Protein X?"}];
 	questions = _(questions).shuffle();
 	return function() {
-		return questions.pop();
+		return questions;
 	}
 }();
 	
