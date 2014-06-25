@@ -407,7 +407,8 @@ function make_slides(f) {
                 exp.data= {
                     trials : exp.data_trials,
                     system : exp.system,
-                    condition : exp.condition
+                    condition : exp.condition,
+                    subj_data : exp.subj_data
                 };
                 setTimeout(function() {turk.submit(exp.data);}, 1000);
             }
@@ -457,9 +458,7 @@ function init() {
 };
 
 function set_condition(){
-    //exp.condition={dependent:"hl_num",
-       //            bins:"lmh"
-         //         };
+    exp.condition={dependent:"expl", independent: "question"};
     var zname = get_zach_name();
     $('.zach_name').each(function(){$(this).text(zname);});
 }
