@@ -175,11 +175,46 @@ function make_slides(f) {
 			name : "txt_box",
 			start : function() {
 			},
-			present : [0,1,2,3,4,5,6,7],
+			present : _.shuffle([{item: 0},
+			{item: 1},
+			{item: 2},
+			{item: 3},
+			{item: 4},
+			{item: 5},
+			{item: 6},
+			{item: 7},
+			{catchT: 1, item: 0},
+			{catchT: 1, item: 1},
+			{catchT: 1, item: 2},
+			{catchT: 1, item: 3}
+			]),
+			
+			catch_trial_handle : function(stim) {
+			
+				document.getElementById("critical_trial").style.display = 'none';
+				
+            	//catch trial question
+            	$('.comp_question').each(function(){$(this).text(exp.comp_questions[stim]['comp_question']);});
+            	
+            	//choose which answer to display in which button
+            	var ans_display = ["wrong_ans", "right_ans"];
+            	ans_display = _(ans_display).shuffle();
+            	
+				$('.ans1').each(function(){$(this).text(exp.comp_questions[stim][ans_display[0]]);});
+				$('.ans2').each(function(){$(this).text(exp.comp_questions[stim][ans_display[1]]);});
+			
+			},
+			
 			present_handle : function(stim) {
+				$("#catch_trial").text("");
+				document.getElementById("catch_trial").style.display = 'none';
+				
 				exp.questions = get_questions();
 				exp.condition = exp.questions;
-            	$('.why_question').each(function(){$(this).text(exp.questions[stim]['question']);});
+				exp.comp_questions = get_comprehension_questions();
+            	
+            	//critical trial question
+            	$('.why_question').each(function(){$(this).text(exp.questions[stim["item"]]['question']);});
 			},
 			button : function() {
                 var res = {};
@@ -463,7 +498,7 @@ function init() {
     exp.sandbox=0;
     exp.slides = make_slides(exp);
 
-    exp.structure=["i0", 'instructions_causal', 'training', 'txt_box', 'comp_questions', 'subj_info', 'thanks'];
+    exp.structure=["i0", 'instructions_causal', 'training', 'txt_box', 'subj_info', 'thanks'];
     set_condition();
     exp.condition = [];
 
