@@ -1,0 +1,327 @@
+<html>
+  <head>
+    <title>
+      Alien Diseases
+    </title>
+
+
+    <!--JS-->
+
+    <!-- general utilities -->
+    <script src="../_shared/js/jquery-min.js "></script>
+    <script src="../_shared/js/underscore-min.js"></script>
+    <script src="../_shared/js/underscore.string.min.js"></script>
+    <script src="../_shared/js/turk.js"></script>
+    <script src="../_shared/js/browser.detect.js"></script>
+    <script src="../_shared/js/utils.js"></script>
+    <script src="../_shared/js/jquery-ui.js"></script>
+    <script src="../_shared/js/sprintf-.7.js"></script>
+    <script src="../_shared/js/seedrandom.js"></script>
+    <script src="../_shared/js/ecosystem.js"></script>
+
+    <!-- experiment specific helper functions -->
+    <script src="js/local-utils.js"></script>
+
+    <!-- experiment utilities -->
+    <script src="../_shared/js/exp.js"></script>
+    <script src="../_shared/js/stream.js"></script>
+
+    <!-- for graphics -->
+    <script src="../_shared/js/raphael-min.js"></script>
+
+    <!-- filter subjects -->
+    <script src="../_shared/js/prune_ss.js"></script>
+
+    <!-- experiment file -->
+    <script src="js/experiment.js"></script>
+    
+    <!-- mmturkey -->
+	<script src="http://longouyang.github.com/mmturkey/mmturkey.js"></script>
+
+
+    <!--CSS-->
+    <link href="http://code.jquery.com/ui/1.9.1/themes/overcast/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <link href="../_shared/css/table/style.css" rel="stylesheet" type="text/css"/>
+    <link href="../_shared/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="../_shared/css/curtain.css" rel="stylesheet" type="text/css"/>
+    <link href="../_shared/css/style_within.css" rel="stylesheet" type="text/css"/>
+    <link href="../_shared/css/form.css" rel="stylesheet" type="text/css"/>
+    <link href="css/local-style.css" rel="stylesheet" type="text/css"/>
+
+
+  </head>
+
+  <body onload="init();" style="visibility:hidden">
+    <noscript>This task requires JavaScript.</noscript>
+
+    <div id="exp" class="exp">
+      <div class="slide_wrapper">
+        <div class="slide" id="i0" >
+          <img src="../_shared/css/images/stanford.png" style="margin-top: 10px">
+          <p style="text-align: center; font-weight: bold">Stanford COCO Lab</p>
+          <p id="instruct-text" class="padding">In this HIT you will learn about an alien planet
+          		and then asked some questions about it. This
+        		HIT should take about 5 minutes. Please pay attention, thanks!</p>
+          <button id="start-button" type="button">Start Experiment</button>
+          <p style="font-size: 0.8em">Legal information: By answering the following questions, 
+          you are participating in a study being performed by cognitive scientists in the 
+          Stanford Department of Psychology. If you have questions about this research, please 
+          contact Wednesday Bushong at <a href="mailto://wbushong@ucsd.edu">wbushong@ucsd.edu</a> 
+          or Noah Goodman, at ngoodman@stanford.edu. You must be  at least 18 years old to participate. 
+          Your participation in this research is voluntary. You may decline to answer any or all of 
+          the following questions. You may decline further participation, at any time, without adverse 
+          consequences. Your anonymity is assured; the researchers who have requested your participation 
+          will not receive any personal information about you.</p>
+        </div>        
+        
+        <!-- instructions slide -->
+        <div id="instructions_causal" class="slide js">
+        	<div>
+        		<p><br>In this HIT you will read a description about some diseases on an alien 
+        		planet. Please make sure to read the description carefully. After you read 
+        		the description, you will be asked to give free-response explanations to some
+        		questions. There will also be multiple-choice questions
+        		to make sure you understand the description. The description will always be
+        		provided for reference.</p>
+        	</div>
+          
+          	<br><button type="button" class="space" onclick="_s.button();">Continue</button>
+        </div>
+        
+        <!-- training slides -->
+        <div id="training" class="slide js">
+        	<div>
+				<p class="small mtop">You are a doctor on an alien planet. You know that there are four different 
+				diseases that the aliens can have. <span id="orange">Disease A</span> causes two abnormal
+				proteins, <span id="red">Protein X</span> and <span id="blue">Protein Y</span>, 
+				to be expressed in the alien's body. 2 in 100 aliens have <span id="orange">Disease A</span>. 
+				<span id="green">Disease B</span> causes the abnormal protein <span id="red">Protein
+				X</span> to be expressed. 10 in 100 aliens have <span id="green">Disease B</span>. 
+				<span id="brown">Disease C</span> and <span id="steel-blue">Disease D</span> both cause the abnormal 
+				protein <span id="blue">Protein Y</span> to be expressed. 15 in 100 aliens 
+				have <span id="brown">Disease C</span>, and 10 in 100 aliens have <span id="steel-blue">Disease 
+				D</span>. If both <span id="red">Protein X</span> and <span id="blue">Protein Y</span> are 
+				expressed, the alien gets a <span id="purple">Fever</span>. <p>
+				
+				<img src="../_shared/css/images/alien-disease-fig.jpg" style="width: 70%; height: 65%; margin-top: 2px">
+        	</div>
+        	
+          <br><button type="button" class="space" onclick="_s.button();">Continue</button>
+        </div>
+        
+        <!-- text box slides -->
+        <div id="txt_box" class="slide js">
+        	<div>
+				<p class="small mtop">You are a doctor on an alien planet. You know that there are four different 
+				diseases that the aliens can have. <span id="orange">Disease A</span> causes two abnormal
+				proteins, <span id="red">Protein X</span> and <span id="blue">Protein Y</span>, 
+				to be expressed in the alien's body. 2 in 100 aliens have <span id="orange">Disease A</span>. 
+				<span id="green">Disease B</span> causes the abnormal protein <span id="red">Protein
+				X</span> to be expressed. 10 in 100 aliens have <span id="green">Disease B</span>. 
+				<span id="brown">Disease C</span> and <span id="steel-blue">Disease D</span> both cause the abnormal 
+				protein <span id="blue">Protein Y</span> to be expressed. 15 in 100 aliens 
+				have <span id="brown">Disease C</span>, and 10 in 100 aliens have <span id="steel-blue">Disease 
+				D</span>. If both <span id="red">Protein X</span> and <span id="blue">Protein Y</span> are 
+				expressed, the alien gets a <span id="purple">Fever</span>. <p>
+				
+				<img src="../_shared/css/images/alien-disease-fig.jpg" style="width: 60%; height: 55%; margin-top: 2px">
+				
+        		<p class="small mtop"><span class="why_question"></span><p>
+        		<p>Because <input type="text" size="100" name="expl"/>.</p>
+        	</div>
+        
+        	<div>	
+          	<br><button type="button" class="space" onclick=
+            "_s.button();">Continue</button>
+            </div>
+        </div>
+        
+        <!-- comprehension questions -->
+        <div id="comp_questions" class="slide js">
+        	<div>
+				<p class="small mtop">You are a doctor on an alien planet. You know that there are four different 
+				diseases that the aliens can have. <span id="orange">Disease A</span> causes two abnormal
+				proteins, <span id="red">Protein X</span> and <span id="blue">Protein Y</span>, 
+				to be expressed in the alien's body. 2 in 100 aliens have <span id="orange">Disease A</span>. 
+				<span id="green">Disease B</span> causes the abnormal protein <span id="red">Protein
+				X</span> to be expressed. 10 in 100 aliens have <span id="green">Disease B</span>. 
+				<span id="brown">Disease C</span> and <span id="steel-blue">Disease D</span> both cause the abnormal 
+				protein <span id="blue">Protein Y</span> to be expressed. 15 in 100 aliens 
+				have <span id="brown">Disease C</span>, and 10 in 100 aliens have <span id="steel-blue">Disease 
+				D</span>. If both <span id="red">Protein X</span> and <span id="blue">Protein Y</span> are 
+				expressed, the alien gets a <span id="purple">Fever</span>. <p>
+				
+				<img src="../_shared/css/images/alien-disease-fig.jpg" style="width: 60%; height: 55%; margin-top: 2px">
+			
+			<p><span class="comp_question"></span><p>
+			<input type="radio" name="rad_button" value="ans1"/><span class="ans1"></span>
+			<input type="radio" name="rad_button" value="ans2"/><span class="ans2"></span>
+			</div>
+			
+        	<div>	
+          	<br><button type="button" class="space" onclick=
+            "_s.button();">Continue</button>
+            </div>
+            
+		</div>
+        	
+
+        <!--radio button slide -->
+        <div id="radio_buttons" class="slide js" >
+            <div>
+				<p class="small mtop">You are a doctor on an alien planet. You know that there are four different 
+				diseases that the aliens can have. <span id="orange">Disease A</span> causes two abnormal
+				proteins, <span id="red">Protein X</span> and <span id="blue">Protein Y</span>, 
+				to be expressed in the alien's body. 2 in 100 aliens have <span id="orange">Disease A</span>. 
+				<span id="green">Disease B</span> causes the abnormal protein <span id="red">Protein
+				X</span> to be expressed. 10 in 100 aliens have <span id="green">Disease B</span>. 
+				<span id="brown">Disease C</span> and <span id="steel-blue">Disease D</span> both cause the abnormal 
+				protein <span id="blue">Protein Y</span> to be expressed. 15 in 100 aliens 
+				have <span id="brown">Disease C</span>, and 10 in 100 aliens have <span id="steel-blue">Disease 
+				D</span>. If both <span id="red">Protein X</span> and <span id="blue">Protein Y</span> are 
+				expressed, the alien gets a <span id="purple">Fever</span>. <p>
+				
+				<img src="../_shared/css/images/alien-disease-fig.jpg" style="width: 60%; height: 55%; margin-top: 2px">
+              
+              <p id="question" class="small mtop">Please mark which of the following is a 
+              <strong>better explanation</strong> of the question below.
+              </p><br>
+              
+              <p><span class="why_question"></span></p>
+        	
+			<form action="">
+			<br>
+			<input type="radio" name="rad_button" value="opt11"/><span class="expl1"></span><br>
+			<input type="radio" name="rad_button" value="opt2"/><span class="expl2"></span><br> <br>
+			<button type="button" class="space" onclick="_s.button();">Continue</button>
+			</form>
+			
+			</div>	
+		</div>
+		
+        <div class="slide js"  id="subj_info">
+          <div>
+            <form id="subj_info_form">
+              <div class="long_form">
+                <fieldset>
+                  <legend>Additional information</legend>
+                  <p class="info">
+                    Answering these questions is optional, but will help us understand your answers.</p>
+
+                  <p>Did you read the instructions and do you think you did
+                    the HIT correctly?</p>
+                  <label>
+                    <input type="radio"  name="assess" value="No"/>
+                    No
+                  </label>
+                  <br>
+                  <label>
+                    <input type="radio"  name="assess" value="Yes"/>
+                    Yes
+                  </label>
+                  <br>
+                  <label>
+                    <input type="radio"  name="assess" value="Confused"/>
+                    I was confused
+                  </label>
+
+                  <p>Sex</p>
+
+                  <label>
+                    <input type="radio" name="sex" value="Male"/>
+                    Male
+                  </label>
+                  <br>
+                  <label>
+                    <input type="radio" name="sex" value="Female"/>
+                    Female
+                  </label>
+
+                  <p>Age</p>
+                  <input type="text" name="age" value="0"/>
+
+                  <p>Level Of Education</p>
+                  <select name="education">
+                    <label>
+                      <option name="education" value="-1"/>
+
+                    </label>
+                    <label>
+                      <option name="education" value="0"/>
+                      Some High School
+                    </label>
+                    <label>
+                      <option name="education" value="1"/>
+                      Graduated High School
+                    </label>
+                    <label>
+                      <option name="education" value="2"/>
+                      Some College
+                    </label>
+                    <br/>
+                    <label>
+                      <option name="education" value="3"/>
+                      Graduated College
+                    </label>
+                    <label>
+                      <option name="education" value="4"/>
+                      Hold a higher degree
+                    </label>
+                  </select>
+
+                  <p>Native Language</p>
+                  <label>
+                    <option  value="-1"/>
+
+                  </label>
+                  <select name="language">
+                    <label>
+                      <option  value="English"/>
+                      English
+                    </label>
+                    <label>
+                      <option  value="Spanish"/>
+                      Spanish
+                    </label>
+                    <label>
+                      <option  value="French"/>
+                      French
+                    </label>
+                    <br/>
+                    <label>
+                      <option  value="Mandarin"/>
+                      Mandarin
+                    </label>
+                    <label>
+                      <option  value="German"/>
+                      German
+                    </label>
+                    <label>
+                      <option  value="Other"/>
+                      Other
+                    </label>
+                  </select>
+
+                  <p>Did you enjoy the hit?</p>
+                  <select name="enjoyment">
+                    <option value="-1"></option>
+                    <option value="0">Worse than the Average HIT</option>
+                    <option value="1" >An Average HIT</option>
+                    <option value="2">Better than average HIT</option>
+                  </select>
+
+                </fieldset>
+
+                <button type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div id="thanks" class="slide js" >
+          <p  class="big">Thanks for your Time!<br/></p>
+          <p id="bonus_feedback" class="big"><p>
+        </div>
+        
+  </body>
+</html>
