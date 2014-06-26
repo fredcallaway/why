@@ -74,7 +74,7 @@ var _stream = function() {
                 var tri = this.slen-presented_stims.length;
 
                 //Catch Trial
-                if (this.catch_trial_handle && s.length == 3) {
+                if (this.catch_trial_handle && s.catchT) {
                     s = Math.round(Math.random());
                     this.pass_data({trial:tri, stim:s, catch: 1});
                     this.catch_trial_handle(presented_stims[Math.floor(Math.random()*presented_stims.length)]);
