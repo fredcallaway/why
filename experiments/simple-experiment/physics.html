@@ -35,6 +35,9 @@
     <!-- experiment file -->
     <script src="js/physicsExp.js"></script>
 
+    <!-- box2d -->
+     <script type="text/javascript" src="../_shared/js/Box2dWeb-2.1.a.3.min.js"></script>
+
 
     <!--CSS-->
     <link href="http://code.jquery.com/ui/1.9.1/themes/overcast/jquery-ui.css" rel="stylesheet" type="text/css"/>
@@ -64,17 +67,21 @@
         <div id = "freeResponse" class = "slide">
           <div id = "text Input">
             <div>
+                <br>
                 <p id = "test_text" class = "small">
                   <span class="physPhrase"></span> because
-                  <input type = "text" size = "20" id = "phraseInput" name = "phraseInput" val = "" />
+                  <input type = "text" size = "30" id = "phraseInput" name = "phraseInput" val = "" />. 
                 </p>
+                <br>
             </div>
           </div>
+  
           <button type = "button" class "space" onclick = "_s.button();">Submit</button>
         </div>
 
 
-<!--         <div id="textInput_ranking" class="slide">
+<!-- 
+        <div id="textInput_ranking" class="slide">
           <table id="res_sum" class="results_summary stims_table">
             <tr>
               <td style="font-size:15px">Your info</td>
