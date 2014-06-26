@@ -175,14 +175,14 @@ function make_slides(f) {
 			name : "txt_box",
 			start : function() {
 			},
-			present : _.shuffle([{item: 0},
-			{item: 1},
-			{item: 2},
-			{item: 3},
-			{item: 4},
-			{item: 5},
-			{item: 6},
-			{item: 7},
+			present : _.shuffle([{catchT: 0, item: 0},
+			{catchT: 0, item: 1},
+			{catchT: 0, item: 2},
+			{catchT: 0, item: 3},
+			{catchT: 0, item: 4},
+			{catchT: 0, item: 5},
+			{catchT: 0, item: 6},
+			{catchT: 0, item: 7},
 			{catchT: 1, item: 0},
 			{catchT: 1, item: 1},
 			{catchT: 1, item: 2},
@@ -190,28 +190,26 @@ function make_slides(f) {
 			]),
 			
 			catch_trial_handle : function(stim) {
-			
-				document.getElementById("critical_trial").style.display = 'none';
-				
+				exp.data_trials.push(stim);
+				$("#critical_trial").hide();				
             	//catch trial question
-            	$('.comp_question').each(function(){$(this).text(exp.comp_questions[stim]['comp_question']);});
+            	exp.comp_questions = get_comprehension_questions();
+            	$('.comp_question').each(function(){$(this).text(exp.comp_questions[stim["item"]]['comp_question']);});
             	
             	//choose which answer to display in which button
             	var ans_display = ["wrong_ans", "right_ans"];
             	ans_display = _(ans_display).shuffle();
             	
-				$('.ans1').each(function(){$(this).text(exp.comp_questions[stim][ans_display[0]]);});
-				$('.ans2').each(function(){$(this).text(exp.comp_questions[stim][ans_display[1]]);});
+				$('.ans1').each(function(){$(this).text(exp.comp_questions[stim["item"]][ans_display[0]]);});
+				$('.ans2').each(function(){$(this).text(exp.comp_questions[stim["item"]][ans_display[1]]);});
 			
 			},
 			
 			present_handle : function(stim) {
-				$("#catch_trial").text("");
-				document.getElementById("catch_trial").style.display = 'none';
-				
+				exp.data_trials.push(stim);
+				$("#catch_trial").hide();
 				exp.questions = get_questions();
 				exp.condition = exp.questions;
-				exp.comp_questions = get_comprehension_questions();
             	
             	//critical trial question
             	$('.why_question').each(function(){$(this).text(exp.questions[stim["item"]]['question']);});
@@ -223,13 +221,20 @@ function make_slides(f) {
                         res[$(this).attr("name")] = $(this).val();
                     });
                 console.log(res);
-                if(!_.contains(_.values(res), "")){
+                if(stim["catchT"]===0 && !_.contains(_.values(res), "")){
                     res["answered"]= 1 * ! _.isEmpty(_.filter(_.values(res), function(x){ return !isNumber(x);}));
                     exp.data_trials.push(res);
                 //clear text box, move to next trial
                 $('input[name="expl"]').val('');
 				_stream.apply(this);
 				}
+    			if (stim["catchT"]===1 && $('input[type=radio]:checked').size() > 0) {
+					_.last(exp.data_trials)["ans_chosen"] = [{
+					rad_button_resp : $('input[name="rad_button"]:checked').val()
+					}];
+					//This unselects the button for the next trial
+					$('input[name="rad_button"]').attr('checked',false);
+					_stream.apply(this);
 			}
 		}
 	);
