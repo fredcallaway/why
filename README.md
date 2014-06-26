@@ -7,6 +7,7 @@ This repository contains a set of experiments aimed at investigating "why" quest
 - [WhyBot](http://stanford.edu/~erindb/explanations/whybot.html)
     - Explain daily activities recursively (5 levels deep)
     - Analysis uses [Hiroyoshi Komatsu and Johannes Castner corenlp wrapper](https://bitbucket.org/torotoki/corenlp-python/src)
+    - pilot data slides [here](https://docs.google.com/presentation/d/1AVrmYOmKffMSHtL1tt5Hnk50eXb2aQvvgT5BD_ywoaI/edit#slide=id.g1800ec318_040)
 - AdviceBot
 - GoalBot
 - Explanations
