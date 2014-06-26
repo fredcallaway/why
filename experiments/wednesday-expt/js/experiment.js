@@ -146,6 +146,7 @@ function make_slides(f) {
 			name : "instructions_causal",
 			present : [0],
 			button : function() {
+				exp.start_time = Date.now();
 				_stream.apply(this);
 			}
 		}
@@ -174,7 +175,7 @@ function make_slides(f) {
 			name : "txt_box",
 			start : function() {
 			},
-			present : [0,1,2,3,4,5,6,7,8,9,10,11,12,13],
+			present : [0,1,2,3,4,5,6,7],
 			present_handle : function(stim) {
 				exp.questions = get_questions();
 				exp.condition = exp.questions;
@@ -196,6 +197,41 @@ function make_slides(f) {
 				}
 			}
 		}
+	);
+	
+	slides.comp_questions = slide(
+		{
+			name : "comp_questions",
+			start : function() {
+			},
+			present : [0,1,2,3],
+			present_handle : function(stim) {
+            	console.log(stim);
+            	exp.data_trials.push(stim);
+            	
+            	//get scenario
+            	exp.comp_questions = get_comprehension_questions();
+            	_(stim).shuffle;
+            	$('.comp_question').each(function(){$(this).text(exp.comp_questions[stim]['comp_question']);});
+            	
+            	//choose which answer to display in which button
+            	var ans_display = ["wrong_ans", "right_ans"];
+            	ans_display = _(ans_display).shuffle();
+            	
+				$('.ans1').each(function(){$(this).text(exp.comp_questions[stim][ans_display[0]]);});
+				$('.ans2').each(function(){$(this).text(exp.comp_questions[stim][ans_display[1]]);});
+			},
+    		button : function() {
+    			if ($('input[type=radio]:checked').size() > 0) {
+					_.last(exp.data_trials)["ans_chosen"] = [{
+					rad_button_resp : $('input[name="rad_button"]:checked').val()
+					}];
+					//This unselects the button for the next trial
+					$('input[name="rad_button"]').attr('checked',false);
+					_stream.apply(this);
+				}
+			} 
+		}		
 	);
     
     slides.conf_trial = slide(
@@ -427,7 +463,7 @@ function init() {
     exp.sandbox=0;
     exp.slides = make_slides(exp);
 
-    exp.structure=["i0", 'instructions_causal', 'training', 'txt_box', 'subj_info', 'thanks'];
+    exp.structure=["i0", 'instructions_causal', 'training', 'txt_box', 'comp_questions', 'subj_info', 'thanks'];
     set_condition();
     exp.condition = [];
 
@@ -501,24 +537,59 @@ var get_scenarios = function() {
 }();
 
 var get_questions = function() {
-	var questions = [{question : "You know that an alien has Disease A and expresses Protein X. Why do they express Protein X?"},
-	{question : "You know that an alien has Disease B and expresses Protein X. Why do they express Protein X?"},
-	{question : "You know that an alien has Disease C and expresses Protein X. Why do they express Protein X?"},
-	{question : "You know that an alien has Disease D and expresses Protein X. Why do they express Protein X?"},
-	{question : "You know that an alien has Disease A and expresses Protein Y. Why do they express Protein Y?"},
-	{question : "You know that an alien has Disease B and expresses Protein Y. Why do they express Protein Y?"},
-	{question : "You know that an alien has Disease C and expresses Protein Y. Why do they express Protein Y?"},
-	{question : "You know that an alien has Disease D and expresses Protein Y. Why do they express Protein Y?"},
-	{question : "You know that an alien has Disease B and has a fever. Why do they have a fever?"},
-	{question : "You know that an alien has Disease C and has a fever. Why do they have a fever?"},
-	{question : "You know that an alien has Disease D and has a fever. Why do they have a fever?"},
-	{question : "You know that an alien has Disease A and has a fever. Why do they have a fever?"},
-	{question : "You know that an alien expresses Protein X and has a fever. Why do they have a fever?"},
-	{question : "You know that an alien expresses Protein Y and has a fever. Why do they have a fever?"}];
+	var questions = [{disease: "D", protein: "X", fever: "NA",
+	question : 'You know that an alien has Disease D and expresses Protein X. Why do they express Protein X?'},
+	{disease: "B", protein: "Y", fever: "NA",
+	question : 'You know that an alien has Disease B and expresses Protein Y. Why do they express Protein Y?'},
+	{disease: "A", protein: "NA", fever: "Y",
+	question : 'You know that an alien has Disease A and has a fever. Why do they have a fever?'},
+	{disease: "B", protein: "NA", fever: "Y",
+	question : 'You know that an alien has Disease B and has a fever. Why do they have a fever?'},
+	{disease: "C", protein: "NA", fever: "Y",
+	question : 'You know that an alien has Disease C and has a fever. Why do they have a fever?'},
+	{disease: "D", protein: "NA", fever: "Y",
+	question : 'You know that an alien has Disease D and has a fever. Why do they have a fever?'},
+	{disease: "NA", protein: "X", fever: "Y",
+	question : 'You know that an alien expresses Protein X and has a fever. Why do they have a fever?'},
+	{disease: "NA", protein: "Y", fever: "Y",
+	question : 'You know that an alien expresses Protein Y and has a fever. Why do they have a fever?'}];
+	
+// 	in case i want to use these in the future
+// 	var extra_questions = [{disease: "A", protein: "X", fever: "NA", 
+// 	question : "You know that an alien has Disease A and expresses Protein X. Why do they express Protein X?"},
+// 	{disease: "B", protein: "X", fever: "NA",
+// 	question : "You know that an alien has Disease B and expresses Protein X. Why do they express Protein X?"},
+// 	{disease: "C", protein: "X", fever: "NA",
+// 	question : "You know that an alien has Disease C and expresses Protein X. Why do they express Protein X?"},
+// 	{disease: "D", protein: "Y", fever: "NA",
+// 	question : "You know that an alien has Disease D and expresses Protein Y. Why do they express Protein Y?"},
+// 	{disease: "A", protein: "Y", fever: "NA",
+// 	question : "You know that an alien has Disease A and expresses Protein Y. Why do they express Protein Y?"},
+// 	{disease: "C", protein: "Y", fever: "NA",
+// 	question : "You know that an alien has Disease C and expresses Protein Y. Why do they express Protein Y?"}];
+	
 	questions = _(questions).shuffle();
+	
 	return function() {
 		return questions;
 	}
+}();
+
+var get_comprehension_questions = function() {
+	var comp_questions = [{comp_question: "How many aliens out of 100 have Disease B?",
+	wrong_ans: "2", right_ans: "10"},
+	{comp_question: "What happens when an alien expresses Protein X and Protein Y?",
+	wrong_ans: "They get Disease C.", right_ans: "They get a Fever."},
+	{comp_question: "True or False: If an alien has Disease C, they always express Protein X.",
+	wrong_ans: "True", right_ans: "False"},
+	{comp_question: "When an alien has Disease B, which protein do they always express?",
+	wrong_ans: "Protein Y", right_ans: "Protein X"}];
+	
+	comp_questions = _(comp_questions).shuffle();
+	
+	return function() {
+		return comp_questions;
+	}	
 }();
 	
 	

@@ -34,6 +34,9 @@
 
     <!-- experiment file -->
     <script src="js/experiment.js"></script>
+    
+    <!-- mmturkey -->
+	<script src="http://longouyang.github.com/mmturkey/mmturkey.js"></script>
 
 
     <!--CSS-->
@@ -58,7 +61,7 @@
           <p style="text-align: center; font-weight: bold">Stanford COCO Lab</p>
           <p id="instruct-text" class="padding">In this HIT you will learn about an alien planet
           		and then asked some questions about it. This
-        		HIT should take about 3 minutes. Please pay attention, thanks!</p>
+        		HIT should take about 5 minutes. Please pay attention, thanks!</p>
           <button id="start-button" type="button">Start Experiment</button>
           <p style="font-size: 0.8em">Legal information: By answering the following questions, 
           you are participating in a study being performed by cognitive scientists in the 
@@ -74,9 +77,12 @@
         <!-- instructions slide -->
         <div id="instructions_causal" class="slide js">
         	<div>
-        		<p><br>In this HIT you will read a description about some aspects of an alien 
-        		planet. Please make sure to read the description carefully as you will
-        		be asked some questions about it.</p>
+        		<p><br>In this HIT you will read a description about some diseases on an alien 
+        		planet. Please make sure to read the description carefully. After you read 
+        		the description, you will be asked to give free-response explanations to some
+        		questions. There will also be multiple-choice questions
+        		to make sure you understand the description. The description will always be
+        		provided for reference.</p>
         	</div>
           
           	<br><button type="button" class="space" onclick="_s.button();">Continue</button>
@@ -97,7 +103,7 @@
 				D</span>. If both <span id="red">Protein X</span> and <span id="blue">Protein Y</span> are 
 				expressed, the alien gets a <span id="purple">Fever</span>. <p>
 				
-				<img src="../_shared/css/images/alien-disease-fig.jpg" style="width: 70%; height: 65%; margin-top: 3px">
+				<img src="../_shared/css/images/alien-disease-fig.jpg" style="width: 70%; height: 65%; margin-top: 2px">
         	</div>
         	
           <br><button type="button" class="space" onclick="_s.button();">Continue</button>
@@ -118,7 +124,7 @@
 				D</span>. If both <span id="red">Protein X</span> and <span id="blue">Protein Y</span> are 
 				expressed, the alien gets a <span id="purple">Fever</span>. <p>
 				
-				<img src="../_shared/css/images/alien-disease-fig.jpg" style="width: 60%; height: 55%; margin-top: 3px">
+				<img src="../_shared/css/images/alien-disease-fig.jpg" style="width: 60%; height: 55%; margin-top: 2px">
 				
         		<p class="small mtop"><span class="why_question"></span><p>
         		<p>Because <input type="text" size="100" name="expl"/>.</p>
@@ -129,6 +135,36 @@
             "_s.button();">Continue</button>
             </div>
         </div>
+        
+        <!-- comprehension questions -->
+        <div id="comp_questions" class="slide js">
+        	<div>
+				<p class="small mtop">You are a doctor on an alien planet. You know that there are four different 
+				diseases that the aliens can have. <span id="orange">Disease A</span> causes two abnormal
+				proteins, <span id="red">Protein X</span> and <span id="blue">Protein Y</span>, 
+				to be expressed in the alien's body. 2 in 100 aliens have <span id="orange">Disease A</span>. 
+				<span id="green">Disease B</span> causes the abnormal protein <span id="red">Protein
+				X</span> to be expressed. 10 in 100 aliens have <span id="green">Disease B</span>. 
+				<span id="brown">Disease C</span> and <span id="steel-blue">Disease D</span> both cause the abnormal 
+				protein <span id="blue">Protein Y</span> to be expressed. 15 in 100 aliens 
+				have <span id="brown">Disease C</span>, and 10 in 100 aliens have <span id="steel-blue">Disease 
+				D</span>. If both <span id="red">Protein X</span> and <span id="blue">Protein Y</span> are 
+				expressed, the alien gets a <span id="purple">Fever</span>. <p>
+				
+				<img src="../_shared/css/images/alien-disease-fig.jpg" style="width: 60%; height: 55%; margin-top: 2px">
+			
+			<p><span class="comp_question"></span><p>
+			<input type="radio" name="rad_button" value="ans1"/><span class="ans1"></span>
+			<input type="radio" name="rad_button" value="ans2"/><span class="ans2"></span>
+			</div>
+			
+        	<div>	
+          	<br><button type="button" class="space" onclick=
+            "_s.button();">Continue</button>
+            </div>
+            
+		</div>
+        	
 
         <!--radio button slide -->
         <div id="radio_buttons" class="slide js" >
@@ -145,7 +181,7 @@
 				D</span>. If both <span id="red">Protein X</span> and <span id="blue">Protein Y</span> are 
 				expressed, the alien gets a <span id="purple">Fever</span>. <p>
 				
-				<img src="../_shared/css/images/alien-disease-fig.jpg" style="width: 60%; height: 55%; margin-top: 3px">
+				<img src="../_shared/css/images/alien-disease-fig.jpg" style="width: 60%; height: 55%; margin-top: 2px">
               
               <p id="question" class="small mtop">Please mark which of the following is a 
               <strong>better explanation</strong> of the question below.
