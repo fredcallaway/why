@@ -1,19 +1,18 @@
 function make_slides(f) {
     var   slides = {};
 
-    
+
     slides.i0 = slide(
         {
             name : "i0"
         }
     );
 
-
-    
     slides.conf_trial = slide(
         {
             name : "conf_trial",
             start : function() {
+
             },
             button : function() {
                 var res = {};
@@ -27,6 +26,15 @@ function make_slides(f) {
                     exp.data_trials.push(res);
                     exp.go();
                 }
+            }
+        }
+    );
+
+    slides.new_slide = slide(
+        {
+            name : "new_slide",
+            button : function() {
+                exp.go();
             }
         }
     );
@@ -87,18 +95,19 @@ function make_slides(f) {
         }
     );
 
-    
+
     slides.repeated_stims = slide(
         {
             name : "repeated_stims",
-            present: [{prop: .6, num_samples:5},
+            present: _.shuffle([{prop: .6, num_samples:5},
                       {prop: .4, num_samples:5},
                       {prop: .5, num_samples:4},
+                      {prop: .5, num_samples:4, catchT:1},
                       {prop: 1, num_samples:5},
                       {prop: .2, num_samples:5},
                       {prop: 0, num_samples:5},
                       {prop: .8, num_samples:5}
-                     ],
+                     ]),
 
             start: function(){
                 // example of moving html blocks around
@@ -107,8 +116,30 @@ function make_slides(f) {
                 // $('<br/><br/><br/>').insertBefore("#test_sliders");
             },
 
+
+
+            catch_trial_handle : function(stim){
+                this.init_sliders();
+                exp.data_trials.push(stim);
+
+                //get new horse names
+                exp.horse_names = [get_horse_name(),get_horse_name()];
+
+                //update horses names
+                $('.horse1_name').each(function(){$(this).text(exp.horse_names[0]);});
+                $('.horse2_name').each(function(){$(this).text(exp.horse_names[1]);});
+
+                //update table with win data
+                $('#horse2').text(Math.round(stim.num_samples * stim.prop) + "");
+                $('#horse1').text(Math.round(stim.num_samples * (1-stim.prop)) +"");
+                $('#race_total').text(stim.num_samples);
+
+                $("#catch_trial").text("This is a mother-flippin' catch trial");
+
+            },
+
             present_handle : function(stim){
-                console.log(stim);
+                $("#catch_trial").text("");
                 this.init_sliders();
                 exp.data_trials.push(stim);
 
@@ -183,7 +214,7 @@ function make_slides(f) {
 
 
     //!subj_info
-    
+
     slides.subj_info =  slide(
         {
             name : "subj_info",
@@ -210,7 +241,7 @@ function make_slides(f) {
         }
     );
 
-    
+
     slides.thanks = slide(
         {
             name : "thanks",
@@ -240,6 +271,7 @@ function init() {
 
     exp.structure=["i0", //'show_some_images',
       'conf_trial', 'repeated_stims', 'subj_info', 'thanks'];
+
     set_condition();
 
     //allow to click through experiment
