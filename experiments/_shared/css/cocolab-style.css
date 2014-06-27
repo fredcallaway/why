@@ -79,11 +79,13 @@ textarea {
 .slider_table .left {
 	display: inline;
 	text-align: left;
+	float: left;
 }
 
 .slider_table .right {
 	display: inline;
 	text-align: right;
+	float: right;
 }
 
 .slider_target {
