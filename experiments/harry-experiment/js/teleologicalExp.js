@@ -12,21 +12,24 @@ function make_slides(f) {
         {
             name : "freeResponse",
             //Test Phrases
-            present: [{phrase : "The scissors are sharp", type : "gradableAdj"},
-                      {phrase : "The knife is dull", type : "gradableAdj"},
-                      {phrase : "The tea is hot", type : "gradableAdj"},
-                      {phrase : "The coffee is cold", type : "gradableAdj"},
-                      {phrase : "The tea is sweet", type : "gradableAdj"},
-                      {phrase : "The coffee is bitter", type : "gradableAdj"},
-                      {phrase : "The motorcycle is fast", type : "gradeableAdj"},
-                      {phrase : "The car is slow", type : "gradeableAdj"}, 
-                      {phrase : "The apple fell from the tree", type : "physics"},
-                      {phrase : "The ball rolled down the hill", type : "physics"},
-                      {phrase : "The clock ticked", type : "designer"},
-                      {phrase : "The tiger has stripes", type :"evolutionary"},
-                      {phrase : "The bird has wings", type: "evolutionary"},
-                      {phrase : "Fish have gills", type : "evolutionary"}
-                     ],
+            present: _.shuffle(
+                    [{phrase : "The scissors are sharp", type : "gradableAdj", sentenceType : "determiner"},
+                      {phrase : "The knife is dull", type : "gradableAdj", sentenceType : "determiner"},
+                      {phrase : "The tea is hot", type : "gradableAdj", sentenceType : "determiner"},
+                      {phrase : "The coffee is cold", type : "gradableAdj", sentenceType : "determiner"},
+                      {phrase : "The tea is sweet", type : "gradableAdj", sentenceType : "determiner"},
+                      {phrase : "The coffee is bitter", type : "gradableAdj", sentenceType : "determiner"},
+                      {phrase : "The motorcycle is fast", type : "gradeableAdj", sentenceType : "determiner"},
+                      {phrase : "The car is slow", type : "gradeableAdj", sentenceType : "determiner"}, 
+                      {phrase : "The apple fell from the tree", type : "physics", sentenceType : "determiner"},
+                      {phrase : "The ball rolled down the hill", type : "physics", sentenceType : "determiner"},
+                      {phrase : "The clock ticks", type : "designer", sentenceType : "determiner"},
+                      {phrase : "Cars have engines", type : "designer", sentenceType : "generic"},
+                      {phrase : "Bicycles do not have engines", type : "designer", sentenceType : "generic"},
+                      {phrase : "The tiger has stripes", type :"evolutionary", sentenceType : "determiner"},
+                      {phrase : "The bird has wings", type: "evolutionary", sentenceType : "determiner"},
+                      {phrase : "Fish have gills", type : "evolutionary", sentenceType : "generic"}
+                     ]),
 
             start : function() {
             },
@@ -40,6 +43,7 @@ function make_slides(f) {
                 //Get Phrase
                 exp.phrase = stim.phrase;
                 exp.phraseType = stim.phraseType;
+                exp.sentenceType = stim.sentenceType;
                 //Update Phrase
                 $('.physPhrase').each(function(){$(this).text(exp.phrase);});
 
