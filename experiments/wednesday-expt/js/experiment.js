@@ -190,89 +190,104 @@ function make_slides(f) {
 			]),
 			
 			catch_trial_handle : function(stim) {
+				exp.trial_type = "catch";
 				exp.data_trials.push(stim);
-				$("#critical_trial").hide();				
+				$("#critical_trial").hide();
+				$("#catch_trial").show();				
             	//catch trial question
             	exp.comp_questions = get_comprehension_questions();
+            	//exp.condition = exp.comp_questions[stim]; 
             	$('.comp_question').each(function(){$(this).text(exp.comp_questions[stim["item"]]['comp_question']);});
             	
             	//choose which answer to display in which button
-            	var ans_display = ["wrong_ans", "right_ans"];
-            	ans_display = _(ans_display).shuffle();
+            	exp.ans_display = ["wrong_ans", "right_ans"];
+            	exp.ans_display = _(exp.ans_display).shuffle();
             	
-				$('.ans1').each(function(){$(this).text(exp.comp_questions[stim["item"]][ans_display[0]]);});
-				$('.ans2').each(function(){$(this).text(exp.comp_questions[stim["item"]][ans_display[1]]);});
+				$('.ans1').each(function(){$(this).text(exp.comp_questions[stim["item"]][exp.ans_display[0]]);});
+				$('.ans2').each(function(){$(this).text(exp.comp_questions[stim["item"]][exp.ans_display[1]]);});
 			
 			},
 			
 			present_handle : function(stim) {
+				exp.trial_type = "critical";
 				exp.data_trials.push(stim);
 				$("#catch_trial").hide();
+				$("#critical_trial").show();
 				exp.questions = get_questions();
-				exp.condition = exp.questions;
+				//exp.condition = exp.questions[stim];
             	
             	//critical trial question
             	$('.why_question').each(function(){$(this).text(exp.questions[stim["item"]]['question']);});
 			},
 			button : function() {
                 var res = {};
+
                 $('input[name="expl"]').each(
                     function(){
                         res[$(this).attr("name")] = $(this).val();
                     });
-                console.log(res);
-                if(stim["catchT"]===0 && !_.contains(_.values(res), "")){
+                
+                $('input[name="radio_button"]').each(
+                    function(){
+                        res[$(this).attr("name")] = $(this).val();
+                    });
+                    
+                //console.log(res);
+                if(exp.trial_type==="critical" && !_.contains(_.values(res), "")){
                     res["answered"]= 1 * ! _.isEmpty(_.filter(_.values(res), function(x){ return !isNumber(x);}));
-                    exp.data_trials.push(res);
+                    _.last(exp.data_trials)["expl"] = res["expl"];
+                    _.last(exp.data_trials)["answered"]=res["answered"];
                 //clear text box, move to next trial
                 $('input[name="expl"]').val('');
 				_stream.apply(this);
 				}
-    			if (stim["catchT"]===1 && $('input[type=radio]:checked').size() > 0) {
-					_.last(exp.data_trials)["ans_chosen"] = [{
-					rad_button_resp : $('input[name="rad_button"]:checked').val()
-					}];
+    			if (exp.trial_type==="catch" && $('input[type=radio]:checked').size() > 0) {
+    				var ans_chosen = [];
+    				if ($('input[name="radio_button"]:checked').val() === "ans1") {
+    					ans_chosen = exp.ans_display[0];
+    				} else { ans_chosen = exp.ans_display[1]; }
+					_.last(exp.data_trials)["ans_chosen"] = ans_chosen;
 					//This unselects the button for the next trial
-					$('input[name="rad_button"]').attr('checked',false);
+					$('input[name="radio_button"]').attr('checked',false);
 					_stream.apply(this);
+				}
 			}
 		}
 	);
 	
-	slides.comp_questions = slide(
-		{
-			name : "comp_questions",
-			start : function() {
-			},
-			present : [0,1,2,3],
-			present_handle : function(stim) {
-            	console.log(stim);
-            	exp.data_trials.push(stim);
-            	
-            	//get scenario
-            	exp.comp_questions = get_comprehension_questions();
-            	_(stim).shuffle;
-            	$('.comp_question').each(function(){$(this).text(exp.comp_questions[stim]['comp_question']);});
-            	
-            	//choose which answer to display in which button
-            	var ans_display = ["wrong_ans", "right_ans"];
-            	ans_display = _(ans_display).shuffle();
-            	
-				$('.ans1').each(function(){$(this).text(exp.comp_questions[stim][ans_display[0]]);});
-				$('.ans2').each(function(){$(this).text(exp.comp_questions[stim][ans_display[1]]);});
-			},
-    		button : function() {
-    			if ($('input[type=radio]:checked').size() > 0) {
-					_.last(exp.data_trials)["ans_chosen"] = [{
-					rad_button_resp : $('input[name="rad_button"]:checked').val()
-					}];
-					//This unselects the button for the next trial
-					$('input[name="rad_button"]').attr('checked',false);
-					_stream.apply(this);
-				}
-			} 
-		}		
-	);
+// 	slides.comp_questions = slide(
+// 		{
+// 			name : "comp_questions",
+// 			start : function() {
+// 			},
+// 			present : [0,1,2,3],
+// 			present_handle : function(stim) {
+//             	exp.data_trials.push(stim);
+//             	
+//             	//get scenario
+//             	exp.comp_questions = get_comprehension_questions();
+//             	_(stim).shuffle;
+//             	$('.comp_question').each(function(){$(this).text(exp.comp_questions[stim]['comp_question']);});
+//             	
+//             	//choose which answer to display in which button
+//             	var exp.ans_display = ["wrong_ans", "right_ans"];
+//             	exp.ans_display = _(exp.ans_display).shuffle();
+//             	
+// 				$('.ans1').each(function(){$(this).text(exp.comp_questions[stim][exp.ans_display[0]]);});
+// 				$('.ans2').each(function(){$(this).text(exp.comp_questions[stim][exp.ans_display[1]]);});
+// 			},
+//     		button : function() {
+//     			if ($('input[type=radio]:checked').size() > 0) {
+// 					_.last(exp.data_trials)["ans_chosen"] = [{
+// 					rad_button_resp : $('input[name="rad_button"]:checked').val()
+// 					}];
+// 					//This unselects the button for the next trial
+// 					$('input[name="rad_button"]').attr('checked',false);
+// 					_stream.apply(this);
+// 				}
+// 			} 
+// 		}		
+// 	);
     
     slides.conf_trial = slide(
         {
