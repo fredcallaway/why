@@ -1,0 +1,312 @@
+<html>
+  <head>
+    <title>
+      Free Response - Physics
+    </title>
+
+
+    <!--JS-->
+
+    <!-- general utilities -->
+    <script src="../_shared/js/jquery-min.js "></script>
+    <script src="../_shared/js/underscore-min.js"></script>
+    <script src="../_shared/js/underscore.string.min.js"></script>
+    <script src="../_shared/js/turk.js"></script>
+    <script src="../_shared/js/browser.detect.js"></script>
+    <script src="../_shared/js/utils.js"></script>
+    <script src="../_shared/js/jquery-ui.js"></script>
+    <script src="../_shared/js/sprintf-.7.js"></script>
+    <script src="../_shared/js/seedrandom.js"></script>
+    <script src="../_shared/js/ecosystem.js"></script>
+
+    <!-- experiment specific helper functions -->
+    <script src="js/local-utils.js"></script>
+
+    <!-- experiment utilities -->
+    <script src="../_shared/js/exp.js"></script>
+    <script src="../_shared/js/stream.js"></script>
+
+    <!-- for graphics -->
+    <script src="../_shared/js/raphael-min.js"></script>
+
+    <!-- filter subjects -->
+    <script src="../_shared/js/prune_ss.js"></script>
+
+    <!-- experiment file -->
+    <script src="js/physicsExp.js"></script>
+
+    <!-- box2d -->
+     <script type="text/javascript" src="../_shared/js/Box2dWeb-2.1.a.3.min.js"></script>
+
+
+    <!--CSS-->
+    <link href="http://code.jquery.com/ui/1.9.1/themes/overcast/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <link href="../_shared/css/table/style.css" rel="stylesheet" type="text/css"/>
+    <link href="../_shared/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="../_shared/css/curtain.css" rel="stylesheet" type="text/css"/>
+    <link href="../_shared/css/style_within.css" rel="stylesheet" type="text/css"/>
+    <link href="../_shared/css/form.css" rel="stylesheet" type="text/css"/>
+    <link href="css/local-style.css" rel="stylesheet" type="text/css"/>
+
+
+  </head>
+
+  <body onload="init();" style="visibility:hidden">
+    <noscript>This task requires JavaScript.</noscript>
+
+    <div id="exp" class="exp">
+      <div class="slide_wrapper">
+        <div class="slide" id="i0" >
+          <img src="../_shared/css/images/stanford.png" style="margin-top: 10px">
+          <p style="text-align: center; font-weight: bold">Stanford COCO Lab</p>
+          <p id="instruct-text" class="padding"> You will see certain statements followed by 'because' and a box for you to record your answer. The HIT should take ~1000 minutes. Please pay attention, thanks!</p>
+          <button id="start-button" type="button">Start Experiment</button>
+          <p style="font-size: 0.8em">Legal information: By answering the following questions, you are participating in a study being performed by cognitive scientists in the Stanford Department of Psychology. If you have questions about this research, please contact Harry Simon at <a href="mailto://hasimon@stanford.edu">hasimon@stanford.edu</a> Daniel Hawthorne at <a href="mailto://djthorne@stanford.edu">djthorne@stanford.edu</a> or Noah Goodman, at ngoodman@stanford.edu. You must be  at least 18 years old to participate. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences. Your anonymity is assured; the researchers who have requested your participation will not receive any personal information about you.</p>
+        </div>
+
+        <div id = "freeResponse" class = "slide">
+          <div id = "text Input">
+            <div>
+                <br>
+                <p id = "test_text" class = "small">
+                  <span class="physPhrase"></span> because
+                  <input type = "text" size = "30" id = "phraseInput" name = "phraseInput" val = "" />. 
+                </p>
+                <br>
+            </div>
+          </div>
+  
+          <button type = "button" class "space" onclick = "_s.button();">Submit</button>
+        </div>
+
+
+<!-- 
+        <div id="textInput_ranking" class="slide">
+          <table id="res_sum" class="results_summary stims_table">
+            <tr>
+              <td style="font-size:15px">Your info</td>
+              <td class="horse1_name"></td>
+              <td class="horse2_name"></td>
+              <td class="horse3_name"></td>
+              <td># of Races</td>
+            </tr>
+            <tr>
+              <td># of Wins</td>
+              <td id="horse1"></td>
+              <td id="horse2"></td>
+              <td id="horse3"></td>
+              <td id="race_total"></td>
+            </tr>
+          </table>
+
+          <br/>
+          <br/>
+          <br/>
+
+          <div id = "text Input">
+              <div> 
+                  <p id="test_text" class="small">
+                      Who do you think will finish in first place? Second place? Third place?
+                      Please rank accordingly. 
+                      (1 = first place, 2 = second place, 3 = third place)
+                  </p>
+                  <input type="text" size="4" min="0" max="5" id="horse1_rank" name="horse1_rank" value="" /> <span class="horse1_name"></span>
+                  <br/>
+                  <input type="text" size="4" min="0" max="5" id="horse2_rank" name="horse2_rank" value="" /> <span class="horse2_name"></span>
+                  <br/>
+                  <input type="text" size="4" min="0" max="5" id="horse3_rank" name ="horse3_rank" value="" /> <span class="horse3_name"></span>
+                  <br/>
+              </div>
+          </div>
+          <button type="button" class="space" onclick="_s.button();">Submit</button>
+
+        </div>
+
+        <div id="repeated_stims" class="slide">
+          <table id="res_sum" class="results_summary stims_table">
+            <tr>
+              <td style="font-size:15px">Your info</td>
+              <td class="horse1_name"></td>
+              <td class="horse2_name"></td>
+              <td># of Races</td>
+            </tr>
+            <tr>
+              <td># of Wins</td>
+              <td id="horse1"></td>
+              <td id="horse2"></td>
+              <td id="race_total"></td>
+            </tr>
+          </table>
+
+          <br/>
+          <br/>
+          <br/>
+
+          <div id="test_sliders">
+            <div>
+              <p id="test_text" class="small mtop">What do you think <b><span class="zach_name"></span></b>
+                believes is the chance
+                that <span class="horse2_name"></span> wins the next race?
+              </p>
+              <p id="baseline_test_text" class="small">What do you think is the
+                chance that <b><span class="horse2_name"></span></b> wins the next race?
+              </p>
+            </div>
+            <div id="sim_resp">
+              <div id="slider_outer" class="slider_outer">
+                <div id="test_slide" class="sim_slide"></div>
+                <span class="slider-lbl1">Certainly Won't</span>
+                <span class="slider-lbl2">Certainly Will</span>
+                <span class="slider-lbl3">50/50</span>
+              </div>
+              <p class="small mtop"> How confident are you?</p>
+              <div id="slider_outer" class="slider_outer">
+                <div id="confidence_slide" class="sim_slide"></div>
+                <span class="slider-lbl1">Guessing</span>
+                <span class="slider-lbl2">Certain</span>
+                <span class="slider-lbl3">Reasonably Sure</span>
+              </div>
+            </div>
+
+          </div>
+          <button type="button" class="space" onclick="_s.button();">Submit</button>
+        </div> -->
+
+
+
+        <div class="slide js"  id="subj_info">
+          <div>
+            <form id="subj_info_form">
+              <div class="long_form">
+                <fieldset>
+                  <legend>Additional information</legend>
+                  <p class="info">
+                    Answering these questions is optional, but will help us understand your answers.</p>
+
+                  <p>Did you read the instructions and do you think you did
+                    the HIT correctly?</p>
+                  <label>
+                    <input type="radio"  name="assess" value="No"/>
+                    No
+                  </label>
+                  <label>
+                    <input type="radio"  name="assess" value="Yes"/>
+                    Yes
+                  </label>
+                  <label>
+                    <input type="radio"  name="assess" value="Confused"/>
+                    I was confused
+                  </label>
+
+                  <p>Sex</p>
+
+                  <label>
+                    <input type="radio" name="sex" value="Male"/>
+                    Male
+                  </label>
+                  <label>
+                    <input type="radio" name="sex" value="Female"/>
+                    Female
+                  </label>
+
+                  <p>Age</p>
+                  <input type="text" name="age" value="0"/>
+
+                  <p>Level Of Education</p>
+                  <select name="education">
+                    <label>
+                      <option name="education" value="-1"/>
+
+                    </label>
+                    <label>
+                      <option name="education" value="0"/>
+                      Some High School
+                    </label>
+                    <label>
+                      <option name="education" value="1"/>
+                      Graduated High School
+                    </label>
+                    <label>
+                      <option name="education" value="2"/>
+                      Some College
+                    </label>
+                    <br/>
+                    <label>
+                      <option name="education" value="3"/>
+                      Graduated College
+                    </label>
+                    <label>
+                      <option name="education" value="4"/>
+                      Hold a higher degree
+                    </label>
+                  </select>
+
+                  <p>Native Language</p>
+                  <label>
+                    <option  value="-1"/>
+
+                  </label>
+                  <select name="language">
+                    <label>
+                      <option  value="English"/>
+                      English
+                    </label>
+                    <label>
+                      <option  value="Spanish"/>
+                      Spanish
+                    </label>
+                    <label>
+                      <option  value="French"/>
+                      French
+                    </label>
+                    <br/>
+                    <label>
+                      <option  value="Mandarin"/>
+                      Mandarin
+                    </label>
+                    <label>
+                      <option  value="German"/>
+                      German
+                    </label>
+                    <label>
+                      <option  value="Other"/>
+                      Other
+                    </label>
+                  </select>
+
+                  <p>Did you enjoy the hit?</p>
+                  <select name="enjoyment">
+                    <option value="-1"></option>
+                    <option value="0">Worse than the Average HIT</option>
+                    <option value="1" >An Average HIT</option>
+                    <option value="2">Better than average HIT</option>
+                  </select>
+
+                </fieldset>
+
+                <button type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div id="thanks" class="slide js" >
+          <p  class="big">Thanks for your Time!<br/></p>
+          <p id="bonus_feedback" class="big"><p>
+        </div>
+
+        <div id="progress">
+          <h2 style="margin-bottom:10px">Progress</h2>
+          <p id="phase" class="progress_text"></p>
+
+          <div id="pb1"></div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+  </body>
+</html>
