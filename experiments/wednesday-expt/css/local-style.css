@@ -495,3 +495,8 @@ color: rgb(0,0,255);
 #purple{
 color: rgb(128,0,128);
 }
+
+.spacing{
+font-size: 100%;
+line-height: 115%
+}
