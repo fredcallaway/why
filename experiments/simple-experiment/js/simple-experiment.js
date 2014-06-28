@@ -8,7 +8,7 @@ function make_slides(f) {
   slides.instructions = slide({
     name : "instructions",
     button : function() {
-      exp.go();
+      exp.go(); //use exp.go() if and only if there is no "present" data.
     }
   });
 
@@ -18,7 +18,7 @@ function make_slides(f) {
     start : function() {/*what to do at the beginning of a block*/},
     present_handle : function() {/*what to do at the beginning of each trial*/},
     button : function() {
-      exp.go();
+      exp.go(); //use exp.go() if and only if there is no "present" data.
     },
     end : function() {/*what to do at the end of a block*/}
   });
@@ -31,7 +31,7 @@ function make_slides(f) {
     },
     button : function() {
       this.log_responses();
-      exp.go();
+      exp.go(); //use exp.go() if and only if there is no "present" data.
     },
     init_sliders : function() {
       utils.make_slider("#generic_slider", function(event, ui) {
@@ -76,7 +76,7 @@ function make_slides(f) {
     },
     button : function() {
       this.log_responses();
-      _stream.apply(this);
+      _stream.apply(this); //use _stream.apply(this); if and only if there is "present" data.
     },
     init_sliders : function(sentence_types) {
       for (var i=0; i<this.sentence_types.length; i++) {
@@ -115,7 +115,7 @@ function make_slides(f) {
           education : $("#education").val(),
           comments : $("#comments").val(),
         };
-      exp.go();
+      exp.go(); //use exp.go() if and only if there is no "present" data.
     }
   });
 
