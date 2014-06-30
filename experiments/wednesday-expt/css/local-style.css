@@ -468,35 +468,39 @@ margin-left: 2.7em;
 margin-right: 2.7em;
 }
 
-#orange{
-color: rgb(255,102,0);
-}
-
 #green{
-color: rgb(0,128,0);
+color: #1b9e77;
 }
 
-#brown{
-color: rgb(110,53,0);
-}
-
-#steel-blue{
-color: rgb(49,133,156);
-}
-
-#red{
-color: rgb(255,0,0);
-}
-
-#blue{
-color: rgb(0,0,255);
+#orange{
+color: #d95f02;
 }
 
 #purple{
-color: rgb(128,0,128);
+color: #7570b3;
+}
+
+#pink{
+color: #e7298a;
+}
+
+#lime-green{
+color: #66a61e;
+}
+
+#yellow{
+color: #e6ab02;
+}
+
+#brown{
+color: #a6761d;
 }
 
 .spacing{
 font-size: 100%;
 line-height: 115%
+}
+
+ul {
+text-align: left;
 }
