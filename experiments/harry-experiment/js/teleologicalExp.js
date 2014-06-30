@@ -367,8 +367,10 @@ var get_horse_name= function(){
 
 function make_stims() {
     var sentences = make_sentences();
-    var items = _.shuffle(["scissors", "knife", "tea_temp", "coffee_temp", "tea_taste", "coffee_taste", "motorcycle", "car", "tiger", "bird", "fish", "clock", "car_design", "bicycle_design", "apple", "ball"]);
-    var types = _.shuffle(["gen", "gen" , "gen" , "gen" , "gen", "gen", "gen", "gen", "det", "det", "det", "det", "det", "det", "det", "det"]);
+    var items = _.shuffle(["scissors", "knife", "tea_temp", "coffee_temp", "tea_taste", "coffee_taste", "motorcycle", "car", 
+                                            "tiger", "bird", "fish", "clock", "car_design", "bicycle_design", "apple", "ball"]);
+    var types = _.shuffle(["gen", "gen", "gen", "gen", "gen", "gen", "gen", "gen", 
+                           "det", "det", "det", "det", "det", "det", "det", "det"]);
     var stims = [];
     for (i = 0; i < items.length; i++) {
         stims.push({sentence_type : types[i], 
@@ -395,7 +397,7 @@ function make_sentences() {
             "fish" : {det : "The clown fish has gills", gen : "Clown fishes have gills", cat : "evolutionary"},
             "clock" : {det : "The clock ticks", gen : "Clocks tick", cat : "designer"},
             "car_design" : {det : "The car has an engine", gen : "Cars have engines", cat : "designer"},
-            "bicycle_design" : {det : "The bicycle does not have an enginer", gen : "Bicycles do not have engines", cat : "designer"},
+            "bicycle_design" : {det : "The bicycle does not have an engine", gen : "Bicycles do not have engines", cat : "designer"},
             "apple" : {det : "The apple fell from the tree", gen : "Apples fall from trees", cat : "physics"},
             "ball" : {det : "The ball rolled down the hill", gen : "Balls roll down hills", cat : "physics"}
             };
