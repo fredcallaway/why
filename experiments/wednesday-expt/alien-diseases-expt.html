@@ -77,7 +77,7 @@
         <!-- instructions slide -->
         <div id="instructions_causal" class="slide js">
         	<div>
-        		<p class="spacing"><br>In this HIT you will read a description about some diseases on an alien 
+        		<br><p class="spacing"><br>In this HIT you will read a description about some diseases on an alien 
         		planet. Please make sure to read the description carefully. After you read 
         		the description, you will be asked to give free-response explanations to some
         		questions. There will also be multiple-choice questions
@@ -89,7 +89,58 @@
         </div>
         
         <!-- training slides -->
-        <div id="training" class="slide js">
+        <div id="training1" class="slide js">
+        	<div>
+				<br><p class="spacing">You are a doctor on an alien planet. You know that there are four different 
+				diseases that the aliens can have. <span id="orange">Disease A</span> causes two abnormal
+				proteins, <span id="red">Protein X</span> and <span id="blue">Protein Y</span>, 
+				to be expressed in the alien's body. 2 in 100 aliens have <span id="orange">Disease A</span>. <p>
+				
+				<img src="images/alien-diseases-1.jpg" style="width: 75%; height: 70%; margin-top: 20px">
+        	</div>
+        	
+          <br><button type="button" class="space" onclick="_s.button();">Next >></button>
+        </div>
+        
+        <div id="training2" class="slide js">
+        	<div>
+				<br><p class="spacing">
+				<span id="green">Disease B</span> causes the abnormal protein <span id="red">Protein
+				X</span> to be expressed. 10 in 100 aliens have <span id="green">Disease B</span>.  <p>
+				
+				<img src="images/alien-diseases-2.jpg" style="width: 75%; height: 70%; margin-top: 20px">
+        	</div>
+        	
+          <br><button type="button" class="space" onclick="_s.button();">Next >></button>
+        </div>
+        
+        <div id="training3" class="slide js">
+        	<div>
+				<br><p class="spacing">
+				<span id="brown">Disease C</span> and <span id="steel-blue">Disease D</span> both cause the abnormal 
+				protein <span id="blue">Protein Y</span> to be expressed. 30 in 100 aliens 
+				have <span id="brown">Disease C</span>, and 10 in 100 aliens have <span id="steel-blue">Disease 
+				D</span>.  <p>
+				
+				<img src="images/alien-diseases-3.jpg" style="width: 75%; height: 70%; margin-top: 20px">
+        	</div>
+        	
+          <br><button type="button" class="space" onclick="_s.button();">Next >></button>
+        </div>
+        
+        <div id="training4" class="slide js">
+        	<div>
+				<br><p class="spacing">
+				If both <span id="red">Protein X</span> and <span id="blue">Protein Y</span> are 
+				expressed, the alien gets a <span id="purple">Fever</span>.  <p>
+				
+				<img src="images/alien-diseases-4.jpg" style="width: 75%; height: 70%; margin-top: 20px">
+        	</div>
+        	
+          <br><button type="button" class="space" onclick="_s.button();">Next >></button>
+        </div>
+        
+        <div id="training5" class="slide js">
         	<div>
 				<p class="spacing">You are a doctor on an alien planet. You know that there are four different 
 				diseases that the aliens can have. <span id="orange">Disease A</span> causes two abnormal
@@ -103,7 +154,10 @@
 				D</span>. If both <span id="red">Protein X</span> and <span id="blue">Protein Y</span> are 
 				expressed, the alien gets a <span id="purple">Fever</span>. <p>
 				
-				<img src="images/alien-disease-fig.jpg" style="width: 65%; height: 60%; margin-top: 2px">
+				<img src="images/alien-disease-fig.jpg" style="width: 55%; height: 50%; margin-top: 2px">
+				
+				<p>You will now be asked questions about this alien world. Some will be multiple
+				choice questions, and others will be fill-in-the-blank.  </p>
         	</div>
         	
           <br><button type="button" class="space" onclick="_s.button();">Continue</button>
@@ -222,12 +276,10 @@
                     <input type="radio"  name="assess" value="No"/>
                     No
                   </label>
-                  <br>
                   <label>
                     <input type="radio"  name="assess" value="Yes"/>
                     Yes
                   </label>
-                  <br>
                   <label>
                     <input type="radio"  name="assess" value="Confused"/>
                     I was confused
@@ -239,7 +291,6 @@
                     <input type="radio" name="sex" value="Male"/>
                     Male
                   </label>
-                  <br>
                   <label>
                     <input type="radio" name="sex" value="Female"/>
                     Female
