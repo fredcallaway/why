@@ -512,7 +512,7 @@ function init() {
   //  jquery_extensions();
     $('.slide').hide();
     $('body').css('visibility','visible');
-    exp_sizing();
+    //exp_sizing();
 
     exp.data_trials=[];
     exp.sandbox=0;
