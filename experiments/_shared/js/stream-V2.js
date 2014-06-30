@@ -55,7 +55,7 @@ var _stream = function() {
         this.present_handle(stim);
         exp.phase++;
 
-        /*//Catch Trial
+		//Catch Trial
         if (this.catch_trial_handle && stim.length == 3) {
           //s = Math.round(Math.random());
           //this.pass_data({trial:tri, stim:s, catch: 1});

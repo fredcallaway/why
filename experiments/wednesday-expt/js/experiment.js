@@ -509,7 +509,7 @@ function make_slides(f) {
 
 /// init ///
 function init() {
-    jquery_extensions();
+  //  jquery_extensions();
     $('.slide').hide();
     $('body').css('visibility','visible');
     exp_sizing();
