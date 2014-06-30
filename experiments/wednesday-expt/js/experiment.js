@@ -143,12 +143,12 @@ function make_slides(f) {
 
 	slides.instructions_causal = slide(
 		{
-			name : "instructions_causal",
-			present : [0],
-			button : function() {
-				exp.start_time = Date.now();
-				_stream.apply(this);
-			}
+			name : "instructions_causal"
+//			present : [0],
+//			button : function() {
+//				exp.start_time = Date.now();
+//				_stream.apply(this);
+//			}
 		}
 	);
 	
