@@ -63,12 +63,12 @@ var _stream = function() {
         }
 
         //Normal Trial
-        else{
-          //this.pass_data({"trial":trial_num, "stim":stim});
-          this.present_handle(stim);/*, function() {
-            this.takeInput = 1;
-          });
-        }*/
+		else{
+			this.pass_data({trial:tri, stim:s});
+			this.present_handle(s, function() {
+				this.takeInput = 1;
+			});
+		}
       }
       /*if (this.update_progress) {
         this.update_progress();
