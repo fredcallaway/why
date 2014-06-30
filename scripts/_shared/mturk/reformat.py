@@ -2,8 +2,8 @@ import sys
 import csv
 import json
 
-mturk_data_file = "speaker2B.results"#sys.argv[1]
-output_data_file_label = "speaker2B"#sys.argv[2]
+mturk_data_file = sys.argv[1]
+output_data_file_label = sys.argv[2]
 
 def write_2_by_2(data, filename, sep="\t"):
   w = open(filename, "w")
