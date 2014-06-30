@@ -1,11 +1,4 @@
-button {
-	display: block;
-	margin: 0.5em auto;
-}
-
 .slider {
-	width: 400px;
-	height: 15px;
-	margin: 10px;
-	text-align: center; /* just so the dummy "slider" looks nice: ---[]--- */;
+  width: 400;
+  margin: 10px;
 }
