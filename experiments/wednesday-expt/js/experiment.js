@@ -143,12 +143,12 @@ function make_slides(f) {
 
 	slides.instructions_causal = slide(
 		{
-			name : "instructions_causal",
-			present : [0],
-			button : function() {
-				exp.start_time = Date.now();
-				_stream.apply(this);
-			}
+			name : "instructions_causal"
+//			present : [0],
+//			button : function() {
+//				exp.start_time = Date.now();
+//				_stream.apply(this);
+//			}
 		}
 	);
 	
@@ -509,10 +509,10 @@ function make_slides(f) {
 
 /// init ///
 function init() {
-    jquery_extensions();
+  //  jquery_extensions();
     $('.slide').hide();
     $('body').css('visibility','visible');
-    exp_sizing();
+    //exp_sizing();
 
     exp.data_trials=[];
     exp.sandbox=0;
