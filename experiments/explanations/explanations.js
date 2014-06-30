@@ -16,6 +16,8 @@ $(document).ready(function() {
   //$.post("http://www.stanford.edu/~erindb/cgi-bin/get-mturk-results.php");
 });
 
+
+
 var generators = [
   "Beth is very tired", "Beth is going to stay up until 3am",
   "Alex hates computers", "Alex just bought a computer",
