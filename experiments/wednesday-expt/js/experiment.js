@@ -302,7 +302,7 @@ function make_slides(f) {
 				$("#critical_trial").show();
 				//$("#expl").focus();
 				exp.questions = get_questions();
-				//exp.condition = exp.questions[stim];
+				exp.current_cond = exp.questions[stim["item"]];
             	
             	//critical trial question
             	$('.why_question').each(function(){$(this).text(exp.questions[stim["item"]]['question']);});
@@ -333,6 +333,7 @@ function make_slides(f) {
                     //_.last(exp.data_trials)["answered"]=res["answered"];
                     _.last(exp.data_trials)["trial_type"]=exp.trial_type;
                     _.last(exp.data_trials)["RT"] = RT;
+                    _.last(exp.data_trials)["condition"] = exp.current_cond;
                 //clear text box, move to next trial
                 $('input[name="expl"]').val('');
 				_stream.apply(this);
@@ -625,8 +626,8 @@ function init() {
 
     exp.structure=["i0", 'instructions_causal', 'training1', 'training2', 'training3', 
     'training4', 'training5', 'txt_box', 'subj_info', 'thanks'];
-    set_condition();
-    exp.condition = [];
+    //set_condition();
+    exp.condition = {dependent: "text_box", independent: "info/question"};
 
     //allow to click through experiment
     exp.debug=1;
@@ -698,21 +699,21 @@ var get_scenarios = function() {
 }();
 
 var get_questions = function() {
-	var questions = [{disease: "D", protein: "X", fever: "NA",
+	var questions = [{disease: "D", protein: "X", fever: "NA", condition: "disease and protein",
 	question : 'You know that an alien has Disease D and expresses Protein X. Why do they express Protein X?'},
-	{disease: "B", protein: "Y", fever: "NA",
+	{disease: "B", protein: "Y", fever: "NA", condition: "disease and protein",
 	question : 'You know that an alien has Disease B and expresses Protein Y. Why do they express Protein Y?'},
-	{disease: "A", protein: "NA", fever: "Y",
+	{disease: "A", protein: "NA", fever: "Y", condition: "disease and fever",
 	question : 'You know that an alien has Disease A and has a fever. Why do they have a fever?'},
-	{disease: "B", protein: "NA", fever: "Y",
+	{disease: "B", protein: "NA", fever: "Y", condition: "disease and fever",
 	question : 'You know that an alien has Disease B and has a fever. Why do they have a fever?'},
-	{disease: "C", protein: "NA", fever: "Y",
+	{disease: "C", protein: "NA", fever: "Y", condition: "disease and fever",
 	question : 'You know that an alien has Disease C and has a fever. Why do they have a fever?'},
-	{disease: "D", protein: "NA", fever: "Y",
+	{disease: "D", protein: "NA", fever: "Y", condition: "disease and fever",
 	question : 'You know that an alien has Disease D and has a fever. Why do they have a fever?'},
-	{disease: "NA", protein: "X", fever: "Y",
+	{disease: "NA", protein: "X", fever: "Y", condition: "protein and fever",
 	question : 'You know that an alien expresses Protein X and has a fever. Why do they have a fever?'},
-	{disease: "NA", protein: "Y", fever: "Y",
+	{disease: "NA", protein: "Y", fever: "Y", condition: "protein and fever",
 	question : 'You know that an alien expresses Protein Y and has a fever. Why do they have a fever?'}];
 	
 // 	in case i want to use these in the future
