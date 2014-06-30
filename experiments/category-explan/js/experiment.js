@@ -14,57 +14,87 @@ function make_slides(f) {
 		{   //text for each trial
 			name : "repeated_stims",
 			present:shuffle([
-				{  check: "Is a cat a mammal or a reptile?   "			},
-				{  check: "Do dolphins live on land or in the sea?   "	},
-				{  fact: 'An elephant is smart because it is a(n) '		},
-				{  fact: 'An elephant has bones because it is a(n) '	},
-				{  fact: 'A horse is smart because it is a(n) '			},
-				{  fact: 'A horse has lungs because it is a(n) '		},
-				{  fact: 'A chimp has feet because it is a(n) '			},
-				{  fact: 'A chimp lives in groups because it is a(n) '	},
-				{  fact: 'A chimp is smart because it is a(n) '			},
-				{  fact: 'A mouse has lungs because it is a(n) '		},
-				{  fact: 'A mouse has a tail because it is a(n) '		},
-				{  fact: 'A squirrel has claws because it is a(n) '		},
-				{  fact: 'A tiger has claws because it is a(n) '		},
-				{  fact: 'A tiger is dangerous because it is a(n) '		},
-				{  fact: 'A tiger is smart because it is a(n) '			},
-				{  fact: 'A dolphin has fins because it is a(n) '		},
-				{  fact: 'A robin has wings because it is a(n) '		},
-				{  fact: 'A chicken has wings because it is a(n) '		},
-				{  fact: 'A robin has wings because it is a(n) '		},
-				{  fact: 'A salmon has fins because it is a(n) '		},
-				{  fact: 'A bee lives in groups because it is a(n) '	},
-				{  fact: 'A bee has wings because it is a(n) '			},
-				{  fact: 'An alligator has teeth because it is a(n) '	},
-				{  fact: 'A deer has teeth because it is a(n) '			},
-				{  fact: 'A lizard has a tail because it is a(n) '		}
+				{  catchT: 1, check: "Is a cat a mammal or a reptile?   "			},
+				{  catchT: 1, check: "Do dolphins live on land or in the sea?   "	},
+				{  catchT: 1, check: "Do horses lay eggs?   "						},
+				{  catchT: 0, fact: 'An elephant is smart because it is a(n) '		},
+				{  catchT: 0, fact: 'An elephant has bones because it is a(n) '		},
+				{  catchT: 0, fact: 'A horse is smart because it is a(n) '			},
+				{  catchT: 0, fact: 'A horse has lungs because it is a(n) '			},
+				{  catchT: 0, fact: 'A chimp has feet because it is a(n) '			},
+				{  catchT: 0, fact: 'A chimp lives in groups because it is a(n) '	},
+				{  catchT: 0, fact: 'A chimp is smart because it is a(n) '			},
+				{  catchT: 0, fact: 'A mouse has lungs because it is a(n) '			},
+				{  catchT: 0, fact: 'A mouse has a tail because it is a(n) '		},
+				{  catchT: 0, fact: 'A squirrel has claws because it is a(n) '		},
+				{  catchT: 0, fact: 'A tiger has claws because it is a(n) '			},
+				{  catchT: 0, fact: 'A tiger is dangerous because it is a(n) '		},
+				{  catchT: 0, fact: 'A tiger is smart because it is a(n) '			},
+				{  catchT: 0, fact: 'A dolphin has fins because it is a(n) '		},
+				{  catchT: 0, fact: 'A robin has wings because it is a(n) '			},
+				{  catchT: 0, fact: 'A chicken has wings because it is a(n) '		},
+				{  catchT: 0, fact: 'A robin has wings because it is a(n) '			},
+				{  catchT: 0, fact: 'A salmon has fins because it is a(n) '			},
+				{  catchT: 0, fact: 'A bee lives in groups because it is a(n) '		},
+				{  catchT: 0, fact: 'A bee has wings because it is a(n) '			},
+				{  catchT: 0, fact: 'An alligator has teeth because it is a(n) '	},
+				{  catchT: 0, fact: 'A deer has teeth because it is a(n) '			},
+				{  catchT: 0, fact: 'A lizard has a tail because it is a(n) '		}
 			]),
 
+
+			start : function(){
+
+			},
 			present_handle : function(stim){
+				exp.trial_type = 'critical';
 				$('#explanation').focus();
-				//check trial
-				if (stim.check!==null) {
-					console.log('check trial');
-					$('#fact').text(stim.check);
-					exp.check_trials.push(stim); //TODO create exp.check_trials
-				} else {
-					$('#fact').text(stim.fact);
-					exp.data_trials.push(stim);
-				}
+				$('#txt').text(stim.fact);
+				this.init_slider();
+				exp.data_trials.push(stim);
+			},
+			catch_trial_handle : function(stim) {
+				exp.trial_type = 'catch';
+				$('#explanation').focus();
+				$('#txt').text(stim.check);
+				this.init_slider();
+				exp.data_trials.push(stim);
+			},
+			init_slider : function() {
+				// $(".ui-slider-handle").hide();
+				$("#slider1").css('width' , 3*(exp.width/4)).centerhin();
+				$(".slider-lbl1 ").css('right' , (exp.width/4) *3.2 +20);
+				$(".slider-lbl2 ").css('left' , (exp.width/4) *3.2 +20);
+				exp.sliderPost=null;
+				$("#slider1").slider({
+					range : "min",
+					value : 50,
+					min : 0,
+					max : 100,
+					slide : function(event, ui) {
+						exp.sliderPost = ui.value/100; // sliderPost in 0..1
+					}
+				});
+				$("#slider1").mousedown(function(){$("#slider1 a").css('display', 'inherit');});
+				$("#slider1").slider("option","value",0); //reset slider ()
+				$(".ui-slider-handle").css('display', 'none');
 			},
 			button : function() {
-				var res = {  explanation: $('#explanation').val() };
-				if (res.explanation !== "") {
-					if (stim.check!==null) exp.check_trials.push(res);
-					else exp.check_trials.push(res);
-					$('#explanation').val("");
+				var res = { explanation: $('#explanation').val(),
+							confidence: exp.sliderPost };
+				if (res.explanation === "") $('#help').show(); //no explanation
+				else {
 					$('#help').hide();
-					_stream.apply(this);
-				} else { $('#help').show(); }
+					if (res.confidence === null) $('#help2').show(); //no confidence
+					else { //explanation and confidence given
+						exp.check_trials.push(res);
+						$('#explanation').val("");
+						$('#help2').hide();
+						_stream.apply(this);
+					}
+				}
 			},
 		});
-
 
 
 
