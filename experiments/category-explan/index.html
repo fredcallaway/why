@@ -10,8 +10,8 @@
 	 <!-- general utilities -->
 	 <script src="../_shared/js/jquery-min.js "></script>
 	 <script src="../_shared/js/underscore-min.js"></script>
-	 <script src="../_shared/js/underscore.string.min.js"></script>
-	 <script src="../_shared/js/turk.js"></script>
+	 <script src="../_shared/tjs/underscore.string.min.js"></script>
+	 <script src="../_shared/js/mmturkey.js"></script>
 	 <script src="../_shared/js/browser.detect.js"></script>
 	 <script src="../_shared/js/utils.js"></script>
 	 <script src="../_shared/js/jquery-ui.js"></script>
@@ -73,15 +73,24 @@
 			<br>
 			<br>
 			<br>
+			<p id= "stim"><span id="txt"></span><input type="text" size=20 id="explanation"></input>.</p>
 			<br>
 			<br>
-			<p id= "stim"><span id="fact"></span><input type="text" size=20 id="explanation"></input>.</p>
+			<div id="confidence">
+				<p class="small mtop"> How sure are you?</p>
+				<br>
+				<div id="slider1" class="sim_slide"></div>
+				<span class="slider-lbl1">Uncertain</span>
+				<span class="slider-lbl2">Certain</span>
+			</div>
 			<br>
 			<br>
 			<button type="button" class="space" onclick="_s.button();">Submit</button>
 			<br>
 			<br>
-			<p id= "help" style="display:none"> If you can't think of a good explanation, that's okay! Give it your best shot. </p>
+			<br>
+			<p id= "help" style="display:none"> If you can't think of a good explanation, that's okay! Give it your best shot.</p>
+			<p id="help2" style="display:none"> Please indicate your confidence in your answer using the gray slider bar.</p>
 		</div>
 
 
@@ -214,9 +223,6 @@
 		  </div>
 		</div>
 	 </div>
-
-
-
 
   </body>
 </html>
