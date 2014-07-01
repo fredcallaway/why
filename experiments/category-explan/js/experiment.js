@@ -8,39 +8,42 @@ function make_slides(f) {
 		}
 	);
 
-
+	slides.instructions = slide(
+	{
+		name: "instructions",
+		button : function() {
+			exp.go();
+		}
+	});
 
 	slides.repeated_stims = slide(
 		{   //text for each trial
 			name : "repeated_stims",
 			present:shuffle([
-				{  catchT: 1, check: "Is a cat a mammal or a reptile?   "			},
-				{  catchT: 1, check: "Do dolphins live on land or in the sea?   "	},
-				{  catchT: 1, check: "Do horses lay eggs?   "						},
-				{  catchT: 0, fact: 'An elephant is smart because it is a(n) '		},
-				{  catchT: 0, fact: 'An elephant has bones because it is a(n) '		},
-				{  catchT: 0, fact: 'A horse is smart because it is a(n) '			},
-				{  catchT: 0, fact: 'A horse has lungs because it is a(n) '			},
-				{  catchT: 0, fact: 'A chimp has feet because it is a(n) '			},
-				{  catchT: 0, fact: 'A chimp lives in groups because it is a(n) '	},
-				{  catchT: 0, fact: 'A chimp is smart because it is a(n) '			},
-				{  catchT: 0, fact: 'A mouse has lungs because it is a(n) '			},
-				{  catchT: 0, fact: 'A mouse has a tail because it is a(n) '		},
-				{  catchT: 0, fact: 'A squirrel has claws because it is a(n) '		},
-				{  catchT: 0, fact: 'A tiger has claws because it is a(n) '			},
-				{  catchT: 0, fact: 'A tiger is dangerous because it is a(n) '		},
-				{  catchT: 0, fact: 'A tiger is smart because it is a(n) '			},
-				{  catchT: 0, fact: 'A dolphin has fins because it is a(n) '		},
-				{  catchT: 0, fact: 'A robin has wings because it is a(n) '			},
-				{  catchT: 0, fact: 'A chicken has wings because it is a(n) '		},
-				{  catchT: 0, fact: 'A robin has wings because it is a(n) '			},
-				{  catchT: 0, fact: 'A salmon has fins because it is a(n) '			},
-				{  catchT: 0, fact: 'A bee lives in groups because it is a(n) '		},
-				{  catchT: 0, fact: 'A bee has wings because it is a(n) '			},
-				{  catchT: 0, fact: 'An alligator has teeth because it is a(n) '	},
-				{  catchT: 0, fact: 'A deer has teeth because it is a(n) '			},
-				{  catchT: 0, fact: 'A lizard has a tail because it is a(n) '		}
+				{  catchT: 0, fact: 'Tulips have leaves because they are '	},
+				{  catchT: 0, fact: 'Tulips are beautiful because they are '	},
+				{  catchT: 0, fact: 'Strawberries have seeds because they are '	},
+				{  catchT: 0, fact: 'Trees have seeds because they are '	},
+				{  catchT: 0, fact: 'Redwoods are beautiful because they are '	},
+				{  catchT: 0, fact: 'Ferraris have tires because they are '	},
+				{  catchT: 0, fact: 'Ferraris are fast because they are '	},
+				{  catchT: 0, fact: 'Motorboats have engines because they are '	},
+				{  catchT: 0, fact: 'Motorboats are useful because they are '	},
+				{  catchT: 0, fact: 'Cars have engines because they are '	},
+				{  catchT: 0, fact: 'Boeing 747s are fast because they are '	},
+				{  catchT: 0, fact: 'Tigers have fur because they are '	},
+				{  catchT: 0, fact: 'Tigers are smart because they are '	},
+				{  catchT: 0, fact: 'Scorpions have legs because they are '	},
+				{  catchT: 0, fact: 'Scorpions are dangerous because they are '	},
+				{  catchT: 0, fact: 'Birds have legs because they are '	},
+				{  catchT: 0, fact: 'Chimpanzees are smart because they are '	},
+				{  catchT: 1, check: 'Can tigers fly?    '	},
+				{  catchT: 1, check: 'Are Ferraris boats?    '	},
+				{  catchT: 1, check: 'Do trees have roots?    '	}
 			]),
+
+
+
 
 
 			start : function(){
@@ -61,7 +64,6 @@ function make_slides(f) {
 				exp.data_trials.push(stim);
 			},
 			init_slider : function() {
-				// $(".ui-slider-handle").hide();
 				$("#slider1").css('width' , 3*(exp.width/4)).centerhin();
 				$(".slider-lbl1 ").css('right' , (exp.width/4) *3.2 +20);
 				$(".slider-lbl2 ").css('left' , (exp.width/4) *3.2 +20);
@@ -134,7 +136,8 @@ function make_slides(f) {
 					trials : exp.data_trials,
 					checks : exp.check_trials,
 					system : exp.system,
-					condition : exp.condition
+					condition : exp.condition,
+					subject_information : exp.subj_data
 				};
 				setTimeout(function() {turk.submit(exp.data);}, 1000);
 			}
@@ -154,7 +157,7 @@ function init() {
 	exp.sandbox=0;
 	exp.slides = make_slides(exp);
 
-	exp.structure=["i0", 'repeated_stims', 'subj_info', 'thanks'];
+	exp.structure=["i0", 'instructions', 'repeated_stims', 'subj_info', 'thanks'];
 	set_condition();
 
 	//allow to click through experiment
