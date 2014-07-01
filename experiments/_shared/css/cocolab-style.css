@@ -96,3 +96,8 @@ textarea {
 	/* you could have a "range" which makes the slider to the left of the handle a different color from the background */
 	background: transparent;
 }
+
+#cocologo {
+    width: 200px;
+    margin: 10px;
+}
