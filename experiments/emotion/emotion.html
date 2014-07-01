@@ -35,7 +35,7 @@
 
 
     <!--CSS-->
-    <link href="http://code.jquery.com/ui/1.9.1/themes/overcast/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <link href="//code.jquery.com/ui/1.9.1/themes/overcast/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <link href="../_shared/css/table/style.css" rel="stylesheet" type="text/css"/>
     <link href="../_shared/css/style.css" rel="stylesheet" type="text/css"/>
     <link href="../_shared/css/curtain.css" rel="stylesheet" type="text/css"/>
@@ -54,14 +54,14 @@
         <div class="slide" id="i0" >
           <img src="../_shared/images/cocologo.png" id="cocologo">
           <p style="text-align: center; font-weight: bold">Stanford COCO Lab</p>
-          <p id="instruct-text" class="padding">You will see some descriptions of what happened and asked some questions about explanations for such event(s). You will be randomly assigned one type of questions or the other. The HIT should take ~5 minute(s). Thank you!</p>
+          <p id="instruct-text" class="padding">You will see some descriptions of what happened and asked some questions about explanations for such event(s). You will be randomly assigned one type of questions or the other. The HIT should take ~10 minute(s). Thank you!</p>
           <button id="start-button" type="button">Start Experiment</button>
           <p style="font-size: 0.8em">Legal information: By answering the following questions, you are participating in a study being performed by cognitive scientists in the Stanford Department of Psychology. If you have questions about this research, please contact Julie Nam at <a href="mailto://julienam@stanford.edu">julienam@stanford.edu</a> or Noah Goodman, at ngoodman@stanford.edu. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences. Your anonymity is assured; the researchers who have requested your participation will not receive any personal information about you.</p>
         </div>
 
         <div id="scenario_short_A" class="slide js">
           <div id="prompt"><p style= "color: red;"><span class="pusher_name"></span> just pushed <span class="pushee_name"></span> away from her.</p></div>
-          <span class="pusher_name"></span> push <span class="pushee_name"></span> away from her because... <br/>
+          <span class="pusher_name"></span> pushed <span class="pushee_name"></span> away from her because... <br/>
           <input id="res_text" type="text" size="70"/> <br/><br/>
           In a scale of 1 to 100, how sure are you?
           <input id= "res_num" type="text" size="5"/> % <br/><br/>
@@ -83,7 +83,7 @@
 
         <div id="scenario_medium_A" class="slide js">
           <div id="prompt"><span class="pusher_name"></span> is <span class="pushee_name"></span>'s girlfriend. <p style= "color: red;"><span class="pusher_name"></span> just pushed <span class="pushee_name"></span> away from her.</p></div>
-          <span class="pusher_name"></span> push <span class="pushee_name"></span> away from her because... <br/>
+          <span class="pusher_name"></span> pushed <span class="pushee_name"></span> away from her because... <br/>
           <input id ="res_text_m" type="text" size="70"/> <br/><br/>
           In a scale of 1 to 100, how sure are you?
           <input id ="res_num_m" type="text" size="5"/> % <br/><br/>
@@ -105,7 +105,7 @@
 
         <div id="scenario_long_A" class="slide js">
           <div id="prompt"><span class="pusher_name"></span> is <span class="pushee_name"></span>'s girlfriend. It is their anniversary. <p style= "color: red;"><span class="pusher_name"></span> just pushed <span class="pushee_name"></span> away from her.</p></div>
-          <span class="pusher_name"></span> push <span class="pushee_name"></span> away from her because... <br/>
+          <span class="pusher_name"></span> pushed <span class="pushee_name"></span> away from her because... <br/>
           <input id="res_text_l" type="text" size="70"/> <br/><br/>
           In a scale of 1 to 100, how sure are you?
           <input id="res_num_l" type="text" size="5"/> % <br/><br/>
@@ -185,9 +185,9 @@
           In a scale of 1 to 100, how likely is it that this is why <span class="wife_name"></span> and <span class="husband_name"></span> are hugging?
           <input id= "1res_num_l2" type="text" size="5"/> % <br/><br/><br/>
           What is another possible explanation for why <span class="wife_name"></span> and <span class="husband_name"></span> are hugging? <br/>
-          <input id= "2res_text_2" type="text" size="70"/> <br/><br/>
+          <input id= "2res_text_l2" type="text" size="70"/> <br/><br/>
           In a scale of 1 to 100, how likely is it that this is why <span class="wife_name"></span> and <span class="husband_name"></span> are hugging?
-          <input id= "2res_num_2" type="text" size="5"/> % <br/><br/>
+          <input id= "2res_num_l2" type="text" size="5"/> % <br/><br/>
           <button type="submit" class ="space" onclick="_s.button();">Submit</button>
         </div>
 
