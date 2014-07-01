@@ -241,7 +241,6 @@ function make_slides(f) {
         }
     );
 
-
     slides.thanks = slide(
         {
             name : "thanks",
@@ -252,6 +251,7 @@ function make_slides(f) {
                     system : exp.system,
                     condition : exp.condition
                 };
+                setTimeout(function() {turk.submit(exp.subj_data);}, 1000);
                 setTimeout(function() {turk.submit(exp.data);}, 1000);
             }
         });
@@ -265,11 +265,12 @@ function init() {
     $('body').css('visibility','visible');
     exp_sizing();
 
+    exp.subj_data=[]; 
     exp.data_trials=[];
     exp.sandbox=0;
     exp.slides = make_slides(exp);
 
-    exp.structure=["i0", //'show_some_images',
+    exp.structure=["i0", 'new_slide', //'show_some_images',
       'conf_trial', 'repeated_stims', 'subj_info', 'thanks'];
 
     set_condition();
