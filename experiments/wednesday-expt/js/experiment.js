@@ -152,9 +152,9 @@ function make_slides(f) {
 		}
 	);
 	
-	slides.training = slide(
+	slides.training1 = slide(
 		{
-			name : "training",
+			name : "training1",
 			start : function() {
 			},
 			present : [0],
@@ -163,9 +163,81 @@ function make_slides(f) {
 			},
 			button : function() {
 				t2 = Date.now();
-				if ((t2 - t1) > 1000) {
-					_stream.apply(this);
-				}
+				time = (t2 - t1)/6000;
+				exp.time.push(time);
+				_stream.apply(this);
+			}
+		}
+	);
+	
+	slides.training2 = slide(
+		{
+			name : "training2",
+			start : function() {
+			},
+			present : [0],
+			present_handle : function() {
+				t1 = Date.now();
+			},
+			button : function() {
+				t2 = Date.now();
+				time = (t2 - t1)/6000;
+				exp.time.push(time);
+				_stream.apply(this);
+			}
+		}
+	);
+	
+	slides.training3 = slide(
+		{
+			name : "training3",
+			start : function() {
+			},
+			present : [0],
+			present_handle : function() {
+				t1 = Date.now();
+			},
+			button : function() {
+				t2 = Date.now();
+				time = (t2 - t1)/6000;
+				exp.time.push(time);
+				_stream.apply(this);
+			}
+		}
+	);
+	
+	slides.training4 = slide(
+		{
+			name : "training4",
+			start : function() {
+			},
+			present : [0],
+			present_handle : function() {
+				t1 = Date.now();
+			},
+			button : function() {
+				t2 = Date.now();
+				time = (t2 - t1)/6000;
+				exp.time.push(time);
+				_stream.apply(this);
+			}
+		}
+	);
+	
+	slides.training5 = slide(
+		{
+			name : "training5",
+			start : function() {
+			},
+			present : [0],
+			present_handle : function() {
+				t1 = Date.now();
+			},
+			button : function() {
+				t2 = Date.now();
+				time = (t2 - t1)/6000;
+				exp.time.push(time);
+				_stream.apply(this);
 			}
 		}
 	);
@@ -175,31 +247,40 @@ function make_slides(f) {
 			name : "txt_box",
 			start : function() {
 			},
-			present : _.shuffle([{catchT: 0, item: 0},
+			present : [{catchT: 1, item: 0},
+			{catchT: 1, item: 1},
+			{catchT: 1, item: 2},
+			{catchT: 0, item: 0},
 			{catchT: 0, item: 1},
 			{catchT: 0, item: 2},
+			{catchT: 1, item: 3},
 			{catchT: 0, item: 3},
 			{catchT: 0, item: 4},
 			{catchT: 0, item: 5},
+			{catchT: 1, item: 4},
 			{catchT: 0, item: 6},
 			{catchT: 0, item: 7},
-			{catchT: 1, item: 0},
-			{catchT: 1, item: 1},
-			{catchT: 1, item: 2},
-			{catchT: 1, item: 3}
-			]),
+			{catchT: 1, item: 5}
+			],
 			
 			catch_trial_handle : function(stim) {
+				//for RT 
+				t1 = Date.now();
+			
 				exp.trial_type = "catch";
 				exp.data_trials.push(stim);
+				
+				//hide and show appropriate divs
 				$("#critical_trial").hide();
-				$("#catch_trial").show();				
+				$("#feedback").hide();
+				$("#catch_trial").show();	
+							
             	//catch trial question
             	exp.comp_questions = get_comprehension_questions();
             	//exp.condition = exp.comp_questions[stim]; 
             	$('.comp_question').each(function(){$(this).text(exp.comp_questions[stim["item"]]['comp_question']);});
             	
-            	//choose which answer to display in which button
+            	//randomly choose which answer to display in which button
             	exp.ans_display = ["wrong_ans", "right_ans"];
             	exp.ans_display = _(exp.ans_display).shuffle();
             	
@@ -209,12 +290,21 @@ function make_slides(f) {
 			},
 			
 			present_handle : function(stim) {
+				//NOTE: BRING UP PROMPT BOX IF NO INPUT
+				
+				//for RT 
+				t1 = Date.now();
+				
 				exp.trial_type = "critical";
 				exp.data_trials.push(stim);
+				
+				//hide and show appropriate divs
 				$("#catch_trial").hide();
+				$("#feedback").hide();
 				$("#critical_trial").show();
+				//$("#expl").focus();
 				exp.questions = get_questions();
-				//exp.condition = exp.questions[stim];
+				exp.current_cond = exp.questions[stim["item"]];
             	
             	//critical trial question
             	$('.why_question').each(function(){$(this).text(exp.questions[stim["item"]]['question']);});
@@ -234,60 +324,84 @@ function make_slides(f) {
                     
                 //console.log(res);
                 if(exp.trial_type==="critical" && !_.contains(_.values(res), "")){
-                    res["answered"]= 1 * ! _.isEmpty(_.filter(_.values(res), function(x){ return !isNumber(x);}));
+                	//get RT (in s)
+                	t2 = Date.now();
+                	time_on_slide = (t2 - t1)/6000;
+                	
+                    //res["answered"]= 1 * ! _.isEmpty(_.filter(_.values(res), function(x){ return !isNumber(x);}));
+                    
+                    //put response & trial data in exp.data_trials
                     _.last(exp.data_trials)["expl"] = res["expl"];
-                    _.last(exp.data_trials)["answered"]=res["answered"];
+                    //_.last(exp.data_trials)["answered"]=res["answered"];
+                    _.last(exp.data_trials)["trial_type"]=exp.trial_type;
+                    _.last(exp.data_trials)["time_on_slide"] = time_on_slide;
+                    _.last(exp.data_trials)["condition"] = exp.current_cond;
                 //clear text box, move to next trial
                 $('input[name="expl"]').val('');
 				_stream.apply(this);
 				}
     			if (exp.trial_type==="catch" && $('input[type=radio]:checked').size() > 0) {
+                	//get RT (in s)
+                	t2 = Date.now();
+                	time_on_slide = (t2 - t1)/6000;
+    			
+    				//figure out whether their answer was right or wrong
     				var ans_chosen = [];
     				if ($('input[name="radio_button"]:checked').val() === "ans1") {
     					ans_chosen = exp.ans_display[0];
     				} else { ans_chosen = exp.ans_display[1]; }
-					_.last(exp.data_trials)["ans_chosen"] = ans_chosen;
-					//This unselects the button for the next trial
-					$('input[name="radio_button"]').attr('checked',false);
-					_stream.apply(this);
+    				
+    				if (ans_chosen === "wrong_ans") {
+    					$('#feedback').show();
+    				} else {
+					
+						//put response & trial data in exp.data_trials
+						_.last(exp.data_trials)["ans_chosen"] = ans_chosen;
+						_.last(exp.data_trials)["trial_type"]=exp.trial_type;
+						_.last(exp.data_trials)["time_on_slide"] = time_on_slide;
+						//This unselects the button for the next trial
+						$('input[name="radio_button"]').attr('checked',false);
+						$('#feedback').hide();
+						_stream.apply(this);
+					}	
 				}
 			}
 		}
 	);
 	
-// 	slides.comp_questions = slide(
-// 		{
-// 			name : "comp_questions",
-// 			start : function() {
-// 			},
-// 			present : [0,1,2,3],
-// 			present_handle : function(stim) {
-//             	exp.data_trials.push(stim);
-//             	
-//             	//get scenario
-//             	exp.comp_questions = get_comprehension_questions();
-//             	_(stim).shuffle;
-//             	$('.comp_question').each(function(){$(this).text(exp.comp_questions[stim]['comp_question']);});
-//             	
-//             	//choose which answer to display in which button
-//             	var exp.ans_display = ["wrong_ans", "right_ans"];
-//             	exp.ans_display = _(exp.ans_display).shuffle();
-//             	
-// 				$('.ans1').each(function(){$(this).text(exp.comp_questions[stim][exp.ans_display[0]]);});
-// 				$('.ans2').each(function(){$(this).text(exp.comp_questions[stim][exp.ans_display[1]]);});
-// 			},
-//     		button : function() {
-//     			if ($('input[type=radio]:checked').size() > 0) {
-// 					_.last(exp.data_trials)["ans_chosen"] = [{
-// 					rad_button_resp : $('input[name="rad_button"]:checked').val()
-// 					}];
-// 					//This unselects the button for the next trial
-// 					$('input[name="rad_button"]').attr('checked',false);
-// 					_stream.apply(this);
-// 				}
-// 			} 
-// 		}		
-// 	);
+	slides.comp_questions = slide(
+		{
+			name : "comp_questions",
+			start : function() {
+			},
+			present : [0,1,2,3],
+			present_handle : function(stim) {
+            	exp.data_trials.push(stim);
+            	
+            	//get scenario
+            	exp.comp_questions = get_comprehension_questions();
+            	_(stim).shuffle;
+            	$('.comp_question').each(function(){$(this).text(exp.comp_questions[stim]['comp_question']);});
+            	
+            	//choose which answer to display in which button
+            	exp.ans_display = ["wrong_ans", "right_ans"];
+            	exp.ans_display = _(exp.ans_display).shuffle();
+            	
+				$('.ans1').each(function(){$(this).text(exp.comp_questions[stim][exp.ans_display[0]]);});
+				$('.ans2').each(function(){$(this).text(exp.comp_questions[stim][exp.ans_display[1]]);});
+			},
+    		button : function() {
+    			if ($('input[type=radio]:checked').size() > 0) {
+					_.last(exp.data_trials)["ans_chosen"] = [{
+					rad_button_resp : $('input[name="rad_button"]:checked').val()
+					}];
+					//This unselects the button for the next trial
+					$('input[name="rad_button"]').attr('checked',false);
+					_stream.apply(this);
+				}
+			} 
+		}		
+	);
     
     slides.conf_trial = slide(
         {
@@ -499,7 +613,8 @@ function make_slides(f) {
                     trials : exp.data_trials,
                     system : exp.system,
                     condition : exp.condition,
-                    subj_data : exp.subj_data
+                    subj_data : exp.subj_data,
+                    time_on_training: exp.time
                 };
                 setTimeout(function() {turk.submit(exp.data);}, 1000);
             }
@@ -518,9 +633,11 @@ function init() {
     exp.sandbox=0;
     exp.slides = make_slides(exp);
 
-    exp.structure=["i0", 'instructions_causal', 'training', 'txt_box', 'subj_info', 'thanks'];
-    set_condition();
-    exp.condition = [];
+    exp.structure=["i0", 'instructions_causal', 'training1', 'training2', 'training3', 
+    'training4', 'training5', 'txt_box', 'subj_info', 'thanks'];
+    //set_condition();
+    exp.condition = {dependent: "text_box", independent: "info/question"};
+    exp.time = []
 
     //allow to click through experiment
     exp.debug=1;
@@ -592,21 +709,21 @@ var get_scenarios = function() {
 }();
 
 var get_questions = function() {
-	var questions = [{disease: "D", protein: "X", fever: "NA",
+	var questions = [{disease: "D", protein: "X", fever: "NA", condition: "disease and protein",
 	question : 'You know that an alien has Disease D and expresses Protein X. Why do they express Protein X?'},
-	{disease: "B", protein: "Y", fever: "NA",
+	{disease: "B", protein: "Y", fever: "NA", condition: "disease and protein",
 	question : 'You know that an alien has Disease B and expresses Protein Y. Why do they express Protein Y?'},
-	{disease: "A", protein: "NA", fever: "Y",
+	{disease: "A", protein: "NA", fever: "Y", condition: "disease and fever",
 	question : 'You know that an alien has Disease A and has a fever. Why do they have a fever?'},
-	{disease: "B", protein: "NA", fever: "Y",
+	{disease: "B", protein: "NA", fever: "Y", condition: "disease and fever",
 	question : 'You know that an alien has Disease B and has a fever. Why do they have a fever?'},
-	{disease: "C", protein: "NA", fever: "Y",
+	{disease: "C", protein: "NA", fever: "Y", condition: "disease and fever",
 	question : 'You know that an alien has Disease C and has a fever. Why do they have a fever?'},
-	{disease: "D", protein: "NA", fever: "Y",
+	{disease: "D", protein: "NA", fever: "Y", condition: "disease and fever",
 	question : 'You know that an alien has Disease D and has a fever. Why do they have a fever?'},
-	{disease: "NA", protein: "X", fever: "Y",
+	{disease: "NA", protein: "X", fever: "Y", condition: "protein and fever",
 	question : 'You know that an alien expresses Protein X and has a fever. Why do they have a fever?'},
-	{disease: "NA", protein: "Y", fever: "Y",
+	{disease: "NA", protein: "Y", fever: "Y", condition: "protein and fever",
 	question : 'You know that an alien expresses Protein Y and has a fever. Why do they have a fever?'}];
 	
 // 	in case i want to use these in the future
@@ -638,7 +755,11 @@ var get_comprehension_questions = function() {
 	{comp_question: "True or False: If an alien has Disease C, they always express Protein X.",
 	wrong_ans: "True", right_ans: "False"},
 	{comp_question: "When an alien has Disease B, which protein do they always express?",
-	wrong_ans: "Protein Y", right_ans: "Protein X"}];
+	wrong_ans: "Protein Y", right_ans: "Protein X"},
+	{comp_question: "Which disease do more aliens have?", 
+	wrong_ans: "Disease D", right_ans: "Disease C"},
+	{comp_question: "True or False: If an alien has Disease A, then they must also have a Fever.", 
+	wrong_ans: "False", right_ans: "True"},];
 	
 	comp_questions = _(comp_questions).shuffle();
 	

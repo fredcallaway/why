@@ -1,0 +1,229 @@
+<html>
+  <head>
+	 <title>
+		Explanations
+	 </title>
+
+
+	 <!--JS-->
+
+	 <!-- general utilities -->
+	 <script src="../_shared/js/jquery-min.js "></script>
+	 <script src="../_shared/js/underscore-min.js"></script>
+	 <script src="../_shared/js/underscore.string.min.js"></script>
+	 <script src="../_shared/js/mmturkey.js"></script>
+	 <script src="../_shared/js/browser.detect.js"></script>
+	 <script src="../_shared/js/utils.js"></script>
+	 <script src="../_shared/js/jquery-ui.js"></script>
+	 <script src="../_shared/js/sprintf-.7.js"></script>
+	 <script src="../_shared/js/seedrandom.js"></script>
+	 <script src="../_shared/js/ecosystem.js"></script>
+
+	 <!-- experiment specific helper functions -->
+	 <script src="js/local-utils.js"></script>
+
+	 <!-- experiment utilities -->
+	 <script src="../_shared/js/exp.js"></script>
+	 <script src="../_shared/js/stream.js"></script>
+
+	 <!-- for graphics -->
+	 <script src="../_shared/js/raphael-min.js"></script>
+
+	 <!-- filter subjects -->
+	 <script src="../_shared/js/prune_ss.js"></script>
+
+	 <!-- experiment file -->
+	 <script src="js/experiment.js"></script>
+
+
+	 <!--CSS-->
+	 <link href="http://code.jquery.com/ui/1.9.1/themes/overcast/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	 <link href="../_shared/css/table/style.css" rel="stylesheet" type="text/css"/>
+	 <link href="../_shared/css/style.css" rel="stylesheet" type="text/css"/>
+	 <link href="../_shared/css/curtain.css" rel="stylesheet" type="text/css"/>
+	 <link href="../_shared/css/style_within.css" rel="stylesheet" type="text/css"/>
+	 <link href="../_shared/css/form.css" rel="stylesheet" type="text/css"/>
+	 <link href="css/local-style.css" rel="stylesheet" type="text/css"/>
+
+
+  </head>
+
+  <body onload="init();" style="visibility:hidden">
+	 <noscript>This task requires JavaScript.</noscript>
+
+	 <div id="exp" class="exp">
+		<div class="slide_wrapper">
+			<div class="slide" id="i0" >
+				<img src="../_shared/images/cocologo.png" id="cocologo"/>
+				 <!-- <img src="../_shared/images/stanford.png" style="margin-top: 10px"> -->
+				 <p style="text-align: center; font-weight: bold">Stanford COCO Lab</p>
+				 <p id="instruct-text" class="padding">In this experiment, you will provide explanations for facts about animals.</p>
+				 <button id="start-button" type="button">Start Experiment</button>
+				 <p style="font-size: 0.8em">Legal information: By answering the following questions, you are participating in a study being performed by cognitive scientists in the Stanford Department of Psychology. If you have questions about this research, please contact Fred Callaway at <a href="mailto://flc37@cornell.edu">flc37@cornell.edu</a> or Noah Goodman, at ngoodman@stanford.edu. You must be  at least 18 years old to participate. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences. Your anonymity is assured; the researchers who have requested your participation will not receive any personal information about you.</p>
+			</div>
+
+
+		<div id="repeated_stims" class="slide">
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<p id= "stim"><span id="txt"></span><input type="text" size=20 id="explanation"></input>.</p>
+			<br>
+			<br>
+			<div id="confidence">
+				<p class="small mtop"> How sure are you?</p>
+				<br>
+				<div id="slider1" class="sim_slide"></div>
+				<span class="slider-lbl1">Uncertain</span>
+				<span class="slider-lbl2">Certain</span>
+			</div>
+			<br>
+			<br>
+			<button type="button" class="space" onclick="_s.button();">Submit</button>
+			<br>
+			<br>
+			<br>
+			<p id= "help" style="display:none"> If you can't think of a good explanation, that's okay! Give it your best shot.</p>
+			<p id="help2" style="display:none"> Please indicate your confidence in your answer using the gray slider bar.</p>
+		</div>
+
+
+		<div class="slide js"  id="subj_info">
+			 <div>
+				<form id="subj_info_form">
+				  <div class="long_form">
+					 <fieldset>
+						<legend>Additional information</legend>
+						<p class="info">
+						  Answering these questions is optional, but will help us understand your answers.</p>
+
+						<p>Did you read the instructions and do you think you did
+						  the HIT correctly?</p>
+						<label>
+						  <input type="radio"  name="assess" value="No"/>
+						  No
+						</label>
+						<label>
+						  <input type="radio"  name="assess" value="Yes"/>
+						  Yes
+						</label>
+						<label>
+						  <input type="radio"  name="assess" value="Confused"/>
+						  I was confused
+						</label>
+
+						<p>Sex</p>
+
+						<label>
+						  <input type="radio" name="sex" value="Male"/>
+						  Male
+						</label>
+						<label>
+						  <input type="radio" name="sex" value="Female"/>
+						  Female
+						</label>
+
+						<p>Age</p>
+						<input type="text" name="age" value="0"/>
+
+						<p>Level Of Education</p>
+						<select name="education">
+						  <label>
+							 <option name="education" value="-1"/>
+
+						  </label>
+						  <label>
+							 <option name="education" value="0"/>
+							 Some High School
+						  </label>
+						  <label>
+							 <option name="education" value="1"/>
+							 Graduated High School
+						  </label>
+						  <label>
+							 <option name="education" value="2"/>
+							 Some College
+						  </label>
+						  <br/>
+						  <label>
+							 <option name="education" value="3"/>
+							 Graduated College
+						  </label>
+						  <label>
+							 <option name="education" value="4"/>
+							 Hold a higher degree
+						  </label>
+						</select>
+
+						<p>Native Language</p>
+						<label>
+						  <option  value="-1"/>
+
+						</label>
+						<select name="language">
+						  <label>
+							 <option  value="English"/>
+							 English
+						  </label>
+						  <label>
+							 <option  value="Spanish"/>
+							 Spanish
+						  </label>
+						  <label>
+							 <option  value="French"/>
+							 French
+						  </label>
+						  <br/>
+						  <label>
+							 <option  value="Mandarin"/>
+							 Mandarin
+						  </label>
+						  <label>
+							 <option  value="German"/>
+							 German
+						  </label>
+						  <label>
+							 <option  value="Other"/>
+							 Other
+						  </label>
+						</select>
+
+						<p>Did you enjoy the hit?</p>
+						<select name="enjoyment">
+						  <option value="-1"></option>
+						  <option value="0">Worse than the Average HIT</option>
+						  <option value="1" >An Average HIT</option>
+						  <option value="2">Better than average HIT</option>
+						</select>
+
+					 </fieldset>
+
+					 <button type="submit">Submit</button>
+				</div>
+				</form>
+			</div>
+		  </div>
+
+		  <div id="thanks" class="slide js" >
+			 <p  class="big">Thanks for your Time!<br/></p>
+			 <p id="bonus_feedback" class="big"><p>
+		  </div>
+
+		  <div id="progress">
+			 <h2 style="margin-bottom:10px">Progress</h2>
+			 <p id="phase" class="progress_text"></p>
+
+			 <div id="pb1"></div>
+		  </div>
+		</div>
+	 </div>
+
+  </body>
+</html>
