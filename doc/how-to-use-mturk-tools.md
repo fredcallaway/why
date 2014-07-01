@@ -21,15 +21,17 @@ To post the HIT, first setup the config file.
     "conditions":"cond"
     }
 
-Then run the following commands in the terminal:
+Then run the following commands in the terminal (from the top of the why directory):
 
-    scripts/_shared/submiterator.py [PATH_TO_CONFIG_FILE] [PATH_TO_OUTPUT_DIRECTORY]
-    scripts/_shared/posthit.sh [PATH_TO_MTURK_FILES_WITH_LABEL]
+    python scripts/_shared/submiterator.py [FOLDER_INSIDE_DATA] [MTURK_TAG*]
+    sh scripts/_shared/posthit.sh [FOLDER_INSIDE_DATA] [MTURK_TAG*]
+
+The [MTURK_TAG*] is the name of the experiment files in the config file *and* the name of the config file. You don't need this parameter if your experiment folder inside data has this name too.
 
 And then when you want to get the results:
 
-    scripts/_shared/getresults.sh [PATH_TO_MTURK_FILES_WITH_LABEL]
-    scripts/_shared/parsedata.py [PATH_TO_RESULTS_FILE] [PATH_TO_OUTPUT_FILE]
+    sh scripts/_shared/getresults.sh [FOLDER_INSIDE_DATA] [MTURK_TAG*]
+    python scripts/_shared/parsedata.py [FOLDER_INSIDE_DATA] [MTURK_TAG*]
 
 For example:
 

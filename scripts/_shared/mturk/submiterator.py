@@ -1,10 +1,21 @@
+#!/usr/bin/env python
+
 import os
 import sys
 import json
 import re
 
-config_file = sys.argv[1]
-output_dir = sys.argv[2]
+experiment_folder = sys.argv[1]
+if len(sys.argv) > 2:
+    mturk_tag = sys.argv[2]
+else:
+    mturk_tag = experiment_folder
+
+config_file = "data/" + experiment_folder + "/mturk/" + mturk_tag + ".config"
+output_dir = "data/" + experiment_folder + "/mturk/"
+
+# config_file = sys.argv[1]
+# output_dir = sys.argv[2]
 
 settings = open(config_file, 'r')
 json_string = settings.read()
