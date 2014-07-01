@@ -15,50 +15,6 @@ function make_slides(f) {
 
             present : make_stims(),
 
-            // present: _.shuffle(
-            //          [{phrase : "The scissors are sharp", type : "gradableAdj", sentenceType : "determiner"},
-            //           {phrase : "The knife is dull", type : "gradableAdj", sentenceType : "determiner"},
-            //           {phrase : "The tea is hot", type : "gradableAdj", sentenceType : "determiner"},
-            //           {phrase : "The coffee is cold", type : "gradableAdj", sentenceType : "determiner"},
-            //           {phrase : "The tea is sweet", type : "gradableAdj", sentenceType : "determiner"},
-            //           {phrase : "The coffee is bitter", type : "gradableAdj", sentenceType : "determiner"},
-            //           {phrase : "The motorcycle is fast", type : "gradeableAdj", sentenceType : "determiner"},
-            //           {phrase : "The car is slow", type : "gradeableAdj", sentenceType : "determiner"}, 
-
-
-            //           {phrase : "The tiger has stripes", type :"evolutionary", sentenceType : "determiner"},
-            //           {phrase : "The bird has wings", type: "evolutionary", sentenceType : "determiner"},
-            //           {phrase : "The clown fish has gills", type : "evolutionary", sentenceType : "determiner"},
-
-            //           {phrase : "The apple fell from the tree", type : "physics", sentenceType : "determiner"},
-            //           {phrase : "The ball rolled down the hill", type : "physics", sentenceType : "determiner"},
-
-            //           {phrase : "The clock ticks", type : "designer", sentenceType : "determiner"},
-            //           {phrase : "The car has an engine", type : "designer", sentenceType : "determiner"},
-            //           {phrase : "The bicycle does not have an engine", type : "designer", sentenceType : "determiner"},
-
-
-            //           {phrase : "Clocks tick", type : "designer", sentenceType : "generic"},
-            //           {phrase : "Cars have engines", type : "designer", sentenceType : "generic"},
-            //           {phrase : "Bicycles do not have engines", type : "designer", sentenceType : "generic"},
-
-            //           {phrase : "Scissors are sharp", type : "gradableAdj", sentenceType : "generic"},
-            //           {phrase : "Knives are dull", type : "gradableAdj", sentenceType : "generic"},
-            //           {phrase : "Tea is hot", type : "gradableAdj", sentenceType : "generic"},
-            //           {phrase : "Coffee is cold", type : "gradableAdj", sentenceType : "generic"},
-            //           {phrase : "Tea is sweet", type : "gradableAdj", sentenceType : "generic"},
-            //           {phrase : "Coffee is bitter", type : "gradableAdj", sentenceType : "generic"},
-            //           {phrase : "Motorcycles are fast", type : "gradeableAdj", sentenceType : "generic"},
-            //           {phrase : "Cars are slow", type : "gradeableAdj", sentenceType : "generic"}, 
-
-            //           {phrase : "Apples fall from the tree", type : "physics", sentenceType : "generic"},
-            //           {phrase : "Balls roll down the hill", type : "physics", sentenceType : "generic"},
-
-            //           {phrase : "Tigers have stripes", type :"evolutionary", sentenceType : "generic"},
-            //           {phrase : "Birds have wings", type: "evolutionary", sentenceType : "generic"},
-            //           {phrase : "Fish have gills", type : "evolutionary", sentenceType : "generic"}
-            //          ]),
-
             start : function() {
             },
 
@@ -372,6 +328,7 @@ function make_stims() {
     var types = _.shuffle(["gen", "gen", "gen", "gen", "gen", "gen", "gen", "gen", 
                            "det", "det", "det", "det", "det", "det", "det", "det"]);
     var stims = [];
+    if (items.length != types.length) alert("Error: # of items and gen/det types do not match");
     for (i = 0; i < items.length; i++) {
         stims.push({sentence_type : types[i], 
                     item : items[i],
@@ -392,12 +349,15 @@ function make_sentences() {
             "coffee_taste" : {det : "The coffee is bitter", gen : "Coffee is bitter", cat : "scalar"},
             "motorcycle" : {det : "The motorcycle is fast", gen : "Motorcycles are fast", cat : "scalar"},
             "car" : {det : "The car is slow", gen : "Cars are slow", cat : "scalar"},
+
             "tiger" : {det : "The tiger has stripes", gen : "Tigers have stripes", cat : "evolutionary"},
             "bird" : {det : "The bird has wings", gen : "Birds have wings", cat : "evolutionary"},
             "fish" : {det : "The clown fish has gills", gen : "Clown fishes have gills", cat : "evolutionary"},
+
             "clock" : {det : "The clock ticks", gen : "Clocks tick", cat : "designer"},
             "car_design" : {det : "The car has an engine", gen : "Cars have engines", cat : "designer"},
             "bicycle_design" : {det : "The bicycle does not have an engine", gen : "Bicycles do not have engines", cat : "designer"},
+
             "apple" : {det : "The apple fell from the tree", gen : "Apples fall from trees", cat : "physics"},
             "ball" : {det : "The ball rolled down the hill", gen : "Balls roll down hills", cat : "physics"}
             };
