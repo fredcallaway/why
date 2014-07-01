@@ -29,7 +29,7 @@ button.classic{
 }
 
 button.default {
-    background: url(images/button-gradient.png);
+    background: url(../_shared/images/button-gradient.png);
     background-repeat:repeat;
     background-size: 200px 500px;
     border: 1px solid #999;
@@ -165,4 +165,9 @@ table {
 
 .hidden {
     display : none;
+}
+
+#cocologo {
+    width: 200px;
+    margin: 10px;
 }
