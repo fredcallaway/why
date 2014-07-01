@@ -335,7 +335,12 @@ function make_slides(f) {
                     //_.last(exp.data_trials)["answered"]=res["answered"];
                     _.last(exp.data_trials)["trial_type"]=exp.trial_type;
                     _.last(exp.data_trials)["time_on_slide"] = time_on_slide;
-                    _.last(exp.data_trials)["condition"] = exp.current_cond;
+                    _.last(exp.data_trials)["disease"] = exp.current_cond["disease"];
+                    _.last(exp.data_trials)["protein"] = exp.current_cond["protein"];
+                    _.last(exp.data_trials)["fever"] = exp.current_cond["fever"];
+                    _.last(exp.data_trials)["question"] = exp.current_cond["question"];
+                    _.last(exp.data_trials)["protein"] = exp.current_cond["protein"];
+                    _.last(exp.data_trials)["info_types"] = exp.current_cond["condition"];
                 //clear text box, move to next trial
                 $('input[name="expl"]').val('');
 				_stream.apply(this);
@@ -359,6 +364,12 @@ function make_slides(f) {
 						_.last(exp.data_trials)["ans_chosen"] = ans_chosen;
 						_.last(exp.data_trials)["trial_type"]=exp.trial_type;
 						_.last(exp.data_trials)["time_on_slide"] = time_on_slide;
+						_.last(exp.data_trials)["disease"] = [];
+						_.last(exp.data_trials)["protein"] = [];
+						_.last(exp.data_trials)["fever"] = [];
+						_.last(exp.data_trials)["question"] = [];
+						_.last(exp.data_trials)["protein"] = [];
+						_.last(exp.data_trials)["info_types"] = [];
 						//This unselects the button for the next trial
 						$('input[name="radio_button"]').attr('checked',false);
 						$('#feedback').hide();
