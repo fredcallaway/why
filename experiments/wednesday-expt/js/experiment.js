@@ -272,6 +272,7 @@ function make_slides(f) {
 				
 				//hide and show appropriate divs
 				$("#critical_trial").hide();
+				$("#feedback").hide();
 				$("#catch_trial").show();	
 							
             	//catch trial question
@@ -299,6 +300,7 @@ function make_slides(f) {
 				
 				//hide and show appropriate divs
 				$("#catch_trial").hide();
+				$("#feedback").hide();
 				$("#critical_trial").show();
 				//$("#expl").focus();
 				exp.questions = get_questions();
@@ -342,20 +344,26 @@ function make_slides(f) {
                 	//get RT (in ms)
                 	exp.trial_end = Date.now();
                 	RT = (exp.trial_end - exp.trial_start)/6000;
-    				
+    			
     				//figure out whether their answer was right or wrong
     				var ans_chosen = [];
     				if ($('input[name="radio_button"]:checked').val() === "ans1") {
     					ans_chosen = exp.ans_display[0];
     				} else { ans_chosen = exp.ans_display[1]; }
     				
-    				//put response & trial data in exp.data_trials
-					_.last(exp.data_trials)["ans_chosen"] = ans_chosen;
-					_.last(exp.data_trials)["trial_type"]=exp.trial_type;
-					_.last(exp.data_trials)["RT"] = RT;
-					//This unselects the button for the next trial
-					$('input[name="radio_button"]').attr('checked',false);
-					_stream.apply(this);
+    				if (ans_chosen === "wrong_ans") {
+    					$('#feedback').show();
+    				} else {
+					
+						//put response & trial data in exp.data_trials
+						_.last(exp.data_trials)["ans_chosen"] = ans_chosen;
+						_.last(exp.data_trials)["trial_type"]=exp.trial_type;
+						_.last(exp.data_trials)["RT"] = RT;
+						//This unselects the button for the next trial
+						$('input[name="radio_button"]').attr('checked',false);
+						$('#feedback').hide();
+						_stream.apply(this);
+					}	
 				}
 			}
 		}
