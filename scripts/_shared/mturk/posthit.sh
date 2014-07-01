@@ -1,4 +1,13 @@
 #!/usr/bin/env sh
 HERE=`pwd`
 cd $MTURK_CMD_HOME/bin
-./loadHITs.sh -label $HERE/$1 -input $HERE/$1.input -question $HERE/$1.question -properties $HERE/$1.properties -maxhits 1
+
+EXPERIMENT_FOLDER=$1
+if [ ! -z $2 ]
+then
+	MTURK_TAG=$2
+else
+	MTURK_TAG=$EXPERIMENT_FOLDER
+fi
+label=$HERE/data/$EXPERIMENT_FOLDER/mturk/$MTURK_TAG
+./loadHITs.sh -label $label -input $label.input -question $label.question -properties $label.properties -maxhits 1

@@ -2,8 +2,17 @@ import sys
 import csv
 import json
 
-mturk_data_file = sys.argv[1]
-output_data_file_label = sys.argv[2]
+experiment_folder = sys.argv[1]
+if len(sys.argv) > 2:
+    mturk_tag = sys.argv[2]
+else:
+    mturk_tag = experiment_folder
+
+# config_file = "data/" + experiment_folder + "/mturk/" + mturk_tag + ".config"
+# output_dir = "data/" + experiment_folder + "/mturk/"
+
+mturk_data_file = "data/" + experiment_folder + "/mturk/" + mturk_tag + ".results" #sys.argv[1]
+output_data_file_label = "data/" + experiment_folder + "/mturk/" + mturk_tag #sys.argv[2]
 
 def write_2_by_2(data, filename, sep="\t"):
   w = open(filename, "w")
