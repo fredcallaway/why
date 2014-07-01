@@ -26,7 +26,7 @@ function make_slides(f) {
                 if (text_res == "" || num_res == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -57,9 +57,9 @@ function make_slides(f) {
                if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number for the last question!")
+                    alert("You need to put in a number between 1-100 for the last question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -87,7 +87,7 @@ function make_slides(f) {
                 if (text_res == "" || num_res == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -118,9 +118,9 @@ function make_slides(f) {
                if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number for the last question!")
+                    alert("You need to put in a number between 1-100 for the last question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -148,7 +148,7 @@ function make_slides(f) {
                 if (text_res == "" || num_res == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -179,9 +179,9 @@ function make_slides(f) {
                if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number for the last question!")
+                    alert("You need to put in a number between 1-100 for the last question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -209,7 +209,7 @@ function make_slides(f) {
                 if (text_res == "" || num_res == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -240,9 +240,9 @@ function make_slides(f) {
                if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number for the last question!")
+                    alert("You need to put in a number between 1-100 for the last question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -270,7 +270,7 @@ function make_slides(f) {
                 if (text_res == "" || num_res == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -301,9 +301,9 @@ function make_slides(f) {
                if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number for the last question!")
+                    alert("You need to put in a number between 1-100 for the last question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -331,7 +331,7 @@ function make_slides(f) {
                 if (text_res == "" || num_res == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -362,9 +362,9 @@ function make_slides(f) {
                if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number for the last question!")
+                    alert("You need to put in a number between 1-100 for the last question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -392,7 +392,7 @@ function make_slides(f) {
                 if (text_res == "" || num_res == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -423,9 +423,9 @@ function make_slides(f) {
                if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number for the last question!")
+                    alert("You need to put in a number between 1-100 for the last question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -453,7 +453,7 @@ function make_slides(f) {
                 if (text_res == "" || num_res == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -484,9 +484,9 @@ function make_slides(f) {
                if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number for the last question!")
+                    alert("You need to put in a number between 1-100 for the last question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -514,7 +514,7 @@ function make_slides(f) {
                 if (text_res == "" || num_res == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -545,9 +545,9 @@ function make_slides(f) {
                if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number for the last question!")
+                    alert("You need to put in a number between 1-100 for the last question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -575,7 +575,7 @@ function make_slides(f) {
                 if (text_res == "" || num_res == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -606,9 +606,9 @@ function make_slides(f) {
                if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number for the last question!")
+                    alert("You need to put in a number between 1-100 for the last question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -636,7 +636,7 @@ function make_slides(f) {
                 if (text_res == "" || num_res == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -667,9 +667,9 @@ function make_slides(f) {
                if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number for the last question!")
+                    alert("You need to put in a number between 1-100 for the last question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -697,7 +697,7 @@ function make_slides(f) {
                 if (text_res == "" || num_res == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -728,9 +728,9 @@ function make_slides(f) {
                if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number for the last question!")
+                    alert("You need to put in a number between 1-100 for the last question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -908,3 +908,4 @@ function set_condition(){
     var crier = get_crier_name();
     $('.crier_name').each(function(){$(this).text(crier);});
 }
+
