@@ -12,7 +12,7 @@
 	 <script src="../_shared/js/underscore-min.js"></script>
 	 <script src="../_shared/js/underscore.string.min.js"></script>
 	 <script src="../_shared/js/mmturkey.js"></script>
-	 <script src="../_shared/js/browser.detect.js"></script>
+	 <script src="../_shared/js/browserCheck.js"></script>
 	 <script src="../_shared/js/utils.js"></script>
 	 <script src="../_shared/js/jquery-ui.js"></script>
 	 <script src="../_shared/js/sprintf-.7.js"></script>
@@ -54,12 +54,11 @@
 	 <div id="exp" class="exp">
 		<div class="slide_wrapper">
 			<div class="slide" id="i0" >
-				<img src="../_shared/images/cocologo.png" id="cocologo"/>
-				 <!-- <img src="../_shared/images/stanford.png" style="margin-top: 10px"> -->
+				 <img src="../_shared/css/images/stanford.png" style="margin-top: 10px">
 				 <p style="text-align: center; font-weight: bold">Stanford COCO Lab</p>
-				 <p id="instruct-text" class="padding">In this experiment, you will provide explanations for facts about animals.</p>
+				 <p id="instruct-text" class="padding">In this experiment, you will provide explanations for statements about animals, plants, and vehicles.</p>
 				 <button id="start-button" type="button">Start Experiment</button>
-				 <p style="font-size: 0.8em">Legal information: By answering the following questions, you are participating in a study being performed by cognitive scientists in the Stanford Department of Psychology. If you have questions about this research, please contact Fred Callaway at <a href="mailto://flc37@cornell.edu">flc37@cornell.edu</a> or Noah Goodman, at ngoodman@stanford.edu. You must be  at least 18 years old to participate. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences. Your anonymity is assured; the researchers who have requested your participation will not receive any personal information about you.</p>
+				 <p style="font-size: 0.8em">Legal information: By answering the following questions, you are participating in a study being performed by cognitive scientists in the Stanford Department of Psychology. If you have questions about this research, please contact Fred Callaway at <a href="mailto:flc37@cornell.edu">flc37@cornell.edu</a> or Noah Goodman, at ngoodman@stanford.edu. You must be  at least 18 years old to participate. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences. Your anonymity is assured; the researchers who have requested your participation will not receive any personal information about you.</p>
 			</div>
 
 
@@ -86,14 +85,30 @@
 			</div>
 			<br>
 			<br>
-			<button type="button" class="space" onclick="_s.button();">Submit</button>
+			<button type="button" class="space" onclick="_s.button();">Continue</button>
 			<br>
 			<br>
 			<br>
 			<p id= "help" style="display:none"> If you can't think of a good explanation, that's okay! Give it your best shot.</p>
 			<p id="help2" style="display:none"> Please indicate your confidence in your answer using the gray slider bar.</p>
 		</div>
+		
+		<div id="instructions" class="slide">
+			<br>
+			<br>
+			<br>
+			<br>
+			<p>In this experiment you will read several facts about animals, plants, and vehicles that you will give explanations for. Each sentence you read will be a statement followed by &#8220;because they are_____.	&#8221;You will fill in the blank with either an <strong>adjective</strong> or a <strong>plural noun</strong>.
+			For example: in the sentence <em>&#8220;Astronatus are awesome because they are_____&#8221;</em> you could fill in <em>brave</em> or <em>scientists</em>.</p>
+			<br>
+			<p>After you fill in the blank, use the slider below to indicate how sure you are of your answer. If you can't think of a good explanation, just do your best and move on. You will also see a few simple yes-no questions to make sure you are paying attention. Thanks for participating!</p>
+			<br>
+			<br>
+			<br>
+			<br>
+		<button type="button" class="space" onclick="_s.button();">Continue</button>
 
+		</div>
 
 		<div class="slide js"  id="subj_info">
 			 <div>
