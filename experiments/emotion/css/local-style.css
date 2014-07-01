@@ -2,3 +2,24 @@
 	margin: 30px;
 	padding: 5px;
 }
+
+div.long_form p.info{
+    margin:0 0 55px 0;
+    padding:0;
+    font-size: 15px;
+    color:black;
+}
+
+div.long_form p{
+    color:#036;
+    font-size: 15px;
+    margin: 20px 0 0 0;
+}
+
+div.long_form label{
+ font-size:15px;
+}
+
+#subj_info_form p{
+    max-width:100%;
+}
