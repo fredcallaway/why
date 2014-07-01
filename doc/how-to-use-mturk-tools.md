@@ -8,7 +8,7 @@ To post the HIT, first setup the config file.
     "title":"a title to show to turkers",
     "description":"a description to show to turkers",
     "nameofexperimentfiles":"test",
-    "experimentURL":"http://www.stanford.edu/~you/path/to/experiment.html",
+    "experimentURL":"https://www.stanford.edu/~you/path/to/experiment.html",
     "keywords":"language research stanford fun cognitive science university explanations",
     "USonly?":"yes",
     "minPercentPreviousHITsApproved":"95",
