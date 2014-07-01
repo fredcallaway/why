@@ -163,9 +163,9 @@ function make_slides(f) {
 			},
 			button : function() {
 				t2 = Date.now();
-				if ((t2 - t1) > 1000) {
-					_stream.apply(this);
-				}
+				time = (t2 - t1)/6000;
+				exp.time.push(time);
+				_stream.apply(this);
 			}
 		}
 	);
@@ -181,9 +181,9 @@ function make_slides(f) {
 			},
 			button : function() {
 				t2 = Date.now();
-				if ((t2 - t1) > 1000) {
-					_stream.apply(this);
-				}
+				time = (t2 - t1)/6000;
+				exp.time.push(time);
+				_stream.apply(this);
 			}
 		}
 	);
@@ -199,9 +199,9 @@ function make_slides(f) {
 			},
 			button : function() {
 				t2 = Date.now();
-				if ((t2 - t1) > 1000) {
-					_stream.apply(this);
-				}
+				time = (t2 - t1)/6000;
+				exp.time.push(time);
+				_stream.apply(this);
 			}
 		}
 	);
@@ -217,9 +217,9 @@ function make_slides(f) {
 			},
 			button : function() {
 				t2 = Date.now();
-				if ((t2 - t1) > 1000) {
-					_stream.apply(this);
-				}
+				time = (t2 - t1)/6000;
+				exp.time.push(time);
+				_stream.apply(this);
 			}
 		}
 	);
@@ -235,9 +235,9 @@ function make_slides(f) {
 			},
 			button : function() {
 				t2 = Date.now();
-				if ((t2 - t1) > 1000) {
-					_stream.apply(this);
-				}
+				time = (t2 - t1)/6000;
+				exp.time.push(time);
+				_stream.apply(this);
 			}
 		}
 	);
@@ -265,13 +265,14 @@ function make_slides(f) {
 			
 			catch_trial_handle : function(stim) {
 				//for RT 
-				exp.trial_start = Date.now()
+				t1 = Date.now();
 			
 				exp.trial_type = "catch";
 				exp.data_trials.push(stim);
 				
 				//hide and show appropriate divs
 				$("#critical_trial").hide();
+				$("#feedback").hide();
 				$("#catch_trial").show();	
 							
             	//catch trial question
@@ -292,13 +293,14 @@ function make_slides(f) {
 				//NOTE: BRING UP PROMPT BOX IF NO INPUT
 				
 				//for RT 
-				exp.trial_start = Date.now()
+				t1 = Date.now();
 				
 				exp.trial_type = "critical";
 				exp.data_trials.push(stim);
 				
 				//hide and show appropriate divs
 				$("#catch_trial").hide();
+				$("#feedback").hide();
 				$("#critical_trial").show();
 				//$("#expl").focus();
 				exp.questions = get_questions();
@@ -322,9 +324,9 @@ function make_slides(f) {
                     
                 //console.log(res);
                 if(exp.trial_type==="critical" && !_.contains(_.values(res), "")){
-                	//get RT (in ms)
-                	exp.trial_end = Date.now();
-                	RT = (exp.trial_end - exp.trial_start)/6000;
+                	//get RT (in s)
+                	t2 = Date.now();
+                	time_on_slide = (t2 - t1)/6000;
                 	
                     //res["answered"]= 1 * ! _.isEmpty(_.filter(_.values(res), function(x){ return !isNumber(x);}));
                     
@@ -332,30 +334,47 @@ function make_slides(f) {
                     _.last(exp.data_trials)["expl"] = res["expl"];
                     //_.last(exp.data_trials)["answered"]=res["answered"];
                     _.last(exp.data_trials)["trial_type"]=exp.trial_type;
-                    _.last(exp.data_trials)["RT"] = RT;
-                    _.last(exp.data_trials)["condition"] = exp.current_cond;
+                    _.last(exp.data_trials)["time_on_slide"] = time_on_slide;
+                    _.last(exp.data_trials)["disease"] = exp.current_cond["disease"];
+                    _.last(exp.data_trials)["protein"] = exp.current_cond["protein"];
+                    _.last(exp.data_trials)["fever"] = exp.current_cond["fever"];
+                    _.last(exp.data_trials)["question"] = exp.current_cond["question"];
+                    _.last(exp.data_trials)["protein"] = exp.current_cond["protein"];
+                    _.last(exp.data_trials)["info_types"] = exp.current_cond["condition"];
                 //clear text box, move to next trial
                 $('input[name="expl"]').val('');
 				_stream.apply(this);
 				}
     			if (exp.trial_type==="catch" && $('input[type=radio]:checked').size() > 0) {
-                	//get RT (in ms)
-                	exp.trial_end = Date.now();
-                	RT = (exp.trial_end - exp.trial_start)/6000;
-    				
+                	//get RT (in s)
+                	t2 = Date.now();
+                	time_on_slide = (t2 - t1)/6000;
+    			
     				//figure out whether their answer was right or wrong
     				var ans_chosen = [];
     				if ($('input[name="radio_button"]:checked').val() === "ans1") {
     					ans_chosen = exp.ans_display[0];
     				} else { ans_chosen = exp.ans_display[1]; }
     				
-    				//put response & trial data in exp.data_trials
-					_.last(exp.data_trials)["ans_chosen"] = ans_chosen;
-					_.last(exp.data_trials)["trial_type"]=exp.trial_type;
-					_.last(exp.data_trials)["RT"] = RT;
-					//This unselects the button for the next trial
-					$('input[name="radio_button"]').attr('checked',false);
-					_stream.apply(this);
+    				if (ans_chosen === "wrong_ans") {
+    					$('#feedback').show();
+    				} else {
+					
+						//put response & trial data in exp.data_trials
+						_.last(exp.data_trials)["ans_chosen"] = ans_chosen;
+						_.last(exp.data_trials)["trial_type"]=exp.trial_type;
+						_.last(exp.data_trials)["time_on_slide"] = time_on_slide;
+						_.last(exp.data_trials)["disease"] = [];
+						_.last(exp.data_trials)["protein"] = [];
+						_.last(exp.data_trials)["fever"] = [];
+						_.last(exp.data_trials)["question"] = [];
+						_.last(exp.data_trials)["protein"] = [];
+						_.last(exp.data_trials)["info_types"] = [];
+						//This unselects the button for the next trial
+						$('input[name="radio_button"]').attr('checked',false);
+						$('#feedback').hide();
+						_stream.apply(this);
+					}	
 				}
 			}
 		}
@@ -605,7 +624,8 @@ function make_slides(f) {
                     trials : exp.data_trials,
                     system : exp.system,
                     condition : exp.condition,
-                    subj_data : exp.subj_data
+                    subj_data : exp.subj_data,
+                    time_on_training: exp.time
                 };
                 setTimeout(function() {turk.submit(exp.data);}, 1000);
             }
@@ -628,6 +648,7 @@ function init() {
     'training4', 'training5', 'txt_box', 'subj_info', 'thanks'];
     //set_condition();
     exp.condition = {dependent: "text_box", independent: "info/question"};
+    exp.time = []
 
     //allow to click through experiment
     exp.debug=1;
