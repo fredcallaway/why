@@ -53,6 +53,11 @@ div.long_form {
 	font-size: 15px;
 }
 
+fieldset {
+	border: none;
+	border-top: solid 1px #ccc;
+}
+
 div.long_form p {
     color:#036;
     margin: 20px 0 0 0;
