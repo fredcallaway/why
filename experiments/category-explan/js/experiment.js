@@ -56,7 +56,7 @@ function make_slides(f) {
 				$('#explanation').focus();
 				$('#txt').text(stim.fact);
 				this.init_slider();
-				_s.data = {
+				_s.trial = {
 					'trait' : stim.trait,
 					'cat' : stim.cat,
 					'fact' : stim.fact,
@@ -69,7 +69,7 @@ function make_slides(f) {
 				$('#explanation').focus();
 				$('#txt').text(stim.check);
 				this.init_slider();
-				_s.data = {
+				_s.trial = {
 					'check' : stim.check,
 				};
 				_s.startT = Date.now();
@@ -93,16 +93,16 @@ function make_slides(f) {
 				$(".ui-slider-handle").css('display', 'none');
 			},
 			button : function() {
-				_s.data.explanation = $('#explanation').val();
-				_s.data.confidence = _s.sliderPost;
-				if (_s.data.explanation === "") $('#help').show(); //no explanation
+				_s.trial.explanation = $('#explanation').val();
+				_s.trial.confidence = _s.sliderPost;
+				if (_s.trial.explanation === "") $('#help').show(); //no explanation
 				else {
 					$('#help').hide();
-					if (_s.data.confidence === null) $('#help2').show(); //no confidence
+					if (_s.trial.confidence === null) $('#help2').show(); //no confidence
 					else { //explanation and confidence given
-						_s.data.time_taken = (Date.now() - _s.startT)/1000; //in seconds
-						if (_s.isCatch) exp.check_trials.push(_s.data);
-						else exp.trials.push(_s.data);
+						_s.trial.time_taken = (Date.now() - _s.startT)/1000; //in seconds
+						if (_s.isCatch) exp.check_trials.push(_s.trial);
+						else exp.trials.push(_s.trial);
 						$('#explanation').val("");
 						$('#help2').hide();
 						_stream.apply(this);
