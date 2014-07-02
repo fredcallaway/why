@@ -10,6 +10,9 @@ function make_slides(f) {
 	slides.instructions = slide(
 	{
 		name: "instructions",
+		start: function() {
+			exp.startT = Date.now();
+		},
 		button : function() {
 			exp.go();
 		}
@@ -53,15 +56,16 @@ function make_slides(f) {
 				$('#txt').text(stim.fact);
 				this.init_slider();
 				exp.data_trials.push(stim);
-				exp.start_time = date.now();
+				_s.startT = Date.now();
 			},
 			catch_trial_handle : function(stim) {
 				exp.trial_type = 'catch';
+				_s.isCatch = true;
 				$('#explanation').focus();
 				$('#txt').text(stim.check);
 				this.init_slider();
 				exp.check_trials.push(stim);
-				exp.start_time = date.now();
+				_s.startT = Date.now();
 			},
 			init_slider : function() {
 				$("#slider1").css('width' , 3*(exp.width/4)).centerhin();
@@ -89,8 +93,8 @@ function make_slides(f) {
 					$('#help').hide();
 					if (res.confidence === null) $('#help2').show(); //no confidence
 					else { //explanation and confidence given
-						res.time_taken = date.now() - exp.start_time;
-						if (stim.catchT) exp.check_trials.push(res);
+						res.time_taken = (Date.now() - _s.startT)/1000; //in seconds
+						if (_s.isCatch) exp.check_trials.push(res);
 						else exp.data_trials.push(res);
 						$('#explanation').val("");
 						$('#help2').hide();
@@ -139,7 +143,8 @@ function make_slides(f) {
 					checks : exp.check_trials,
 					system : exp.system, //FIX: exp.system is not defined
 					condition : exp.condition,
-					subject_information : exp.subj_data
+					subject_information : exp.subj_data,
+					time : (Date.now() - exp.startT)/1000
 				};
 				setTimeout(function() {turk.submit(exp.data);}, 1000);
 			}
