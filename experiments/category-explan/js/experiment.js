@@ -53,7 +53,7 @@ function make_slides(f) {
 				$('#txt').text(stim.fact);
 				this.init_slider();
 				exp.data_trials.push(stim);
-				exp.start_time = date.now();
+				exp.start_time = Date.now();
 			},
 			catch_trial_handle : function(stim) {
 				exp.trial_type = 'catch';
@@ -61,7 +61,7 @@ function make_slides(f) {
 				$('#txt').text(stim.check);
 				this.init_slider();
 				exp.check_trials.push(stim);
-				exp.start_time = date.now();
+				exp.start_time = Date.now();
 			},
 			init_slider : function() {
 				$("#slider1").css('width' , 3*(exp.width/4)).centerhin();
@@ -89,7 +89,7 @@ function make_slides(f) {
 					$('#help').hide();
 					if (res.confidence === null) $('#help2').show(); //no confidence
 					else { //explanation and confidence given
-						res.time_taken = date.now() - exp.start_time;
+						res.time_taken = (Date.now() - exp.start_time)/1000; //in seconds
 						if (stim.catchT) exp.check_trials.push(res);
 						else exp.data_trials.push(res);
 						$('#explanation').val("");
