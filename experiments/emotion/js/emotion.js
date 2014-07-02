@@ -17,12 +17,13 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                 var text_res = $('#res_text').val();
-                var num_res = $('#res_num').val();
-                if (text_res == "" || num_res == "") {
-                    alert("You need to fill in the blanks!")
-                } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number between 1-100 for the second question!")
-                } else {
+                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+                }  else {
+                    res = { prompt: "1",
+                        text: text_res,           
+                        sure: $('input[name="sure"]:checked').val()
+                    };
                     exp.data_trials.push(res);
                     _stream.apply(this);
                     return false;
@@ -41,17 +42,16 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                var text_res1 = $('#1res_text').val();
-               var num_res1 = $('#1res_num').val();
                var text_res2 = $('#2res_text').val();
-               var num_res2 = $('#2res_num').val();
-
-               if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
-                    alert("You need to fill in the blanks!")
-                } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number between 1-100 for the second question!")
-                } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number between 1-100 for the last question!")
-                } else {
+               if (text_res1 == "" || $('input[name="sure"]:checked').length == 0 || text_res2 == "" || $('input[name="sure2"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+               } else {
+                    res = { prompt: "1",
+                        text1: text_res1,
+                        sure1: $('input[name="sure"]:checked').val(),
+                        text2: text_res2,
+                        sure2: $('input[name="sure2"]:checked').val()
+                    };
                     exp.data_trials.push(res);
                     _stream.apply(this);
                     return false;
@@ -70,12 +70,13 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                 var text_res = $('#res_text_m').val();
-                var num_res = $('#res_num_m').val();
-                if (text_res == "" || num_res == "") {
-                    alert("You need to fill in the blanks!")
-                } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number between 1-100 for the second question!")
-                } else {
+               if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+                }  else {
+                    res = { prompt: "1",
+                        text: text_res,           
+                        sure: $('input[name="sure"]:checked').val()
+                    };
                     exp.data_trials.push(res);
                     _stream.apply(this);
                     return false;
@@ -94,17 +95,17 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                var text_res1 = $('#1res_text_m').val();
-               var num_res1 = $('#1res_num_m').val();
                var text_res2 = $('#2res_text_m').val();
-               var num_res2 = $('#2res_num_m').val();
 
-               if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
-                    alert("You need to fill in the blanks!")
-                } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number between 1-100 for the second question!")
-                } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number between 1-100 for the last question!")
-                } else {
+               if (text_res1 == "" || $('input[name="sure"]:checked').length == 0 || text_res2 == "" || $('input[name="sure2"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+               } else {
+                    res = { prompt: "1",
+                        text1: text_res1,
+                        sure1: $('input[name="sure"]:checked').val(),
+                        text2: text_res2,
+                        sure2: $('input[name="sure2"]:checked').val()
+                    };
                     exp.data_trials.push(res);
                     _stream.apply(this);
                     return false;
@@ -123,12 +124,13 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                 var text_res = $('#res_text_l').val();
-                var num_res = $('#res_num_l').val();
-                if (text_res == "" || num_res == "") {
-                    alert("You need to fill in the blanks!")
-                } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number between 1-100 for the second question!")
-                } else {
+                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+                }  else {
+                    res = { prompt: "1",
+                        text: text_res,           
+                        sure: $('input[name="sure"]:checked').val()
+                    };
                     exp.data_trials.push(res);
                     _stream.apply(this);
                     return false;
@@ -136,7 +138,6 @@ function make_slides(f) {
             }
         }
     );
-
     slides.scenario_long_B = slide(
         {
             name : "scenario_long_B",
@@ -147,17 +148,17 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                var text_res1 = $('#1res_text_l').val();
-               var num_res1 = $('#1res_num_l').val();
                var text_res2 = $('#2res_text_l').val();
-               var num_res2 = $('#2res_num_l').val();
 
-               if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
-                    alert("You need to fill in the blanks!")
-                } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number between 1-100 for the second question!")
-                } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number between 1-100 for the last question!")
-                } else {
+               if (text_res1 == "" || $('input[name="sure"]:checked').length == 0 || text_res2 == "" || $('input[name="sure2"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+               } else {
+                    res = { prompt: "1",
+                        text1: text_res1,
+                        sure1: $('input[name="sure"]:checked').val(),
+                        text2: text_res2,
+                        sure2: $('input[name="sure2"]:checked').val()
+                    };
                     exp.data_trials.push(res);
                     _stream.apply(this);
                     return false;
@@ -176,12 +177,13 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                 var text_res = $('#res_text_2').val();
-                var num_res = $('#res_num_2').val();
-                if (text_res == "" || num_res == "") {
-                    alert("You need to fill in the blanks!")
-                } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number between 1-100 for the second question!")
-                } else {
+                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+                }  else {
+                    res = { prompt: "2",
+                        text: text_res,           
+                        sure: $('input[name="sure"]:checked').val()
+                    };
                     exp.data_trials.push(res);
                     _stream.apply(this);
                     return false;
@@ -200,17 +202,17 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                var text_res1 = $('#1res_text_2').val();
-               var num_res1 = $('#1res_num_2').val();
                var text_res2 = $('#2res_text_2').val();
-               var num_res2 = $('#2res_num_2').val();
 
-               if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
-                    alert("You need to fill in the blanks!")
-                } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number between 1-100 for the second question!")
-                } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number between 1-100 for the last question!")
-                } else {
+               if (text_res1 == "" || $('input[name="sure"]:checked').length == 0 || text_res2 == "" || $('input[name="sure2"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+               } else {
+                    res = { prompt: "2",
+                        text1: text_res1,
+                        sure1: $('input[name="sure"]:checked').val(),
+                        text2: text_res2,
+                        sure2: $('input[name="sure2"]:checked').val()
+                    };
                     exp.data_trials.push(res);
                     _stream.apply(this);
                     return false;
@@ -229,12 +231,13 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                 var text_res = $('#res_text_m2').val();
-                var num_res = $('#res_num_m2').val();
-                if (text_res == "" || num_res == "") {
-                    alert("You need to fill in the blanks!")
-                } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number between 1-100 for the second question!")
-                } else {
+                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+                }  else {
+                    res = { prompt: "2",
+                        text: text_res,           
+                        sure: $('input[name="sure"]:checked').val()
+                    };
                     exp.data_trials.push(res);
                     _stream.apply(this);
                     return false;
@@ -253,17 +256,17 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                var text_res1 = $('#1res_text_m2').val();
-               var num_res1 = $('#1res_num_m2').val();
                var text_res2 = $('#2res_text_m2').val();
-               var num_res2 = $('#2res_num_m2').val();
 
-               if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
-                    alert("You need to fill in the blanks!")
-                } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number between 1-100 for the second question!")
-                } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number between 1-100 for the last question!")
-                } else {
+               if (text_res1 == "" || $('input[name="sure"]:checked').length == 0 || text_res2 == "" || $('input[name="sure2"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+               } else {
+                    res = { prompt: "2",
+                        text1: text_res1,
+                        sure1: $('input[name="sure"]:checked').val(),
+                        text2: text_res2,
+                        sure2: $('input[name="sure2"]:checked').val()
+                    };
                     exp.data_trials.push(res);
                     _stream.apply(this);
                     return false;
@@ -282,12 +285,13 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                 var text_res = $('#res_text_l2').val();
-                var num_res = $('#res_num_l2').val();
-                if (text_res == "" || num_res == "") {
-                    alert("You need to fill in the blanks!")
-                } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number between 1-100 for the second question!")
-                } else {
+                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+                }  else {
+                    res = { prompt: "2",
+                        text: text_res,           
+                        sure: $('input[name="sure"]:checked').val()
+                    };
                     exp.data_trials.push(res);
                     _stream.apply(this);
                     return false;
@@ -306,17 +310,17 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                var text_res1 = $('#1res_text_l2').val();
-               var num_res1 = $('#1res_num_l2').val();
                var text_res2 = $('#2res_text_l2').val();
-               var num_res2 = $('#2res_num_l2').val();
 
-               if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
-                    alert("You need to fill in the blanks!")
-                } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number between 1-100 for the second question!")
-                } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number between 1-100 for the last question!")
-                } else {
+               if (text_res1 == "" || $('input[name="sure"]:checked').length == 0 || text_res2 == "" || $('input[name="sure2"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+               } else {
+                    res = { prompt: "2",
+                        text1: text_res1,
+                        sure1: $('input[name="sure"]:checked').val(),
+                        text2: text_res2,
+                        sure2: $('input[name="sure2"]:checked').val()
+                    };
                     exp.data_trials.push(res);
                     _stream.apply(this);
                     return false;
@@ -335,12 +339,13 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                 var text_res = $('#res_text_3').val();
-                var num_res = $('#res_num_3').val();
-                if (text_res == "" || num_res == "") {
-                    alert("You need to fill in the blanks!")
-                } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number between 1-100 for the second question!")
-                } else {
+                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+                }  else {
+                    res = { prompt: "3",
+                        text: text_res,           
+                        sure: $('input[name="sure"]:checked').val()
+                    };
                     exp.data_trials.push(res);
                     _stream.apply(this);
                     return false;
@@ -359,17 +364,17 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                var text_res1 = $('#1res_text_3').val();
-               var num_res1 = $('#1res_num_3').val();
                var text_res2 = $('#2res_text_3').val();
-               var num_res2 = $('#2res_num_3').val();
 
-               if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
-                    alert("You need to fill in the blanks!")
-                } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number between 1-100 for the second question!")
-                } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number between 1-100 for the last question!")
-                } else {
+               if (text_res1 == "" || $('input[name="sure"]:checked').length == 0 || text_res2 == "" || $('input[name="sure2"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+               } else {
+                    res = { prompt: "3",
+                        text1: text_res1,
+                        sure1: $('input[name="sure"]:checked').val(),
+                        text2: text_res2,
+                        sure2: $('input[name="sure2"]:checked').val()
+                    };
                     exp.data_trials.push(res);
                     _stream.apply(this);
                     return false;
@@ -388,12 +393,13 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                 var text_res = $('#res_text_3').val();
-                var num_res = $('#res_num_3').val();
-                if (text_res == "" || num_res == "") {
-                    alert("You need to fill in the blanks!")
-                } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number between 1-100 for the second question!")
-                } else {
+                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+                }  else {
+                    res = { prompt: "3",
+                        text: text_res,           
+                        sure: $('input[name="sure"]:checked').val()
+                    };
                     exp.data_trials.push(res);
                     _stream.apply(this);
                     return false;
@@ -412,17 +418,17 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                var text_res1 = $('#1res_text_m3').val();
-               var num_res1 = $('#1res_num_m3').val();
                var text_res2 = $('#2res_text_m3').val();
-               var num_res2 = $('#2res_num_m3').val();
 
-               if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
-                    alert("You need to fill in the blanks!")
-                } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number between 1-100 for the second question!")
-                } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number between 1-100 for the last question!")
-                } else {
+               if (text_res1 == "" || $('input[name="sure"]:checked').length == 0 || text_res2 == "" || $('input[name="sure2"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+               } else {
+                    res = { prompt: "3",
+                        text1: text_res1,
+                        sure1: $('input[name="sure"]:checked').val(),
+                        text2: text_res2,
+                        sure2: $('input[name="sure2"]:checked').val()
+                    };
                     exp.data_trials.push(res);
                     _stream.apply(this);
                     return false;
@@ -441,12 +447,13 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                 var text_res = $('#res_text_l3').val();
-                var num_res = $('#res_num_l3').val();
-                if (text_res == "" || num_res == "") {
-                    alert("You need to fill in the blanks!")
-                } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number between 1-100 for the second question!")
-                } else {
+                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+                }  else {
+                    res = { prompt: "3",
+                        text: text_res,           
+                        sure: $('input[name="sure"]:checked').val()
+                    };
                     exp.data_trials.push(res);
                     _stream.apply(this);
                     return false;
@@ -465,17 +472,17 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                var text_res1 = $('#1res_text_l3').val();
-               var num_res1 = $('#1res_num_l3').val();
                var text_res2 = $('#2res_text_l3').val();
-               var num_res2 = $('#2res_num_l3').val();
 
-               if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
-                    alert("You need to fill in the blanks!")
-                } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number between 1-100 for the second question!")
-                } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number between 1-100 for the last question!")
-                } else {
+               if (text_res1 == "" || $('input[name="sure"]:checked').length == 0 || text_res2 == "" || $('input[name="sure2"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+               } else {
+                    res = { prompt: "3",
+                        text1: text_res1,
+                        sure1: $('input[name="sure"]:checked').val(),
+                        text2: text_res2,
+                        sure2: $('input[name="sure2"]:checked').val()
+                    };
                     exp.data_trials.push(res);
                     _stream.apply(this);
                     return false;
@@ -494,12 +501,13 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                 var text_res = $('#res_text_4').val();
-                var num_res = $('#res_num_4').val();
-                if (text_res == "" || num_res == "") {
-                    alert("You need to fill in the blanks!")
-                } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number between 1-100 for the second question!")
-                } else {
+                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+                }  else {
+                    res = { prompt: "4",
+                        text: text_res,           
+                        sure: $('input[name="sure"]:checked').val()
+                    };
                     exp.data_trials.push(res);
                     _stream.apply(this);
                     return false;
@@ -518,17 +526,17 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                var text_res1 = $('#1res_text_4').val();
-               var num_res1 = $('#1res_num_4').val();
                var text_res2 = $('#2res_text_4').val();
-               var num_res2 = $('#2res_num_4').val();
 
-               if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
-                    alert("You need to fill in the blanks!")
-                } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number between 1-100 for the second question!")
-                } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number between 1-100 for the last question!")
+               if (text_res1 == "" || $('input[name="sure"]:checked').length == 0 || text_res2 == "" || $('input[name="sure2"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
                 } else {
+                    res = { prompt: "4",
+                        text1: text_res1,
+                        sure1: $('input[name="sure"]:checked').val(),
+                        text2: text_res2,
+                        sure2: $('input[name="sure2"]:checked').val()
+                    };
                     exp.data_trials.push(res);
                     _stream.apply(this);
                     return false;
@@ -547,17 +555,13 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                 var text_res = $('#res_text_m4').val();
-                var num_res = $('#res_num_m4').val();
-                res = { text: text_res, 
-                        num: num_res, 
-                        prompt: 4,          
+                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+                }  else {
+                    res = { prompt: "4",
+                        text: text_res,           
                         sure: $('input[name="sure"]:checked').val()
                     };
-                if (text_res == "" || num_res == "") {
-                    alert("You need to fill in the blanks!")
-                } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number between 1-100 for the second question!")
-                } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
                     return false;
@@ -576,17 +580,17 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                var text_res1 = $('#1res_text_m4').val();
-               var num_res1 = $('#1res_num_m4').val();
                var text_res2 = $('#2res_text_m4').val();
-               var num_res2 = $('#2res_num_m4').val();
 
-               if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
-                    alert("You need to fill in the blanks!")
-                } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number between 1-100 for the second question!")
-                } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number between 1-100 for the last question!")
-                } else {
+               if (text_res1 == "" || $('input[name="sure"]:checked').length == 0 || text_res2 == "" || $('input[name="sure2"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+               } else {
+                    res = { prompt: "4",
+                        text1: text_res1,
+                        sure1: $('input[name="sure"]:checked').val(),
+                        text2: text_res2,
+                        sure2: $('input[name="sure2"]:checked').val()
+                    };
                     exp.data_trials.push(res);
                     _stream.apply(this);
                     return false;
@@ -605,12 +609,13 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                 var text_res = $('#res_text_l4').val();
-                var num_res = $('#res_num_l4').val();
-                if (text_res == "" || num_res == "") {
-                    alert("You need to fill in the blanks!")
-                } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number between 1-100 for the second question!")
-                } else {
+                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+                }  else {
+                    res = { prompt: "4",
+                        text: text_res,           
+                        sure: $('input[name="sure"]:checked').val()
+                    };
                     exp.data_trials.push(res);
                     _stream.apply(this);
                     return false;
@@ -629,17 +634,17 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                var text_res1 = $('#1res_text_l4').val();
-               var num_res1 = $('#1res_num_l4').val();
                var text_res2 = $('#2res_text_l4').val();
-               var num_res2 = $('#2res_num_l4').val();
 
-               if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
-                    alert("You need to fill in the blanks!")
-                } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number between 1-100 for the second question!")
-                } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number between 1-100 for the last question!")
-                } else {
+               if (text_res1 == "" || $('input[name="sure"]:checked').length == 0 || text_res2 == "" || $('input[name="sure2"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+               } else {
+                    res = { prompt: "4",
+                        text1: text_res1,
+                        sure1: $('input[name="sure"]:checked').val(),
+                        text2: text_res2,
+                        sure2: $('input[name="sure2"]:checked').val()
+                    };
                     exp.data_trials.push(res);
                     _stream.apply(this);
                     return false;
