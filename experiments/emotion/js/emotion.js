@@ -627,12 +627,9 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                 var text_res = $('#res_text_m4').val();
                 var num_res = $('#res_num_m4').val();
+                res = {"text": text_res, "num": num_res, "prompt": 4}
                 if (text_res == "" || num_res == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res))) {
@@ -749,7 +746,7 @@ function make_slides(f) {
             button : function(e){
                 if (e.preventDefault) e.preventDefault();
                 exp.subj_data =
-                    [{
+                    {
                         language: $('select[name="language"]').val(),
                         enjoyment: $('select[name="enjoyment"]').val(),
                         assess: $('input[name="assess"]:checked').val(),
@@ -757,7 +754,7 @@ function make_slides(f) {
                         sex : $('input[name="sex"]:checked').val(),
                         education : $('select[name="education"]').val(),
                         workerId : turk.workerId
-                    }];
+                    };
 
                 exp.go();
                 return false;
@@ -816,7 +813,7 @@ function init() {
     }
 
     exp.system =
-        [{
+        {
             workerId : turk.workerId,
             cond : exp.condition,
             Browser : BrowserDetect.browser,
@@ -825,14 +822,14 @@ function init() {
             screenUH: exp.height,
             screenW: screen.width,
             screenUW: exp.width
-        }];
+        };
 
     exp.go();
 
 };
 
 get_pusher_name= function(){
-    var names=["Mary", "Patricia", "Linda", "Barbara", "Elizabeth", "Jennifer", "Maria", "Susan", "Margaret", "Dorothy", "Lisa", "NaNcy", "Karen", "Betty", "Helen"];
+    var names=["Mary", "Patricia", "Linda", "Barbara", "Elizabeth", "Jennifer", "Maria", "Susan", "Margaret", "Dorothy", "Lisa", "Nancy", "Karen", "Betty", "Helen"];
 
     names = _(names).shuffle();
     return function(){
