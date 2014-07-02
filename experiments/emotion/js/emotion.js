@@ -16,11 +16,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
-
                 var text_res = $('#res_text').val();
                 var num_res = $('#res_num').val();
                 if (text_res == "" || num_res == "") {
@@ -45,10 +40,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                var text_res1 = $('#1res_text').val();
                var num_res1 = $('#1res_num').val();
                var text_res2 = $('#2res_text').val();
@@ -78,10 +69,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                 var text_res = $('#res_text_m').val();
                 var num_res = $('#res_num_m').val();
                 if (text_res == "" || num_res == "") {
@@ -106,10 +93,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                var text_res1 = $('#1res_text_m').val();
                var num_res1 = $('#1res_num_m').val();
                var text_res2 = $('#2res_text_m').val();
@@ -139,10 +122,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                 var text_res = $('#res_text_l').val();
                 var num_res = $('#res_num_l').val();
                 if (text_res == "" || num_res == "") {
@@ -167,10 +146,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                var text_res1 = $('#1res_text_l').val();
                var num_res1 = $('#1res_num_l').val();
                var text_res2 = $('#2res_text_l').val();
@@ -200,10 +175,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                 var text_res = $('#res_text_2').val();
                 var num_res = $('#res_num_2').val();
                 if (text_res == "" || num_res == "") {
@@ -228,10 +199,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                var text_res1 = $('#1res_text_2').val();
                var num_res1 = $('#1res_num_2').val();
                var text_res2 = $('#2res_text_2').val();
@@ -261,10 +228,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                 var text_res = $('#res_text_m2').val();
                 var num_res = $('#res_num_m2').val();
                 if (text_res == "" || num_res == "") {
@@ -289,10 +252,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                var text_res1 = $('#1res_text_m2').val();
                var num_res1 = $('#1res_num_m2').val();
                var text_res2 = $('#2res_text_m2').val();
@@ -322,10 +281,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                 var text_res = $('#res_text_l2').val();
                 var num_res = $('#res_num_l2').val();
                 if (text_res == "" || num_res == "") {
@@ -350,10 +305,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                var text_res1 = $('#1res_text_l2').val();
                var num_res1 = $('#1res_num_l2').val();
                var text_res2 = $('#2res_text_l2').val();
@@ -383,10 +334,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                 var text_res = $('#res_text_3').val();
                 var num_res = $('#res_num_3').val();
                 if (text_res == "" || num_res == "") {
@@ -411,10 +358,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                var text_res1 = $('#1res_text_3').val();
                var num_res1 = $('#1res_num_3').val();
                var text_res2 = $('#2res_text_3').val();
@@ -444,10 +387,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                 var text_res = $('#res_text_3').val();
                 var num_res = $('#res_num_3').val();
                 if (text_res == "" || num_res == "") {
@@ -472,10 +411,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                var text_res1 = $('#1res_text_m3').val();
                var num_res1 = $('#1res_num_m3').val();
                var text_res2 = $('#2res_text_m3').val();
@@ -505,10 +440,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                 var text_res = $('#res_text_l3').val();
                 var num_res = $('#res_num_l3').val();
                 if (text_res == "" || num_res == "") {
@@ -533,10 +464,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                var text_res1 = $('#1res_text_l3').val();
                var num_res1 = $('#1res_num_l3').val();
                var text_res2 = $('#2res_text_l3').val();
@@ -566,10 +493,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                 var text_res = $('#res_text_4').val();
                 var num_res = $('#res_num_4').val();
                 if (text_res == "" || num_res == "") {
@@ -594,10 +517,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                var text_res1 = $('#1res_text_4').val();
                var num_res1 = $('#1res_num_4').val();
                var text_res2 = $('#2res_text_4').val();
