@@ -12,6 +12,7 @@ function make_slides(f) {
 		name: "instructions",
 		start: function() {
 			exp.startT = Date.now();
+			console.log('This version last updated at 3:33 PM on 7/2/14');
 		},
 		button : function() {
 			exp.go();
@@ -69,7 +70,7 @@ function make_slides(f) {
 				$('#txt').text(stim.check);
 				this.init_slider();
 				_s.data = {
-					'check' : stim.fact,
+					'check' : stim.check,
 				};
 				_s.startT = Date.now();
 			},
