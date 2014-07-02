@@ -55,7 +55,7 @@ function make_slides(f) {
 				$('#explanation').focus();
 				$('#txt').text(stim.fact);
 				this.init_slider();
-				exp.data_trials.push(stim);
+				exp.trials.push(stim);
 				_s.startT = Date.now();
 			},
 			catch_trial_handle : function(stim) {
@@ -95,7 +95,7 @@ function make_slides(f) {
 					else { //explanation and confidence given
 						res.time_taken = (Date.now() - _s.startT)/1000; //in seconds
 						if (_s.isCatch) exp.check_trials.push(res);
-						else exp.data_trials.push(res);
+						else exp.trials.push(res);
 						$('#explanation').val("");
 						$('#help2').hide();
 						_stream.apply(this);
@@ -116,7 +116,7 @@ function make_slides(f) {
 			button : function(e){
 				if (e.preventDefault) e.preventDefault();
 				exp.subj_data =
-					[{
+					{
 						language: $('select[name="language"]').val(),
 						enjoyment: $('select[name="enjoyment"]').val(),
 						assess: $('input[name="assess"]:checked').val(),
@@ -124,7 +124,7 @@ function make_slides(f) {
 						sex : $('input[name="sex"]:checked').val(),
 						education : $('select[name="education"]').val(),
 						workerId : turk.workerId
-					}];
+					};
 				exp.go();
 				return false;
 			}
@@ -139,9 +139,9 @@ function make_slides(f) {
 			start : function(){
 
 				exp.data= {
-					trials : exp.data_trials,
-					checks : exp.check_trials,
-					system : exp.system, //FIX: exp.system is not defined
+					trials : exp.trials,
+					check_trials : exp.check_trials,
+					system : exp.system,
 					condition : exp.condition,
 					subject_information : exp.subj_data,
 					time : (Date.now() - exp.startT)/1000
@@ -159,7 +159,7 @@ function init() {
 	$('body').css('visibility','visible');
 	exp_sizing();
 
-	exp.data_trials=[];
+	exp.trials=[];
 	exp.check_trials=[];
 	exp.sandbox=0;
 	exp.slides = make_slides(exp);
@@ -176,8 +176,17 @@ function init() {
 	else{
 		$('#start-button').click(function(){experiment_proceed();});
 	}
-
-
+    exp.system =
+        {
+            workerId : turk.workerId,
+            cond : exp.condition,
+            Browser : BrowserDetect.browser,
+            OS : BrowserDetect.OS,
+            screenH: screen.height,
+            screenUH: exp.height,
+            screenW: screen.width,
+            screenUW: exp.width
+        };
 	exp.go();
 
 }
