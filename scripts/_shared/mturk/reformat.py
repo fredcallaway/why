@@ -2,7 +2,6 @@ import sys
 import csv
 import json
 
-<<<<<<< HEAD
 experiment_folder = sys.argv[1]
 if len(sys.argv) > 2:
     mturk_tag = sys.argv[2]
@@ -14,10 +13,6 @@ else:
 
 mturk_data_file = "data/" + experiment_folder + "/mturk/" + mturk_tag + ".results" #sys.argv[1]
 output_data_file_label = "data/" + experiment_folder + "/mturk/" + mturk_tag #sys.argv[2]
-=======
-mturk_data_file = sys.argv[1]
-output_data_file_label = sys.argv[2]
->>>>>>> bcfd17c321c48d6803232947ffd134e11e2713eb
 
 def write_2_by_2(data, filename, sep="\t"):
   w = open(filename, "w")
@@ -57,16 +52,9 @@ def get_column_labels(data_type):
                 new_column_labels_from_json.update(trial.keys())
             elif label == "Answer.subject_information":
               data = json.loads(elem)
-<<<<<<< HEAD
-              print data
               new_column_labels_from_json.update(data.keys())
             elif label == "Answer.system":
               data = json.loads(elem)
-=======
-              new_column_labels_from_json.update(data.keys())
-            elif label == "Answer.system":
-              data = json.loads(elem)[0]
->>>>>>> bcfd17c321c48d6803232947ffd134e11e2713eb
               new_column_labels_from_json.update(data.keys())
   return list(new_column_labels_from_json)
 
@@ -106,11 +94,7 @@ def make_tsv(data_type):
               if label == "Answer.subject_information":
                 data = json.loads(elem)
               elif label == "Answer.system":
-<<<<<<< HEAD
                 data = json.loads(elem)
-=======
-                data = json.loads(elem)[0]
->>>>>>> bcfd17c321c48d6803232947ffd134e11e2713eb
               for key in new_column_labels:
                 if key in data.keys():
                   subject_level_data[key] = str(data[key])
