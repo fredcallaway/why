@@ -1,3 +1,19 @@
+.radio {
+    text-align: left;
+    font-family: "Times New Roman";
+    font-size: 15px;
+    padding: 10px;
+}
+
+.question_A {
+    text-align: left;
+    margin-left: 15px;
+}
+
+input[type='radio'], label {
+    vertical-align: middle;
+}
+
 .questions_B {
     text-align: left;
     margin-left: 20px;

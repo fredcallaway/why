@@ -548,7 +548,11 @@ function make_slides(f) {
                 var res = {};
                 var text_res = $('#res_text_m4').val();
                 var num_res = $('#res_num_m4').val();
-                res = {"text": text_res, "num": num_res, "prompt": 4}
+                res = { text: text_res, 
+                        num: num_res, 
+                        prompt: 4,          
+                        sure: $('input[name="sure"]:checked').val()
+                    };
                 if (text_res == "" || num_res == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res))) {
@@ -571,10 +575,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                var text_res1 = $('#1res_text_m4').val();
                var num_res1 = $('#1res_num_m4').val();
                var text_res2 = $('#2res_text_m4').val();
@@ -604,10 +604,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                 var text_res = $('#res_text_l4').val();
                 var num_res = $('#res_num_l4').val();
                 if (text_res == "" || num_res == "") {
@@ -632,10 +628,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                var text_res1 = $('#1res_text_l4').val();
                var num_res1 = $('#1res_num_l4').val();
                var text_res2 = $('#2res_text_l4').val();
