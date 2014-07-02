@@ -31,4 +31,13 @@ The [MTURK_TAG*] is the name of the experiment files in the config file *and* th
 And then when you want to get the results:
 
     sh scripts/_shared/mturk/getresults.sh [FOLDER_INSIDE_DATA] [MTURK_TAG*]
-    python scripts/_shared/mturk/parsedata.py [FOLDER_INSIDE_DATA] [MTURK_TAG*]
+    python scripts/_shared/mturk/reformat.py [FOLDER_INSIDE_DATA] [MTURK_TAG*]
+
+For example:
+    Post Hit:
+        python scripts/_shared/mturk/submiterator.py simple-experiment
+        sh scripts/_shared/mturk/posthit.sh simple-experiment
+    Retrieve Data:
+        sh scripts/_shared/mturk/getresults.sh simple-experiment
+        python scripts/_shared/mturk/reformat.py simple-experiment
+    
