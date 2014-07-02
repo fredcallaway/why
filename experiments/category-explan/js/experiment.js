@@ -1,7 +1,6 @@
 function shuffle(v) { newarray = v.slice(0);for(var j, x, i = newarray.length; i; j = parseInt(Math.random() * i), x = newarray[--i], newarray[i] = newarray[j], newarray[j] = x);return newarray;} // non-destructive.
 function make_slides(f) {
 	var   slides = {};
-
 	slides.i0 = slide(
 	{
 			name : "i0"
@@ -12,7 +11,7 @@ function make_slides(f) {
 	{
 		name: "instructions",
 		button : function() {
-			exp.go();
+			exp.go(); 
 		}
 	});
 
@@ -61,7 +60,7 @@ function make_slides(f) {
 				$('#explanation').focus();
 				$('#txt').text(stim.check);
 				this.init_slider();
-				exp.data_trials.push(stim);
+				exp.check_trials.push(stim);
 			},
 			init_slider : function() {
 				$("#slider1").css('width' , 3*(exp.width/4)).centerhin();
@@ -89,7 +88,8 @@ function make_slides(f) {
 					$('#help').hide();
 					if (res.confidence === null) $('#help2').show(); //no confidence
 					else { //explanation and confidence given
-						exp.check_trials.push(res);
+						if (stim.catchT) exp.check_trials.push(res);
+						else exp.data_trials.push(res);
 						$('#explanation').val("");
 						$('#help2').hide();
 						_stream.apply(this);
