@@ -240,7 +240,11 @@ function make_slides(f) {
 
         }
     );
+<<<<<<< HEAD
+    
+=======
 
+>>>>>>> 5da3f60f0e47e787fa6172b545d636e776cd66bf
     slides.thanks = slide(
         {
             name : "thanks",

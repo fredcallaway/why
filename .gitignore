@@ -1,6 +1,9 @@
+*.tsv
 *.results
 *.RData
 *.Rhistory
 *.DS_Store
 *.participants
 rootkey.csv
+*.tsv
+*.success
