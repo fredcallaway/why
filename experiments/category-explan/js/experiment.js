@@ -55,7 +55,11 @@ function make_slides(f) {
 				$('#explanation').focus();
 				$('#txt').text(stim.fact);
 				this.init_slider();
-				exp.trials.push(stim);
+				_s.data = {
+					'trait' : stim.trait,
+					'cat' : stim.cat,
+					'fact' : stim.fact,
+				};
 				_s.startT = Date.now();
 			},
 			catch_trial_handle : function(stim) {
@@ -64,21 +68,23 @@ function make_slides(f) {
 				$('#explanation').focus();
 				$('#txt').text(stim.check);
 				this.init_slider();
-				exp.check_trials.push(stim);
+				_s.data = {
+					'check' : stim.fact,
+				};
 				_s.startT = Date.now();
 			},
 			init_slider : function() {
 				$("#slider1").css('width' , 3*(exp.width/4)).centerhin();
 				$(".slider-lbl1 ").css('right' , (exp.width/4) *3.2 +20);
 				$(".slider-lbl2 ").css('left' , (exp.width/4) *3.2 +20);
-				exp.sliderPost=null;
+				_s.sliderPost=null;
 				$("#slider1").slider({
-					range : "min",
-					value : 50,
-					min : 0,
-					max : 100,
+					range: "min",
+					value: 50,
+					min: 0,
+					max: 100,
 					slide : function(event, ui) {
-						exp.sliderPost = ui.value/100; // sliderPost in 0..1
+						_s.sliderPost = ui.value/100; // sliderPost in 0..1
 					}
 				});
 				$("#slider1").mousedown(function(){$("#slider1 a").css('display', 'inherit');});
@@ -86,16 +92,16 @@ function make_slides(f) {
 				$(".ui-slider-handle").css('display', 'none');
 			},
 			button : function() {
-				var res = { explanation: $('#explanation').val(),
-							confidence: exp.sliderPost };
-				if (res.explanation === "") $('#help').show(); //no explanation
+				_s.data.explanation = $('#explanation').val();
+				_s.data.confidence = _s.sliderPost;
+				if (_s.data.explanation === "") $('#help').show(); //no explanation
 				else {
 					$('#help').hide();
-					if (res.confidence === null) $('#help2').show(); //no confidence
+					if (_s.data.confidence === null) $('#help2').show(); //no confidence
 					else { //explanation and confidence given
-						res.time_taken = (Date.now() - _s.startT)/1000; //in seconds
-						if (_s.isCatch) exp.check_trials.push(res);
-						else exp.trials.push(res);
+						_s.data.time_taken = (Date.now() - _s.startT)/1000; //in seconds
+						if (_s.isCatch) exp.check_trials.push(_s.data);
+						else exp.trials.push(_s.data);
 						$('#explanation').val("");
 						$('#help2').hide();
 						_stream.apply(this);
