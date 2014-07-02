@@ -821,4 +821,3 @@ function set_condition(){
     var crier = get_crier_name();
     $('.crier_name').each(function(){$(this).text(crier);});
 }
-

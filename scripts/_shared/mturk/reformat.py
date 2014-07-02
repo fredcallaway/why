@@ -52,7 +52,6 @@ def get_column_labels(data_type):
                 new_column_labels_from_json.update(trial.keys())
             elif label == "Answer.subject_information":
               data = json.loads(elem)
-              print data
               new_column_labels_from_json.update(data.keys())
             elif label == "Answer.system":
               data = json.loads(elem)
