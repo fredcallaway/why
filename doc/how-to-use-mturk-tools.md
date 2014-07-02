@@ -40,4 +40,3 @@ For example:
     Retrieve Data:
         sh scripts/_shared/mturk/getresults.sh simple-experiment
         python scripts/_shared/mturk/reformat.py simple-experiment
-    
