@@ -1,21 +1,24 @@
-workerid	catchT	fact	check
-0	1	NA	Can tigers fly?    
-0	0	Motorboats have engines because they are 	NA
-0	1	NA	Are Ferraris boats?    
-0	0	Cars have engines because they are 	NA
-0	0	Tigers have fur because they are 	NA
-0	0	Ferraris have tires because they are 	NA
-0	0	Tulips have leaves because they are 	NA
-0	0	Boeing 747s are fast because they are 	NA
-0	0	Tulips are beautiful because they are 	NA
-0	0	Strawberries have seeds because they are 	NA
-0	0	Trees have seeds because they are 	NA
-0	0	Birds have eyes because they are 	NA
-0	0	Scorpions are dangerous because they are 	NA
-0	0	Redwoods are beautiful because they are 	NA
-0	0	Tigers are smart because they are 	NA
-0	0	Ferraris are fast because they are 	NA
-0	0	Scorpions have eyes because they are 	NA
-0	1	NA	Do trees have roots?    
-0	0	Motorboats are useful because they are 	NA
-0	0	Chimpanzees are smart because they are 	NA
+workerid	confidence	catchT	trait	explanation	cat	time_taken	fact
+0	NA	0	simple part	NA	vehicle	NA	Ferraris have tires because they are 
+0	0.71	NA	NA	cars	NA	8.665	NA
+0	NA	0	trick attr	NA	plant	NA	Tulips are beautiful because they are 
+0	0.8	NA	NA	flowers	NA	9.153	NA
+0	NA	0	simple attr	NA	animal	NA	Dolphins are friendly because they are 
+0	0.48	NA	NA	t	NA	1.997	NA
+0	NA	0	trick part	NA	animal	NA	Salmon have fins because they are 
+0	0.47	NA	NA	t	NA	0.874	NA
+0	NA	0	trick attr	NA	plant	NA	Redwoods are beautiful because they are 
+0	0.46	NA	NA	t	NA	0.976	NA
+0	NA	0	simple part	NA	animal	NA	Tigers have fur because they are 
+0	NA	0	trick part	NA	vehicle	NA	Motorboats have steering wheels because they are 
+0	NA	0	trick attr	NA	animal	NA	Chimpanzees are smart because they are 
+0	NA	0	trick part	NA	plant	NA	Trees have seeds because they are 
+0	NA	0	trick attr	NA	vehicle	NA	Boeing 747s are fast because they are 
+0	NA	0	trick part	NA	vehicle	NA	Vans have steering wheels because they are 
+0	NA	0	trick part	NA	plant	NA	Strawberries have seeds because they are 
+0	NA	0	trick attr	NA	animal	NA	Tigers are smart because they are 
+0	NA	0	simple part	NA	plant	NA	Tulips have leaves because they are 
+0	NA	0	simple attr	NA	plant	NA	Strawberries are tasty because they are 
+0	NA	0	simple attr	NA	vehicle	NA	Motorboats are fun because they are 
+0	NA	0	trick part	NA	animal	NA	Dolphins have fins because they are 
+0	NA	0	trick attr	NA	vehicle	NA	Ferraris are fast because they are 
