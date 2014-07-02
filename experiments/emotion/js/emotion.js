@@ -16,17 +16,12 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
-
                 var text_res = $('#res_text').val();
                 var num_res = $('#res_num').val();
                 if (text_res == "" || num_res == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -45,10 +40,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                var text_res1 = $('#1res_text').val();
                var num_res1 = $('#1res_num').val();
                var text_res2 = $('#2res_text').val();
@@ -57,9 +48,9 @@ function make_slides(f) {
                if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number for the last question!")
+                    alert("You need to put in a number between 1-100 for the last question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -78,16 +69,12 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                 var text_res = $('#res_text_m').val();
                 var num_res = $('#res_num_m').val();
                 if (text_res == "" || num_res == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -106,10 +93,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                var text_res1 = $('#1res_text_m').val();
                var num_res1 = $('#1res_num_m').val();
                var text_res2 = $('#2res_text_m').val();
@@ -118,9 +101,9 @@ function make_slides(f) {
                if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number for the last question!")
+                    alert("You need to put in a number between 1-100 for the last question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -139,16 +122,12 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                 var text_res = $('#res_text_l').val();
                 var num_res = $('#res_num_l').val();
                 if (text_res == "" || num_res == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -167,10 +146,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                var text_res1 = $('#1res_text_l').val();
                var num_res1 = $('#1res_num_l').val();
                var text_res2 = $('#2res_text_l').val();
@@ -179,9 +154,9 @@ function make_slides(f) {
                if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number for the last question!")
+                    alert("You need to put in a number between 1-100 for the last question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -200,16 +175,12 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                 var text_res = $('#res_text_2').val();
                 var num_res = $('#res_num_2').val();
                 if (text_res == "" || num_res == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -228,10 +199,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                var text_res1 = $('#1res_text_2').val();
                var num_res1 = $('#1res_num_2').val();
                var text_res2 = $('#2res_text_2').val();
@@ -240,9 +207,9 @@ function make_slides(f) {
                if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number for the last question!")
+                    alert("You need to put in a number between 1-100 for the last question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -261,16 +228,12 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                 var text_res = $('#res_text_m2').val();
                 var num_res = $('#res_num_m2').val();
                 if (text_res == "" || num_res == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -289,10 +252,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                var text_res1 = $('#1res_text_m2').val();
                var num_res1 = $('#1res_num_m2').val();
                var text_res2 = $('#2res_text_m2').val();
@@ -301,9 +260,9 @@ function make_slides(f) {
                if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number for the last question!")
+                    alert("You need to put in a number between 1-100 for the last question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -322,16 +281,12 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                 var text_res = $('#res_text_l2').val();
                 var num_res = $('#res_num_l2').val();
                 if (text_res == "" || num_res == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -350,10 +305,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                var text_res1 = $('#1res_text_l2').val();
                var num_res1 = $('#1res_num_l2').val();
                var text_res2 = $('#2res_text_l2').val();
@@ -362,9 +313,9 @@ function make_slides(f) {
                if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number for the last question!")
+                    alert("You need to put in a number between 1-100 for the last question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -383,16 +334,12 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                 var text_res = $('#res_text_3').val();
                 var num_res = $('#res_num_3').val();
                 if (text_res == "" || num_res == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -411,10 +358,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                var text_res1 = $('#1res_text_3').val();
                var num_res1 = $('#1res_num_3').val();
                var text_res2 = $('#2res_text_3').val();
@@ -423,9 +366,9 @@ function make_slides(f) {
                if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number for the last question!")
+                    alert("You need to put in a number between 1-100 for the last question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -444,16 +387,12 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                 var text_res = $('#res_text_3').val();
                 var num_res = $('#res_num_3').val();
                 if (text_res == "" || num_res == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -472,10 +411,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                var text_res1 = $('#1res_text_m3').val();
                var num_res1 = $('#1res_num_m3').val();
                var text_res2 = $('#2res_text_m3').val();
@@ -484,9 +419,9 @@ function make_slides(f) {
                if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number for the last question!")
+                    alert("You need to put in a number between 1-100 for the last question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -505,16 +440,12 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                 var text_res = $('#res_text_l3').val();
                 var num_res = $('#res_num_l3').val();
                 if (text_res == "" || num_res == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -533,10 +464,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                var text_res1 = $('#1res_text_l3').val();
                var num_res1 = $('#1res_num_l3').val();
                var text_res2 = $('#2res_text_l3').val();
@@ -545,9 +472,9 @@ function make_slides(f) {
                if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number for the last question!")
+                    alert("You need to put in a number between 1-100 for the last question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -566,16 +493,12 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                 var text_res = $('#res_text_4').val();
                 var num_res = $('#res_num_4').val();
                 if (text_res == "" || num_res == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -594,10 +517,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                var text_res1 = $('#1res_text_4').val();
                var num_res1 = $('#1res_num_4').val();
                var text_res2 = $('#2res_text_4').val();
@@ -606,9 +525,9 @@ function make_slides(f) {
                if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number for the last question!")
+                    alert("You need to put in a number between 1-100 for the last question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -627,16 +546,17 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                 var text_res = $('#res_text_m4').val();
                 var num_res = $('#res_num_m4').val();
+                res = { text: text_res, 
+                        num: num_res, 
+                        prompt: 4,          
+                        sure: $('input[name="sure"]:checked').val()
+                    };
                 if (text_res == "" || num_res == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -655,10 +575,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                var text_res1 = $('#1res_text_m4').val();
                var num_res1 = $('#1res_num_m4').val();
                var text_res2 = $('#2res_text_m4').val();
@@ -667,9 +583,9 @@ function make_slides(f) {
                if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number for the last question!")
+                    alert("You need to put in a number between 1-100 for the last question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -688,16 +604,12 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                 var text_res = $('#res_text_l4').val();
                 var num_res = $('#res_num_l4').val();
                 if (text_res == "" || num_res == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -716,10 +628,6 @@ function make_slides(f) {
             present : [0],
             button : function (e){
                 var res = {};
-                $('input[type="text"]').each (
-                    function() {
-                        res[$(this).attr("name")] = $(this).val();
-                    });
                var text_res1 = $('#1res_text_l4').val();
                var num_res1 = $('#1res_num_l4').val();
                var text_res2 = $('#2res_text_l4').val();
@@ -728,9 +636,9 @@ function make_slides(f) {
                if (text_res1 == "" || num_res1 == "" || text_res2 == "" || num_res2 == "") {
                     alert("You need to fill in the blanks!")
                 } else if (isNaN(parseFloat(num_res1))) {
-                    alert("You need to put in a number for the second question!")
+                    alert("You need to put in a number between 1-100 for the second question!")
                 } else if (isNaN(parseFloat(num_res2))) {
-                    alert("You need to put in a number for the last question!")
+                    alert("You need to put in a number between 1-100 for the last question!")
                 } else {
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -749,7 +657,7 @@ function make_slides(f) {
             button : function(e){
                 if (e.preventDefault) e.preventDefault();
                 exp.subj_data =
-                    [{
+                    {
                         language: $('select[name="language"]').val(),
                         enjoyment: $('select[name="enjoyment"]').val(),
                         assess: $('input[name="assess"]:checked').val(),
@@ -757,7 +665,7 @@ function make_slides(f) {
                         sex : $('input[name="sex"]:checked').val(),
                         education : $('select[name="education"]').val(),
                         workerId : turk.workerId
-                    }];
+                    };
 
                 exp.go();
                 return false;
@@ -816,7 +724,7 @@ function init() {
     }
 
     exp.system =
-        [{
+        {
             workerId : turk.workerId,
             cond : exp.condition,
             Browser : BrowserDetect.browser,
@@ -825,14 +733,14 @@ function init() {
             screenUH: exp.height,
             screenW: screen.width,
             screenUW: exp.width
-        }];
+        };
 
     exp.go();
 
 };
 
 get_pusher_name= function(){
-    var names=["Mary", "Patricia", "Linda", "Barbara", "Elizabeth", "Jennifer", "Maria", "Susan", "Margaret", "Dorothy", "Lisa", "NaNcy", "Karen", "Betty", "Helen"];
+    var names=["Mary", "Patricia", "Linda", "Barbara", "Elizabeth", "Jennifer", "Maria", "Susan", "Margaret", "Dorothy", "Lisa", "Nancy", "Karen", "Betty", "Helen"];
 
     names = _(names).shuffle();
     return function(){
