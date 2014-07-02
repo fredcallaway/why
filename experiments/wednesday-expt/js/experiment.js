@@ -249,18 +249,14 @@ function make_slides(f) {
 			},
 			present : [{catchT: 1, item: 0},
 			{catchT: 1, item: 1},
-			{catchT: 1, item: 2},
 			{catchT: 0, item: 0},
 			{catchT: 0, item: 1},
 			{catchT: 0, item: 2},
-			{catchT: 1, item: 3},
+			{catchT: 1, item: 2},
 			{catchT: 0, item: 3},
 			{catchT: 0, item: 4},
-			{catchT: 0, item: 5},
-			{catchT: 1, item: 4},
-			{catchT: 0, item: 6},
-			{catchT: 0, item: 7},
-			{catchT: 1, item: 5}
+			{catchT: 1, item: 3},
+			{catchT: 1, item: 4}
 			],
 			
 			catch_trial_handle : function(stim) {
@@ -269,6 +265,7 @@ function make_slides(f) {
 			
 				exp.trial_type = "catch";
 				exp.data_trials.push(stim);
+				exp.item = stim["item"];
 				
 				//hide and show appropriate divs
 				$("#critical_trial").hide();
@@ -302,7 +299,7 @@ function make_slides(f) {
 				$("#catch_trial").hide();
 				$("#feedback").hide();
 				$("#critical_trial").show();
-				//$("#expl").focus();
+				$("#expl-text").focus();
 				exp.questions = get_questions();
 				exp.current_cond = exp.questions[stim["item"]];
             	
@@ -356,7 +353,7 @@ function make_slides(f) {
     					ans_chosen = exp.ans_display[0];
     				} else { ans_chosen = exp.ans_display[1]; }
     				
-    				if (ans_chosen === "wrong_ans") {
+    				if (ans_chosen === "wrong_ans" && exp.item < 2) {
     					$('#feedback').show();
     				} else {
 					
@@ -588,31 +585,23 @@ function make_slides(f) {
 
     //!subj_info
     
-    slides.subj_info =  slide(
-        {
-            name : "subj_info",
-            start : function () {
-                $('#subj_info_form').submit(this.button);
-            },
-            button : function(e){
-                if (e.preventDefault) e.preventDefault();
-                exp.subj_data =
-                    [{
-                        language: $('select[name="language"]').val(),
-                        enjoyment: $('select[name="enjoyment"]').val(),
-                        assess: $('input[name="assess"]:checked').val(),
-                        age : $('input:text[name="age"]').val(),
-                        sex : $('input[name="sex"]:checked').val(),
-                        education : $('select[name="education"]').val(),
-                        workerId : turk.workerId
-                    }];
-				exp.end = Date.now();
-                exp.go();
-                return false;
-            }
-
-        }
-    );
+	  slides.subj_info =  slide({
+		name : "subj_info",
+		submit : function(e){
+		  //if (e.preventDefault) e.preventDefault(); // I don't know what this means.
+		  exp.subj_data =
+			{
+			  language : $("#language").val(),
+			  enjoyment : $("#enjoyment").val(),
+			  asses : $('input[name="assess"]:checked').val(),
+			  age : $("#age").val(),
+			  gender : $("#gender").val(),
+			  education : $("#education").val(),
+			  comments : $("#comments").val(),
+			};
+		  exp.go(); //use exp.go() if and only if there is no "present" data.
+		}
+	  });
 
     
     slides.thanks = slide(
@@ -719,37 +708,55 @@ var get_scenarios = function() {
 	};
 }();
 
-var get_questions = function() {
-	var questions = [{disease: "D", protein: "X", fever: "NA", condition: "disease and protein",
-	question : 'You know that an alien has Disease D and expresses Protein X. Why do they express Protein X?'},
-	{disease: "B", protein: "Y", fever: "NA", condition: "disease and protein",
-	question : 'You know that an alien has Disease B and expresses Protein Y. Why do they express Protein Y?'},
-	{disease: "A", protein: "NA", fever: "Y", condition: "disease and fever",
-	question : 'You know that an alien has Disease A and has a fever. Why do they have a fever?'},
-	{disease: "B", protein: "NA", fever: "Y", condition: "disease and fever",
-	question : 'You know that an alien has Disease B and has a fever. Why do they have a fever?'},
-	{disease: "C", protein: "NA", fever: "Y", condition: "disease and fever",
-	question : 'You know that an alien has Disease C and has a fever. Why do they have a fever?'},
-	{disease: "D", protein: "NA", fever: "Y", condition: "disease and fever",
-	question : 'You know that an alien has Disease D and has a fever. Why do they have a fever?'},
-	{disease: "NA", protein: "X", fever: "Y", condition: "protein and fever",
-	question : 'You know that an alien expresses Protein X and has a fever. Why do they have a fever?'},
-	{disease: "NA", protein: "Y", fever: "Y", condition: "protein and fever",
-	question : 'You know that an alien expresses Protein Y and has a fever. Why do they have a fever?'}];
+var get_questions = function() {	
+	var disease_protein_dir = [{disease: "A", protein: "X", fever: "N", 
+	question : "You know that an alien has Disease A and expresses Protein X. Why do they express Protein X?"},
+	{disease: "B", protein: "X", fever: "N",
+	question : "You know that an alien has Disease B and expresses Protein X. Why do they express Protein X?"},
+	{disease: "A", protein: "Y", fever: "N",
+ 	question : "You know that an alien has Disease A and expresses Protein Y. Why do they express Protein Y?"},
+	{disease: "C", protein: "Y", fever: "N",
+ 	question : "You know that an alien has Disease C and expresses Protein Y. Why do they express Protein Y?"},
+	{disease: "D", protein: "Y", fever: "N",
+ 	question : "You know that an alien has Disease D and expresses Protein Y. Why do they express Protein Y?"}]
+ 	
+ 	var disease_protein_indir = [{disease: "C", protein: "X", fever: "N",
+	question : "You know that an alien has Disease C and expresses Protein X. Why do they express Protein X?"},
+	{disease: "D", protein: "X", fever: "N", condition: "disease and protein",
+	question : 'You know that an alien has Disease D and has Protein X. Why do they have Protein X?'},
+	{disease: "B", protein: "Y", fever: "N", condition: "disease and protein",
+	question : 'You know that an alien has Disease B and has Protein Y. Why do they have Protein Y?'}]
 	
-// 	in case i want to use these in the future
-// 	var extra_questions = [{disease: "A", protein: "X", fever: "NA", 
-// 	question : "You know that an alien has Disease A and expresses Protein X. Why do they express Protein X?"},
-// 	{disease: "B", protein: "X", fever: "NA",
-// 	question : "You know that an alien has Disease B and expresses Protein X. Why do they express Protein X?"},
-// 	{disease: "C", protein: "X", fever: "NA",
-// 	question : "You know that an alien has Disease C and expresses Protein X. Why do they express Protein X?"},
-// 	{disease: "D", protein: "Y", fever: "NA",
-// 	question : "You know that an alien has Disease D and expresses Protein Y. Why do they express Protein Y?"},
-// 	{disease: "A", protein: "Y", fever: "NA",
-// 	question : "You know that an alien has Disease A and expresses Protein Y. Why do they express Protein Y?"},
-// 	{disease: "C", protein: "Y", fever: "NA",
-// 	question : "You know that an alien has Disease C and expresses Protein Y. Why do they express Protein Y?"}];
+	var disease_fever_dir = [{disease: "A", protein: "N", fever: "Y", condition: "disease and fever",
+	question : 'You know that an alien has Disease A and has a fever. Why do they have a fever?'}] 
+	
+	var disease_fever_indir = [{disease: "B", protein: "N", fever: "Y", condition: "disease and fever",
+	question : 'You know that an alien has Disease B and has a fever. Why do they have a fever?'},
+	{disease: "C", protein: "N", fever: "Y", condition: "disease and fever",
+	question : 'You know that an alien has Disease C and has a fever. Why do they have a fever?'},
+	{disease: "D", protein: "N", fever: "Y", condition: "disease and fever",
+	question : 'You know that an alien has Disease D and has a fever. Why do they have a fever?'}]
+	
+	var protein_fever = [{disease: "N", protein: "X", fever: "Y", condition: "protein and fever",
+	question : 'You know that an alien has Protein X and has a fever. Why do they have a fever?'},
+	{disease: "N", protein: "Y", fever: "Y", condition: "protein and fever",
+	question : 'You know that an alien has Protein Y and has a fever. Why do they have a fever?'}]
+	
+	var questions = [];
+	
+	_(disease_protein_dir).shuffle();
+	questions.push(disease_protein_dir[0]);
+	
+	_(disease_protein_indir).shuffle();
+	questions.push(disease_protein_indir[0]);
+	
+	questions.push(disease_fever_dir[0]);
+	
+	_(disease_fever_indir).shuffle();
+	questions.push(disease_fever_indir[0]);
+	
+	_(protein_fever).shuffle();
+	questions.push(protein_fever[0]);
 	
 	questions = _(questions).shuffle();
 	
@@ -761,11 +768,11 @@ var get_questions = function() {
 var get_comprehension_questions = function() {
 	var comp_questions = [{comp_question: "How many aliens out of 100 have Disease B?",
 	wrong_ans: "2", right_ans: "10"},
-	{comp_question: "What happens when an alien expresses Protein X and Protein Y?",
+	{comp_question: "What happens when an alien has Protein X and Protein Y?",
 	wrong_ans: "They get Disease C.", right_ans: "They get a Fever."},
-	{comp_question: "True or False: If an alien has Disease C, they always express Protein X.",
+	{comp_question: "True or False: If an alien has Disease C, they always have Protein X.",
 	wrong_ans: "True", right_ans: "False"},
-	{comp_question: "When an alien has Disease B, which protein do they always express?",
+	{comp_question: "When an alien has Disease B, which protein do they always have?",
 	wrong_ans: "Protein Y", right_ans: "Protein X"},
 	{comp_question: "Which disease do more aliens have?", 
 	wrong_ans: "Disease D", right_ans: "Disease C"},
@@ -778,6 +785,6 @@ var get_comprehension_questions = function() {
 		return comp_questions;
 	}	
 }();
-	
+
 	
 	
