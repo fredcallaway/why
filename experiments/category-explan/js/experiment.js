@@ -1,78 +1,91 @@
 function shuffle(v) { newarray = v.slice(0);for(var j, x, i = newarray.length; i; j = parseInt(Math.random() * i), x = newarray[--i], newarray[i] = newarray[j], newarray[j] = x);return newarray;} // non-destructive.
 function make_slides(f) {
 	var   slides = {};
-
 	slides.i0 = slide(
 	{
 			name : "i0"
 		}
 	);
 
+	slides.instructions = slide(
+	{
+		name: "instructions",
+		start: function() {
+			exp.startT = Date.now();
+			console.log('This version last updated at 3:33 PM on 7/2/14');
+		},
+		button : function() {
+			exp.go();
+		}
+	});
 
 
 	slides.repeated_stims = slide(
 		{   //text for each trial
 			name : "repeated_stims",
 			present:shuffle([
-				{  catchT: 1, check: "Is a cat a mammal or a reptile?   "			},
-				{  catchT: 1, check: "Do dolphins live on land or in the sea?   "	},
-				{  catchT: 1, check: "Do horses lay eggs?   "						},
-				{  catchT: 0, fact: 'An elephant is smart because it is a(n) '		},
-				{  catchT: 0, fact: 'An elephant has bones because it is a(n) '		},
-				{  catchT: 0, fact: 'A horse is smart because it is a(n) '			},
-				{  catchT: 0, fact: 'A horse has lungs because it is a(n) '			},
-				{  catchT: 0, fact: 'A chimp has feet because it is a(n) '			},
-				{  catchT: 0, fact: 'A chimp lives in groups because it is a(n) '	},
-				{  catchT: 0, fact: 'A chimp is smart because it is a(n) '			},
-				{  catchT: 0, fact: 'A mouse has lungs because it is a(n) '			},
-				{  catchT: 0, fact: 'A mouse has a tail because it is a(n) '		},
-				{  catchT: 0, fact: 'A squirrel has claws because it is a(n) '		},
-				{  catchT: 0, fact: 'A tiger has claws because it is a(n) '			},
-				{  catchT: 0, fact: 'A tiger is dangerous because it is a(n) '		},
-				{  catchT: 0, fact: 'A tiger is smart because it is a(n) '			},
-				{  catchT: 0, fact: 'A dolphin has fins because it is a(n) '		},
-				{  catchT: 0, fact: 'A robin has wings because it is a(n) '			},
-				{  catchT: 0, fact: 'A chicken has wings because it is a(n) '		},
-				{  catchT: 0, fact: 'A robin has wings because it is a(n) '			},
-				{  catchT: 0, fact: 'A salmon has fins because it is a(n) '			},
-				{  catchT: 0, fact: 'A bee lives in groups because it is a(n) '		},
-				{  catchT: 0, fact: 'A bee has wings because it is a(n) '			},
-				{  catchT: 0, fact: 'An alligator has teeth because it is a(n) '	},
-				{  catchT: 0, fact: 'A deer has teeth because it is a(n) '			},
-				{  catchT: 0, fact: 'A lizard has a tail because it is a(n) '		}
+				// PLANTS
+				{catchT:0, cat: 'plant', trait: 'simple part', fact: 'Tulips have leaves because they are ' },
+				{catchT:0, cat: 'plant', trait: 'trick attr', fact: 'Tulips are beautiful because they are ' },
+				{catchT:0, cat: 'plant', trait: 'trick attr', fact: 'Redwoods are beautiful because they are ' },
+				{catchT:0, cat: 'plant', trait: 'trick part', fact: 'Trees have seeds because they are ' },
+				{catchT:0, cat: 'plant', trait: 'trick part', fact: 'Strawberries have seeds because they are ' },
+				{catchT:0, cat: 'plant', trait: 'simple attr', fact: 'Strawberries are tasty because they are ' },
+				// VEHICLES
+				{catchT:0, cat: 'vehicle', trait: 'simple part', fact: 'Ferraris have tires because they are ' },
+				{catchT:0, cat: 'vehicle', trait: 'trick attr', fact: 'Ferraris are fast because they are ' },
+				{catchT:0, cat: 'vehicle', trait: 'trick attr', fact: 'Boeing 747s are fast because they are ' },
+				{catchT:0, cat: 'vehicle', trait: 'trick part', fact: 'Vans have steering wheels because they are ' },
+				{catchT:0, cat: 'vehicle', trait: 'trick part', fact: 'Motorboats have steering wheels because they are ' },
+				{catchT:0, cat: 'vehicle', trait: 'simple attr', fact: 'Motorboats are fun because they are ' },
+				// ANIMALS
+				{catchT:0, cat: 'animal', trait: 'simple part', fact: 'Tigers have fur because they are ' },
+				{catchT:0, cat: 'animal', trait: 'trick attr', fact: 'Tigers are smart because they are ' },
+				{catchT:0, cat: 'animal', trait: 'trick attr', fact: 'Chimpanzees are smart because they are ' },
+				{catchT:0, cat: 'animal', trait: 'trick part', fact: 'Salmon have fins because they are ' },
+				{catchT:0, cat: 'animal', trait: 'trick part', fact: 'Dolphins have fins because they are ' },
+				{catchT:0, cat: 'animal', trait: 'simple attr', fact: 'Dolphins are friendly because they are ' },
+				// CATCH
+				{catchT: 1, check: 'Can tigers fly?    ' },
+				{catchT: 1, check: 'Are Ferraris boats?    ' },
+				{catchT: 1, check: 'Do trees have roots?    ' }
 			]),
 
-
-			start : function(){
-
-			},
 			present_handle : function(stim){
 				exp.trial_type = 'critical';
 				$('#explanation').focus();
 				$('#txt').text(stim.fact);
 				this.init_slider();
-				exp.data_trials.push(stim);
+				_s.data = {
+					'trait' : stim.trait,
+					'cat' : stim.cat,
+					'fact' : stim.fact,
+				};
+				_s.startT = Date.now();
 			},
 			catch_trial_handle : function(stim) {
 				exp.trial_type = 'catch';
+				_s.isCatch = true;
 				$('#explanation').focus();
 				$('#txt').text(stim.check);
 				this.init_slider();
-				exp.data_trials.push(stim);
+				_s.data = {
+					'check' : stim.check,
+				};
+				_s.startT = Date.now();
 			},
 			init_slider : function() {
-				// $(".ui-slider-handle").hide();
 				$("#slider1").css('width' , 3*(exp.width/4)).centerhin();
 				$(".slider-lbl1 ").css('right' , (exp.width/4) *3.2 +20);
 				$(".slider-lbl2 ").css('left' , (exp.width/4) *3.2 +20);
-				exp.sliderPost=null;
+				_s.sliderPost=null;
 				$("#slider1").slider({
-					range : "min",
-					value : 50,
-					min : 0,
-					max : 100,
+					range: "min",
+					value: 50,
+					min: 0,
+					max: 100,
 					slide : function(event, ui) {
-						exp.sliderPost = ui.value/100; // sliderPost in 0..1
+						_s.sliderPost = ui.value/100; // sliderPost in 0..1
 					}
 				});
 				$("#slider1").mousedown(function(){$("#slider1 a").css('display', 'inherit');});
@@ -80,14 +93,16 @@ function make_slides(f) {
 				$(".ui-slider-handle").css('display', 'none');
 			},
 			button : function() {
-				var res = { explanation: $('#explanation').val(),
-							confidence: exp.sliderPost };
-				if (res.explanation === "") $('#help').show(); //no explanation
+				_s.data.explanation = $('#explanation').val();
+				_s.data.confidence = _s.sliderPost;
+				if (_s.data.explanation === "") $('#help').show(); //no explanation
 				else {
 					$('#help').hide();
-					if (res.confidence === null) $('#help2').show(); //no confidence
+					if (_s.data.confidence === null) $('#help2').show(); //no confidence
 					else { //explanation and confidence given
-						exp.check_trials.push(res);
+						_s.data.time_taken = (Date.now() - _s.startT)/1000; //in seconds
+						if (_s.isCatch) exp.check_trials.push(_s.data);
+						else exp.trials.push(_s.data);
 						$('#explanation').val("");
 						$('#help2').hide();
 						_stream.apply(this);
@@ -108,7 +123,7 @@ function make_slides(f) {
 			button : function(e){
 				if (e.preventDefault) e.preventDefault();
 				exp.subj_data =
-					[{
+					{
 						language: $('select[name="language"]').val(),
 						enjoyment: $('select[name="enjoyment"]').val(),
 						assess: $('input[name="assess"]:checked').val(),
@@ -116,7 +131,7 @@ function make_slides(f) {
 						sex : $('input[name="sex"]:checked').val(),
 						education : $('select[name="education"]').val(),
 						workerId : turk.workerId
-					}];
+					};
 				exp.go();
 				return false;
 			}
@@ -131,10 +146,12 @@ function make_slides(f) {
 			start : function(){
 
 				exp.data= {
-					trials : exp.data_trials,
-					checks : exp.check_trials,
+					trials : exp.trials,
+					check_trials : exp.check_trials,
 					system : exp.system,
-					condition : exp.condition
+					condition : exp.condition,
+					subject_information : exp.subj_data,
+					time : (Date.now() - exp.startT)/1000
 				};
 				setTimeout(function() {turk.submit(exp.data);}, 1000);
 			}
@@ -149,12 +166,12 @@ function init() {
 	$('body').css('visibility','visible');
 	exp_sizing();
 
-	exp.data_trials=[];
+	exp.trials=[];
 	exp.check_trials=[];
 	exp.sandbox=0;
 	exp.slides = make_slides(exp);
 
-	exp.structure=["i0", 'repeated_stims', 'subj_info', 'thanks'];
+	exp.structure=["i0", 'instructions', 'repeated_stims', 'subj_info', 'thanks'];
 	set_condition();
 
 	//allow to click through experiment
@@ -166,8 +183,17 @@ function init() {
 	else{
 		$('#start-button').click(function(){experiment_proceed();});
 	}
-
-
+    exp.system =
+        {
+            workerId : turk.workerId,
+            cond : exp.condition,
+            Browser : BrowserDetect.browser,
+            OS : BrowserDetect.OS,
+            screenH: screen.height,
+            screenUH: exp.height,
+            screenW: screen.width,
+            screenUW: exp.width
+        };
 	exp.go();
 
 }
@@ -177,5 +203,3 @@ function set_condition(){
 					bins:"lmh"
 					};
 }
-
-
