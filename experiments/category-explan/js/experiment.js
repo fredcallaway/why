@@ -11,49 +11,49 @@ function make_slides(f) {
 	{
 		name: "instructions",
 		button : function() {
-			exp.go(); 
+			exp.go();
 		}
 	});
+
 
 	slides.repeated_stims = slide(
 		{   //text for each trial
 			name : "repeated_stims",
 			present:shuffle([
-				{  catchT: 0, fact: 'Tulips have leaves because they are '	},
-				{  catchT: 0, fact: 'Tulips are beautiful because they are '	},
-				{  catchT: 0, fact: 'Strawberries have seeds because they are '	},
-				{  catchT: 0, fact: 'Trees have seeds because they are '	},
-				{  catchT: 0, fact: 'Redwoods are beautiful because they are '	},
-				{  catchT: 0, fact: 'Ferraris have tires because they are '	},
-				{  catchT: 0, fact: 'Ferraris are fast because they are '	},
-				{  catchT: 0, fact: 'Motorboats have engines because they are '	},
-				{  catchT: 0, fact: 'Motorboats are useful because they are '	},
-				{  catchT: 0, fact: 'Cars have engines because they are '	},
-				{  catchT: 0, fact: 'Boeing 747s are fast because they are '	},
-				{  catchT: 0, fact: 'Tigers have fur because they are '	},
-				{  catchT: 0, fact: 'Tigers are smart because they are '	},
-				{  catchT: 0, fact: 'Scorpions have eyes because they are '	},
-				{  catchT: 0, fact: 'Scorpions are dangerous because they are '	},
-				{  catchT: 0, fact: 'Birds have eyes because they are '	},
-				{  catchT: 0, fact: 'Chimpanzees are smart because they are '	},
-				{  catchT: 1, check: 'Can tigers fly?    '	},
-				{  catchT: 1, check: 'Are Ferraris boats?    '	},
-				{  catchT: 1, check: 'Do trees have roots?    '	}
+				// PLANTS
+				{catchT:0, cat: 'plant', trait: 'simple part', fact: 'Tulips have leaves because they are ' },
+				{catchT:0, cat: 'plant', trait: 'trick attr', fact: 'Tulips are beautiful because they are ' },
+				{catchT:0, cat: 'plant', trait: 'trick attr', fact: 'Redwoods are beautiful because they are ' },
+				{catchT:0, cat: 'plant', trait: 'trick part', fact: 'Trees have seeds because they are ' },
+				{catchT:0, cat: 'plant', trait: 'trick part', fact: 'Strawberries have seeds because they are ' },
+				{catchT:0, cat: 'plant', trait: 'simple attr', fact: 'Strawberries are tasty because they are ' },
+				// VEHICLES
+				{catchT:0, cat: 'vehicle', trait: 'simple part', fact: 'Ferraris have tires because they are ' },
+				{catchT:0, cat: 'vehicle', trait: 'trick attr', fact: 'Ferraris are fast because they are ' },
+				{catchT:0, cat: 'vehicle', trait: 'trick attr', fact: 'Boeing 747s are fast because they are ' },
+				{catchT:0, cat: 'vehicle', trait: 'trick part', fact: 'Vans have steering wheels because they are ' },
+				{catchT:0, cat: 'vehicle', trait: 'trick part', fact: 'Motorboats have steering wheels because they are ' },
+				{catchT:0, cat: 'vehicle', trait: 'simple attr', fact: 'Motorboats are fun because they are ' },
+				// ANIMALS
+				{catchT:0, cat: 'animal', trait: 'simple part', fact: 'Tigers have fur because they are ' },
+				{catchT:0, cat: 'animal', trait: 'trick attr', fact: 'Tigers are smart because they are ' },
+				{catchT:0, cat: 'animal', trait: 'trick attr', fact: 'Chimpanzees are smart because they are ' },
+				{catchT:0, cat: 'animal', trait: 'trick part', fact: 'Salmon have fins because they are ' },
+				{catchT:0, cat: 'animal', trait: 'trick part', fact: 'Dolphins have fins because they are ' },
+				{catchT:0, cat: 'animal', trait: 'simple attr', fact: 'Dolphins are friendly because they are ' },
+				// CATCH
+				{catchT: 1, check: 'Can tigers fly?    ' },
+				{catchT: 1, check: 'Are Ferraris boats?    ' },
+				{catchT: 1, check: 'Do trees have roots?    ' }
 			]),
 
-
-
-
-
-			start : function(){
-
-			},
 			present_handle : function(stim){
 				exp.trial_type = 'critical';
 				$('#explanation').focus();
 				$('#txt').text(stim.fact);
 				this.init_slider();
 				exp.data_trials.push(stim);
+				exp.start_time = date.now();
 			},
 			catch_trial_handle : function(stim) {
 				exp.trial_type = 'catch';
@@ -61,6 +61,7 @@ function make_slides(f) {
 				$('#txt').text(stim.check);
 				this.init_slider();
 				exp.check_trials.push(stim);
+				exp.start_time = date.now();
 			},
 			init_slider : function() {
 				$("#slider1").css('width' , 3*(exp.width/4)).centerhin();
@@ -88,6 +89,7 @@ function make_slides(f) {
 					$('#help').hide();
 					if (res.confidence === null) $('#help2').show(); //no confidence
 					else { //explanation and confidence given
+						res.time_taken = date.now() - exp.start_time;
 						if (stim.catchT) exp.check_trials.push(res);
 						else exp.data_trials.push(res);
 						$('#explanation').val("");
@@ -135,7 +137,7 @@ function make_slides(f) {
 				exp.data= {
 					trials : exp.data_trials,
 					checks : exp.check_trials,
-					system : exp.system,
+					system : exp.system, //FIX: exp.system is not defined
 					condition : exp.condition,
 					subject_information : exp.subj_data
 				};
@@ -180,5 +182,3 @@ function set_condition(){
 					bins:"lmh"
 					};
 }
-
-
