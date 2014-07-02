@@ -585,31 +585,23 @@ function make_slides(f) {
 
     //!subj_info
     
-    slides.subj_info =  slide(
-        {
-            name : "subj_info",
-            start : function () {
-                $('#subj_info_form').submit(this.button);
-            },
-            button : function(e){
-                if (e.preventDefault) e.preventDefault();
-                exp.subj_data =
-                    [{
-                        language: $('select[name="language"]').val(),
-                        enjoyment: $('select[name="enjoyment"]').val(),
-                        assess: $('input[name="assess"]:checked').val(),
-                        age : $('input:text[name="age"]').val(),
-                        sex : $('input[name="sex"]:checked').val(),
-                        education : $('select[name="education"]').val(),
-                        workerId : turk.workerId
-                    }];
-				exp.end = Date.now();
-                exp.go();
-                return false;
-            }
-
-        }
-    );
+	  slides.subj_info =  slide({
+		name : "subj_info",
+		submit : function(e){
+		  if (e.preventDefault) e.preventDefault(); // I don't know what this means.
+		  exp.data.subj_data =
+			{
+			  language : $("#language").val(),
+			  enjoyment : $("#enjoyment").val(),
+			  asses : $('input[name="assess"]:checked').val(),
+			  age : $("#age").val(),
+			  gender : $("#gender").val(),
+			  education : $("#education").val(),
+			  comments : $("#comments").val(),
+			};
+		  exp.go(); //use exp.go() if and only if there is no "present" data.
+		}
+	  });
 
     
     slides.thanks = slide(
