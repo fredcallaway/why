@@ -299,7 +299,7 @@ function make_slides(f) {
 				$("#catch_trial").hide();
 				$("#feedback").hide();
 				$("#critical_trial").show();
-				//$("#expl").focus();
+				$("#expl-text").focus();
 				exp.questions = get_questions();
 				exp.current_cond = exp.questions[stim["item"]];
             	
@@ -588,7 +588,7 @@ function make_slides(f) {
 	  slides.subj_info =  slide({
 		name : "subj_info",
 		submit : function(e){
-		  if (e.preventDefault) e.preventDefault(); // I don't know what this means.
+		  //if (e.preventDefault) e.preventDefault(); // I don't know what this means.
 		  exp.subj_data =
 			{
 			  language : $("#language").val(),
@@ -599,7 +599,7 @@ function make_slides(f) {
 			  education : $("#education").val(),
 			  comments : $("#comments").val(),
 			};
-		  _stream.apply(this); //use exp.go() if and only if there is no "present" data.
+		  exp.go(); //use exp.go() if and only if there is no "present" data.
 		}
 	  });
 
@@ -785,6 +785,6 @@ var get_comprehension_questions = function() {
 		return comp_questions;
 	}	
 }();
-	
+
 	
 	
