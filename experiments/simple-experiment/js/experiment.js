@@ -240,7 +240,7 @@ function make_slides(f) {
 
         }
     );
-
+    
     slides.thanks = slide(
         {
             name : "thanks",
@@ -270,7 +270,7 @@ function init() {
     exp.sandbox=0;
     exp.slides = make_slides(exp);
 
-    exp.structure=["i0", 'new_slide', //'show_some_images',
+    exp.structure=["i0", //'show_some_images',
       'conf_trial', 'repeated_stims', 'subj_info', 'thanks'];
 
     set_condition();
