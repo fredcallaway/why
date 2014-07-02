@@ -52,9 +52,10 @@ def get_column_labels(data_type):
                 new_column_labels_from_json.update(trial.keys())
             elif label == "Answer.subject_information":
               data = json.loads(elem)
+              print data
               new_column_labels_from_json.update(data.keys())
             elif label == "Answer.system":
-              data = json.loads(elem)[0]
+              data = json.loads(elem)
               new_column_labels_from_json.update(data.keys())
   return list(new_column_labels_from_json)
 
@@ -94,7 +95,7 @@ def make_tsv(data_type):
               if label == "Answer.subject_information":
                 data = json.loads(elem)
               elif label == "Answer.system":
-                data = json.loads(elem)[0]
+                data = json.loads(elem)
               for key in new_column_labels:
                 if key in data.keys():
                   subject_level_data[key] = str(data[key])
