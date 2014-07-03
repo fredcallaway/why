@@ -24,7 +24,7 @@ input[type='radio'], label {
 
 #prompt {
     margin: 30px;
-    border: 2px solid yellow;
+    border: 2px solid purple;
     padding: 5px;
     font-family: "Lucida Console";
 }
@@ -32,7 +32,7 @@ input[type='radio'], label {
 .prompt_medium {
     margin: 30px;
     padding: 5px;
-    border: 2px solid yellow;
+    border: 2px solid purple;
     color: blue;
     font-family: "Lucida Console";
 }
@@ -40,7 +40,7 @@ input[type='radio'], label {
 .prompt_long {
     margin: 30px;
     padding: 5px;
-    border: 2px solid yellow;
+    border: 2px solid purple;
     color: green;
     font-family: "Lucida Console";
 }

@@ -7,16 +7,16 @@ function make_slides(f) {
         }
     );
 
-    slides.scenario_short_A = slide(
+    slides.scenario_1 = slide(
         {
-            name : "scenario_short_A",
+            name : "scenario_1",
              start : function () {
                 $('#new_slide_form').submit(this.button);
             }, 
             present : [0],
             button : function (e){
                 var res = {};
-                var text_res = $('#res_text').val();
+                var text_res = $('#res_text_1').val();
                 if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
                     alert("You need to answer all questions!")
                 }  else {
@@ -32,144 +32,10 @@ function make_slides(f) {
         }
     );
 
-    slides.scenario_short_B = slide(
-        {
-            name : "scenario_short_B",
-             start : function () {
-                $('#new_slide_form').submit(this.button);
-            }, 
-            present : [0],
-            button : function (e){
-                var res = {};
-               var text_res1 = $('#1res_text').val();
-               var text_res2 = $('#2res_text').val();
-               if (text_res1 == "" || $('input[name="sure"]:checked').length == 0 || text_res2 == "" || $('input[name="sure2"]:checked').length == 0) {
-                    alert("You need to answer all questions!")
-               } else {
-                    res = { prompt: "1",
-                        text1: text_res1,
-                        sure1: $('input[name="sure"]:checked').val(),
-                        text2: text_res2,
-                        sure2: $('input[name="sure2"]:checked').val()
-                    };
-                    exp.data_trials.push(res);
-                    _stream.apply(this);
-                    return false;
-                }
-            }
-        }
-    );
 
-    slides.scenario_medium_A = slide(
+    slides.scenario_2 = slide(
         {
-            name : "scenario_medium_A",
-             start : function () {
-                $('#new_slide_form').submit(this.button);
-            }, 
-            present : [0],
-            button : function (e){
-                var res = {};
-                var text_res = $('#res_text_m').val();
-               if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
-                    alert("You need to answer all questions!")
-                }  else {
-                    res = { prompt: "1",
-                        text: text_res,           
-                        sure: $('input[name="sure"]:checked').val()
-                    };
-                    exp.data_trials.push(res);
-                    _stream.apply(this);
-                    return false;
-                }
-            }
-        }
-    );
-
-    slides.scenario_medium_B = slide(
-        {
-            name : "scenario_medium_B",
-             start : function () {
-                $('#new_slide_form').submit(this.button);
-            }, 
-            present : [0],
-            button : function (e){
-                var res = {};
-               var text_res1 = $('#1res_text_m').val();
-               var text_res2 = $('#2res_text_m').val();
-
-               if (text_res1 == "" || $('input[name="sure"]:checked').length == 0 || text_res2 == "" || $('input[name="sure2"]:checked').length == 0) {
-                    alert("You need to answer all questions!")
-               } else {
-                    res = { prompt: "1",
-                        text1: text_res1,
-                        sure1: $('input[name="sure"]:checked').val(),
-                        text2: text_res2,
-                        sure2: $('input[name="sure2"]:checked').val()
-                    };
-                    exp.data_trials.push(res);
-                    _stream.apply(this);
-                    return false;
-                }
-            }
-        }
-    );
-
-    slides.scenario_long_A = slide(
-        {
-            name : "scenario_long_A",
-             start : function () {
-                $('#new_slide_form').submit(this.button);
-            }, 
-            present : [0],
-            button : function (e){
-                var res = {};
-                var text_res = $('#res_text_l').val();
-                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
-                    alert("You need to answer all questions!")
-                }  else {
-                    res = { prompt: "1",
-                        text: text_res,           
-                        sure: $('input[name="sure"]:checked').val()
-                    };
-                    exp.data_trials.push(res);
-                    _stream.apply(this);
-                    return false;
-                }
-            }
-        }
-    );
-    slides.scenario_long_B = slide(
-        {
-            name : "scenario_long_B",
-             start : function () {
-                $('#new_slide_form').submit(this.button);
-            }, 
-            present : [0],
-            button : function (e){
-                var res = {};
-               var text_res1 = $('#1res_text_l').val();
-               var text_res2 = $('#2res_text_l').val();
-
-               if (text_res1 == "" || $('input[name="sure"]:checked').length == 0 || text_res2 == "" || $('input[name="sure2"]:checked').length == 0) {
-                    alert("You need to answer all questions!")
-               } else {
-                    res = { prompt: "1",
-                        text1: text_res1,
-                        sure1: $('input[name="sure"]:checked').val(),
-                        text2: text_res2,
-                        sure2: $('input[name="sure2"]:checked').val()
-                    };
-                    exp.data_trials.push(res);
-                    _stream.apply(this);
-                    return false;
-                }
-            }
-        }
-    );
-
-    slides.scenario_short_A2 = slide(
-        {
-            name : "scenario_short_A2",
+            name : "scenario_2",
              start : function () {
                 $('#new_slide_form').submit(this.button);
             }, 
@@ -192,146 +58,10 @@ function make_slides(f) {
         }
     );
 
-    slides.scenario_short_B2 = slide(
+
+    slides.scenario_3 = slide(
         {
-            name : "scenario_short_B2",
-             start : function () {
-                $('#new_slide_form').submit(this.button);
-            }, 
-            present : [0],
-            button : function (e){
-                var res = {};
-               var text_res1 = $('#1res_text_2').val();
-               var text_res2 = $('#2res_text_2').val();
-
-               if (text_res1 == "" || $('input[name="sure"]:checked').length == 0 || text_res2 == "" || $('input[name="sure2"]:checked').length == 0) {
-                    alert("You need to answer all questions!")
-               } else {
-                    res = { prompt: "2",
-                        text1: text_res1,
-                        sure1: $('input[name="sure"]:checked').val(),
-                        text2: text_res2,
-                        sure2: $('input[name="sure2"]:checked').val()
-                    };
-                    exp.data_trials.push(res);
-                    _stream.apply(this);
-                    return false;
-                }
-            }
-        }
-    );
-
-    slides.scenario_medium_A2 = slide(
-        {
-            name : "scenario_medium_A2",
-             start : function () {
-                $('#new_slide_form').submit(this.button);
-            }, 
-            present : [0],
-            button : function (e){
-                var res = {};
-                var text_res = $('#res_text_m2').val();
-                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
-                    alert("You need to answer all questions!")
-                }  else {
-                    res = { prompt: "2",
-                        text: text_res,           
-                        sure: $('input[name="sure"]:checked').val()
-                    };
-                    exp.data_trials.push(res);
-                    _stream.apply(this);
-                    return false;
-                }
-            }
-        }
-    );
-
-    slides.scenario_medium_B2 = slide(
-        {
-            name : "scenario_medium_B2",
-             start : function () {
-                $('#new_slide_form').submit(this.button);
-            }, 
-            present : [0],
-            button : function (e){
-                var res = {};
-               var text_res1 = $('#1res_text_m2').val();
-               var text_res2 = $('#2res_text_m2').val();
-
-               if (text_res1 == "" || $('input[name="sure"]:checked').length == 0 || text_res2 == "" || $('input[name="sure2"]:checked').length == 0) {
-                    alert("You need to answer all questions!")
-               } else {
-                    res = { prompt: "2",
-                        text1: text_res1,
-                        sure1: $('input[name="sure"]:checked').val(),
-                        text2: text_res2,
-                        sure2: $('input[name="sure2"]:checked').val()
-                    };
-                    exp.data_trials.push(res);
-                    _stream.apply(this);
-                    return false;
-                }
-            }
-        }
-    );
-
-    slides.scenario_long_A2 = slide(
-        {
-            name : "scenario_long_A2",
-             start : function () {
-                $('#new_slide_form').submit(this.button);
-            }, 
-            present : [0],
-            button : function (e){
-                var res = {};
-                var text_res = $('#res_text_l2').val();
-                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
-                    alert("You need to answer all questions!")
-                }  else {
-                    res = { prompt: "2",
-                        text: text_res,           
-                        sure: $('input[name="sure"]:checked').val()
-                    };
-                    exp.data_trials.push(res);
-                    _stream.apply(this);
-                    return false;
-                }
-            }
-        }
-    );
-
-    slides.scenario_long_B2 = slide(
-        {
-            name : "scenario_long_B2",
-             start : function () {
-                $('#new_slide_form').submit(this.button);
-            }, 
-            present : [0],
-            button : function (e){
-                var res = {};
-               var text_res1 = $('#1res_text_l2').val();
-               var text_res2 = $('#2res_text_l2').val();
-
-               if (text_res1 == "" || $('input[name="sure"]:checked').length == 0 || text_res2 == "" || $('input[name="sure2"]:checked').length == 0) {
-                    alert("You need to answer all questions!")
-               } else {
-                    res = { prompt: "2",
-                        text1: text_res1,
-                        sure1: $('input[name="sure"]:checked').val(),
-                        text2: text_res2,
-                        sure2: $('input[name="sure2"]:checked').val()
-                    };
-                    exp.data_trials.push(res);
-                    _stream.apply(this);
-                    return false;
-                }
-            }
-        }
-    );
-
-    slides.scenario_short_A3 = slide(
-        {
-            name : "scenario_short_A3",
+            name : "scenario_3",
              start : function () {
                 $('#new_slide_form').submit(this.button);
             }, 
@@ -354,146 +84,10 @@ function make_slides(f) {
         }
     );
 
-    slides.scenario_short_B3 = slide(
+
+    slides.scenario_4 = slide(
         {
-            name : "scenario_short_B3",
-             start : function () {
-                $('#new_slide_form').submit(this.button);
-            }, 
-            present : [0],
-            button : function (e){
-                var res = {};
-               var text_res1 = $('#1res_text_3').val();
-               var text_res2 = $('#2res_text_3').val();
-
-               if (text_res1 == "" || $('input[name="sure"]:checked').length == 0 || text_res2 == "" || $('input[name="sure2"]:checked').length == 0) {
-                    alert("You need to answer all questions!")
-               } else {
-                    res = { prompt: "3",
-                        text1: text_res1,
-                        sure1: $('input[name="sure"]:checked').val(),
-                        text2: text_res2,
-                        sure2: $('input[name="sure2"]:checked').val()
-                    };
-                    exp.data_trials.push(res);
-                    _stream.apply(this);
-                    return false;
-                }
-            }
-        }
-    );
-
-    slides.scenario_medium_A3 = slide(
-        {
-            name : "scenario_medium_A3",
-             start : function () {
-                $('#new_slide_form').submit(this.button);
-            }, 
-            present : [0],
-            button : function (e){
-                var res = {};
-                var text_res = $('#res_text_3').val();
-                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
-                    alert("You need to answer all questions!")
-                }  else {
-                    res = { prompt: "3",
-                        text: text_res,           
-                        sure: $('input[name="sure"]:checked').val()
-                    };
-                    exp.data_trials.push(res);
-                    _stream.apply(this);
-                    return false;
-                }
-            }
-        }
-    );
-
-    slides.scenario_medium_B3 = slide(
-        {
-            name : "scenario_medium_B3",
-             start : function () {
-                $('#new_slide_form').submit(this.button);
-            }, 
-            present : [0],
-            button : function (e){
-                var res = {};
-               var text_res1 = $('#1res_text_m3').val();
-               var text_res2 = $('#2res_text_m3').val();
-
-               if (text_res1 == "" || $('input[name="sure"]:checked').length == 0 || text_res2 == "" || $('input[name="sure2"]:checked').length == 0) {
-                    alert("You need to answer all questions!")
-               } else {
-                    res = { prompt: "3",
-                        text1: text_res1,
-                        sure1: $('input[name="sure"]:checked').val(),
-                        text2: text_res2,
-                        sure2: $('input[name="sure2"]:checked').val()
-                    };
-                    exp.data_trials.push(res);
-                    _stream.apply(this);
-                    return false;
-                }
-            }
-        }
-    );
-
-    slides.scenario_long_A3 = slide(
-        {
-            name : "scenario_long_A3",
-             start : function () {
-                $('#new_slide_form').submit(this.button);
-            }, 
-            present : [0],
-            button : function (e){
-                var res = {};
-                var text_res = $('#res_text_l3').val();
-                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
-                    alert("You need to answer all questions!")
-                }  else {
-                    res = { prompt: "3",
-                        text: text_res,           
-                        sure: $('input[name="sure"]:checked').val()
-                    };
-                    exp.data_trials.push(res);
-                    _stream.apply(this);
-                    return false;
-                }
-            }
-        }
-    );
-
-    slides.scenario_long_B3 = slide(
-        {
-            name : "scenario_long_B3",
-             start : function () {
-                $('#new_slide_form').submit(this.button);
-            }, 
-            present : [0],
-            button : function (e){
-                var res = {};
-               var text_res1 = $('#1res_text_l3').val();
-               var text_res2 = $('#2res_text_l3').val();
-
-               if (text_res1 == "" || $('input[name="sure"]:checked').length == 0 || text_res2 == "" || $('input[name="sure2"]:checked').length == 0) {
-                    alert("You need to answer all questions!")
-               } else {
-                    res = { prompt: "3",
-                        text1: text_res1,
-                        sure1: $('input[name="sure"]:checked').val(),
-                        text2: text_res2,
-                        sure2: $('input[name="sure2"]:checked').val()
-                    };
-                    exp.data_trials.push(res);
-                    _stream.apply(this);
-                    return false;
-                }
-            }
-        }
-    );
-
-    slides.scenario_short_A4 = slide(
-        {
-            name : "scenario_short_A4",
+            name : "scenario_4",
              start : function () {
                 $('#new_slide_form').submit(this.button);
             }, 
@@ -516,49 +110,20 @@ function make_slides(f) {
         }
     );
 
-    slides.scenario_short_B4 = slide(
+    slides.scenario_5 = slide(
         {
-            name : "scenario_short_B4",
+            name : "scenario_5",
              start : function () {
                 $('#new_slide_form').submit(this.button);
             }, 
             present : [0],
             button : function (e){
                 var res = {};
-               var text_res1 = $('#1res_text_4').val();
-               var text_res2 = $('#2res_text_4').val();
-
-               if (text_res1 == "" || $('input[name="sure"]:checked').length == 0 || text_res2 == "" || $('input[name="sure2"]:checked').length == 0) {
-                    alert("You need to answer all questions!")
-                } else {
-                    res = { prompt: "4",
-                        text1: text_res1,
-                        sure1: $('input[name="sure"]:checked').val(),
-                        text2: text_res2,
-                        sure2: $('input[name="sure2"]:checked').val()
-                    };
-                    exp.data_trials.push(res);
-                    _stream.apply(this);
-                    return false;
-                }
-            }
-        }
-    );
-
-    slides.scenario_medium_A4 = slide(
-        {
-            name : "scenario_medium_A4",
-             start : function () {
-                $('#new_slide_form').submit(this.button);
-            }, 
-            present : [0],
-            button : function (e){
-                var res = {};
-                var text_res = $('#res_text_m4').val();
+                var text_res = $('#res_text_5').val();
                 if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
                     alert("You need to answer all questions!")
                 }  else {
-                    res = { prompt: "4",
+                    res = { prompt: "5",
                         text: text_res,           
                         sure: $('input[name="sure"]:checked').val()
                     };
@@ -570,49 +135,20 @@ function make_slides(f) {
         }
     );
 
-    slides.scenario_medium_B4 = slide(
+    slides.scenario_6 = slide(
         {
-            name : "scenario_medium_B4",
+            name : "scenario_6",
              start : function () {
                 $('#new_slide_form').submit(this.button);
             }, 
             present : [0],
             button : function (e){
                 var res = {};
-               var text_res1 = $('#1res_text_m4').val();
-               var text_res2 = $('#2res_text_m4').val();
-
-               if (text_res1 == "" || $('input[name="sure"]:checked').length == 0 || text_res2 == "" || $('input[name="sure2"]:checked').length == 0) {
-                    alert("You need to answer all questions!")
-               } else {
-                    res = { prompt: "4",
-                        text1: text_res1,
-                        sure1: $('input[name="sure"]:checked').val(),
-                        text2: text_res2,
-                        sure2: $('input[name="sure2"]:checked').val()
-                    };
-                    exp.data_trials.push(res);
-                    _stream.apply(this);
-                    return false;
-                }
-            }
-        }
-    );
-
-    slides.scenario_long_A4 = slide(
-        {
-            name : "scenario_long_A4",
-             start : function () {
-                $('#new_slide_form').submit(this.button);
-            }, 
-            present : [0],
-            button : function (e){
-                var res = {};
-                var text_res = $('#res_text_l4').val();
+                var text_res = $('#res_text_6').val();
                 if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
                     alert("You need to answer all questions!")
                 }  else {
-                    res = { prompt: "4",
+                    res = { prompt: "6",
                         text: text_res,           
                         sure: $('input[name="sure"]:checked').val()
                     };
@@ -624,26 +160,22 @@ function make_slides(f) {
         }
     );
 
-    slides.scenario_long_B4 = slide(
+   slides.scenario_7 = slide(
         {
-            name : "scenario_long_B4",
+            name : "scenario_7",
              start : function () {
                 $('#new_slide_form').submit(this.button);
             }, 
             present : [0],
             button : function (e){
                 var res = {};
-               var text_res1 = $('#1res_text_l4').val();
-               var text_res2 = $('#2res_text_l4').val();
-
-               if (text_res1 == "" || $('input[name="sure"]:checked').length == 0 || text_res2 == "" || $('input[name="sure2"]:checked').length == 0) {
+                var text_res = $('#res_text_7').val();
+                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
                     alert("You need to answer all questions!")
-               } else {
-                    res = { prompt: "4",
-                        text1: text_res1,
-                        sure1: $('input[name="sure"]:checked').val(),
-                        text2: text_res2,
-                        sure2: $('input[name="sure2"]:checked').val()
+                }  else {
+                    res = { prompt: "7",
+                        text: text_res,           
+                        sure: $('input[name="sure"]:checked').val()
                     };
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -652,6 +184,132 @@ function make_slides(f) {
             }
         }
     );
+
+   slides.scenario_8 = slide(
+        {
+            name : "scenario_8",
+             start : function () {
+                $('#new_slide_form').submit(this.button);
+            }, 
+            present : [0],
+            button : function (e){
+                var res = {};
+                var text_res = $('#res_text_8').val();
+                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+                }  else {
+                    res = { prompt: "8",
+                        text: text_res,           
+                        sure: $('input[name="sure"]:checked').val()
+                    };
+                    exp.data_trials.push(res);
+                    _stream.apply(this);
+                    return false;
+                }
+            }
+        }
+    );
+
+   slides.scenario_9 = slide(
+        {
+            name : "scenario_9",
+             start : function () {
+                $('#new_slide_form').submit(this.button);
+            }, 
+            present : [0],
+            button : function (e){
+                var res = {};
+                var text_res = $('#res_text_9').val();
+                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+                }  else {
+                    res = { prompt: "9",
+                        text: text_res,           
+                        sure: $('input[name="sure"]:checked').val()
+                    };
+                    exp.data_trials.push(res);
+                    _stream.apply(this);
+                    return false;
+                }
+            }
+        }
+    );
+
+   slides.scenario_10 = slide(
+        {
+            name : "scenario_10",
+             start : function () {
+                $('#new_slide_form').submit(this.button);
+            }, 
+            present : [0],
+            button : function (e){
+                var res = {};
+                var text_res = $('#res_text_10').val();
+                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+                }  else {
+                    res = { prompt: "10",
+                        text: text_res,           
+                        sure: $('input[name="sure"]:checked').val()
+                    };
+                    exp.data_trials.push(res);
+                    _stream.apply(this);
+                    return false;
+                }
+            }
+        }
+    );
+
+   slides.scenario_11 = slide(
+        {
+            name : "scenario_11",
+             start : function () {
+                $('#new_slide_form').submit(this.button);
+            }, 
+            present : [0],
+            button : function (e){
+                var res = {};
+                var text_res = $('#res_text_11').val();
+                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+                }  else {
+                    res = { prompt: "11",
+                        text: text_res,           
+                        sure: $('input[name="sure"]:checked').val()
+                    };
+                    exp.data_trials.push(res);
+                    _stream.apply(this);
+                    return false;
+                }
+            }
+        }
+    );
+
+   slides.scenario_12 = slide(
+        {
+            name : "scenario_12",
+             start : function () {
+                $('#new_slide_form').submit(this.button);
+            }, 
+            present : [0],
+            button : function (e){
+                var res = {};
+                var text_res = $('#res_text_12').val();
+                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                    alert("You need to answer all questions!")
+                }  else {
+                    res = { prompt: "12",
+                        text: text_res,           
+                        sure: $('input[name="sure"]:checked').val()
+                    };
+                    exp.data_trials.push(res);
+                    _stream.apply(this);
+                    return false;
+                }
+            }
+        }
+    );
+
 
     slides.subj_info = slide(
         {
@@ -708,13 +366,8 @@ function init() {
     exp.slides = make_slides(exp);
 
 
-    var group = Math.random();
-    if (group > 0.5) { 
-        exp.structure=["i0",'scenario_short_A','scenario_medium_A', 'scenario_long_A', 'scenario_short_A2', 'scenario_medium_A2', 'scenario_long_A2', 'scenario_short_A3', 'scenario_medium_A3', 'scenario_long_A3', 'scenario_short_A4', 'scenario_medium_A4', 'scenario_long_A4', 'subj_info', 'thanks'];
-    } else {
-        exp.structure=["i0",'scenario_short_B','scenario_medium_B', 'scenario_long_B', 'scenario_short_B2', 'scenario_medium_B2', 'scenario_long_B2', 'scenario_short_B3', 'scenario_medium_B3', 'scenario_long_B3', 'scenario_short_B4', 'scenario_medium_B4', 'scenario_long_B4', 'subj_info', 'thanks'];
-    }
-
+    exp.structure=["i0",'scenario_1','scenario_2', 'scenario_3', 'scenario_4', 'scenario_5', 'scenario_6', 'scenario_7', 'scenario_8', 'scenario_9', 'scenario_10', 'scenario_11', 'scenario_12', 'subj_info', 'thanks'];
+ 
     set_condition();
 
     //allow to click through experiment
@@ -794,6 +447,60 @@ get_crier_name= function(){
     };
 }();
 
+get_five_name= function(){
+    var names=["Brenda", "Amy", "Anna", "Rebecca", "Virginia", "Kathleen", "Pamela", "Martha", "Debra", "Amanda", "Frank", "Scott", "Eric", "Stephen", "Andrew", "Raymond", "Gregory", "Joshua", "Jerry", "Dennis"];
+
+    names = _(names).shuffle();
+    return function(){
+        return names.pop();
+    };
+}();
+
+get_six_name= function(){
+    var names=["Brenda", "Amy", "Anna", "Rebecca", "Virginia", "Kathleen", "Pamela", "Martha", "Debra", "Amanda", "Frank", "Scott", "Eric", "Stephen", "Andrew", "Raymond", "Gregory", "Joshua", "Jerry", "Dennis"];
+
+    names = _(names).shuffle();
+    return function(){
+        return names.pop();
+    };
+}();
+
+get_seven_name= function(){
+    var names=["Brenda", "Amy", "Anna", "Rebecca", "Virginia", "Kathleen", "Pamela", "Martha", "Debra", "Amanda", "Frank", "Scott", "Eric", "Stephen", "Andrew", "Raymond", "Gregory", "Joshua", "Jerry", "Dennis"];
+
+    names = _(names).shuffle();
+    return function(){
+        return names.pop();
+    };
+}();
+
+get_eight_name= function(){
+    var names=["Brenda", "Amy", "Anna", "Rebecca", "Virginia", "Kathleen", "Pamela", "Martha", "Debra", "Amanda", "Frank", "Scott", "Eric", "Stephen", "Andrew", "Raymond", "Gregory", "Joshua", "Jerry", "Dennis"];
+
+    names = _(names).shuffle();
+    return function(){
+        return names.pop();
+    };
+}();
+
+get_nine_name= function(){
+    var names=["Brenda", "Amy", "Anna", "Rebecca", "Virginia", "Kathleen", "Pamela", "Martha", "Debra", "Amanda", "Frank", "Scott", "Eric", "Stephen", "Andrew", "Raymond", "Gregory", "Joshua", "Jerry", "Dennis"];
+
+    names = _(names).shuffle();
+    return function(){
+        return names.pop();
+    };
+}();
+
+get_twelve_name= function(){
+    var names=["Brenda", "Amy", "Anna", "Rebecca", "Virginia", "Kathleen", "Pamela", "Martha", "Debra", "Amanda", "Frank", "Scott", "Eric", "Stephen", "Andrew", "Raymond", "Gregory", "Joshua", "Jerry", "Dennis"];
+
+    names = _(names).shuffle();
+    return function(){
+        return names.pop();
+    };
+}();
+
 
 
 function set_condition(){
@@ -817,4 +524,34 @@ function set_condition(){
 
     var crier = get_crier_name();
     $('.crier_name').each(function(){$(this).text(crier);});
+
+    var five_name = get_five_name();
+    $('.five_name').each(function(){$(this).text(five_name);});
+
+    var six_name = get_six_name();
+    $('.six_name').each(function(){$(this).text(six_name);});
+
+    var seven_name = get_seven_name();
+    $('.seven_name').each(function(){$(this).text(seven_name);});
+
+    var eight_name = get_eight_name();
+    $('.eight_name').each(function(){$(this).text(eight_name);});
+
+    var nine_name = get_nine_name();
+    $('.nine_name').each(function(){$(this).text(nine_name);});
+
+    var ten_1_name = get_wife_name();
+    $('.ten_1_name').each(function(){$(this).text(ten_1_name);});
+
+    var ten_2_name = get_husband_name();
+    $('.ten_2_name').each(function(){$(this).text(ten_2_name);});
+
+    var eleven_1_name = get_pusher_name();
+    $('.eleven_1_name').each(function(){$(this).text(eleven_1_name);});
+
+    var eleven_2_name = get_wife_name();
+    $('.eleven_2_name').each(function(){$(this).text(eleven_2_name);});
+
+    var twelve_name = get_nine_name();
+    $('.twelve_name').each(function(){$(this).text(twelve_name);});
 }
