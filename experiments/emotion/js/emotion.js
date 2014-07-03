@@ -43,12 +43,12 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                 var text_res = $('#res_text_2').val();
-                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                if (text_res == "" || $('input[name="sure2"]:checked').length == 0) {
                     alert("You need to answer all questions!")
                 }  else {
                     res = { prompt: "2",
                         text: text_res,           
-                        sure: $('input[name="sure"]:checked').val()
+                        sure: $('input[name="sure2"]:checked').val()
                     };
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -69,12 +69,12 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                 var text_res = $('#res_text_3').val();
-                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                if (text_res == "" || $('input[name="sure3"]:checked').length == 0) {
                     alert("You need to answer all questions!")
                 }  else {
                     res = { prompt: "3",
                         text: text_res,           
-                        sure: $('input[name="sure"]:checked').val()
+                        sure: $('input[name="sure3"]:checked').val()
                     };
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -95,12 +95,12 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                 var text_res = $('#res_text_4').val();
-                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                if (text_res == "" || $('input[name="sure4"]:checked').length == 0) {
                     alert("You need to answer all questions!")
                 }  else {
                     res = { prompt: "4",
                         text: text_res,           
-                        sure: $('input[name="sure"]:checked').val()
+                        sure: $('input[name="sure4"]:checked').val()
                     };
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -120,12 +120,12 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                 var text_res = $('#res_text_5').val();
-                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                if (text_res == "" || $('input[name="sure5"]:checked').length == 0) {
                     alert("You need to answer all questions!")
                 }  else {
                     res = { prompt: "5",
                         text: text_res,           
-                        sure: $('input[name="sure"]:checked').val()
+                        sure: $('input[name="sure5"]:checked').val()
                     };
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -145,12 +145,12 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                 var text_res = $('#res_text_6').val();
-                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                if (text_res == "" || $('input[name="sure6"]:checked').length == 0) {
                     alert("You need to answer all questions!")
                 }  else {
                     res = { prompt: "6",
                         text: text_res,           
-                        sure: $('input[name="sure"]:checked').val()
+                        sure: $('input[name="sure6"]:checked').val()
                     };
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -170,12 +170,12 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                 var text_res = $('#res_text_7').val();
-                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                if (text_res == "" || $('input[name="sure7"]:checked').length == 0) {
                     alert("You need to answer all questions!")
                 }  else {
                     res = { prompt: "7",
                         text: text_res,           
-                        sure: $('input[name="sure"]:checked').val()
+                        sure: $('input[name="sure7"]:checked').val()
                     };
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -195,12 +195,12 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                 var text_res = $('#res_text_8').val();
-                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                if (text_res == "" || $('input[name="sure8"]:checked').length == 0) {
                     alert("You need to answer all questions!")
                 }  else {
                     res = { prompt: "8",
                         text: text_res,           
-                        sure: $('input[name="sure"]:checked').val()
+                        sure: $('input[name="sure8"]:checked').val()
                     };
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -220,12 +220,12 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                 var text_res = $('#res_text_9').val();
-                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                if (text_res == "" || $('input[name="sure9"]:checked').length == 0) {
                     alert("You need to answer all questions!")
                 }  else {
                     res = { prompt: "9",
                         text: text_res,           
-                        sure: $('input[name="sure"]:checked').val()
+                        sure: $('input[name="sure9"]:checked').val()
                     };
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -245,12 +245,12 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                 var text_res = $('#res_text_10').val();
-                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                if (text_res == "" || $('input[name="sure10"]:checked').length == 0) {
                     alert("You need to answer all questions!")
                 }  else {
                     res = { prompt: "10",
                         text: text_res,           
-                        sure: $('input[name="sure"]:checked').val()
+                        sure: $('input[name="sure10"]:checked').val()
                     };
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -270,12 +270,12 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                 var text_res = $('#res_text_11').val();
-                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                if (text_res == "" || $('input[name="sure11"]:checked').length == 0) {
                     alert("You need to answer all questions!")
                 }  else {
                     res = { prompt: "11",
                         text: text_res,           
-                        sure: $('input[name="sure"]:checked').val()
+                        sure: $('input[name="sure11"]:checked').val()
                     };
                     exp.data_trials.push(res);
                     _stream.apply(this);
@@ -295,12 +295,12 @@ function make_slides(f) {
             button : function (e){
                 var res = {};
                 var text_res = $('#res_text_12').val();
-                if (text_res == "" || $('input[name="sure"]:checked').length == 0) {
+                if (text_res == "" || $('input[name="sure12"]:checked').length == 0) {
                     alert("You need to answer all questions!")
                 }  else {
                     res = { prompt: "12",
                         text: text_res,           
-                        sure: $('input[name="sure"]:checked').val()
+                        sure: $('input[name="sure12"]:checked').val()
                     };
                     exp.data_trials.push(res);
                     _stream.apply(this);
