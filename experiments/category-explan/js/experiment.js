@@ -12,7 +12,7 @@ function make_slides(f) {
 		name: "instructions",
 		start: function() {
 			exp.startT = Date.now();
-			console.log('This version last updated at 5:51 PMM on 7/2/14');
+			console.log('This version last updated at 10:45 AM on 7/3/14');
 		},
 		button : function() {
 			exp.go();
@@ -25,56 +25,59 @@ function make_slides(f) {
 			name : "repeated_stims",
 			present:shuffle([
 				// PLANTS
-				{catchT:0, cat: 'plant', trait: 'simple part', fact: 'Tulips have leaves because they are ' },
-				{catchT:0, cat: 'plant', trait: 'trick attr', fact: 'Tulips are beautiful because they are ' },
-				{catchT:0, cat: 'plant', trait: 'trick attr', fact: 'Redwoods are beautiful because they are ' },
-				{catchT:0, cat: 'plant', trait: 'trick part', fact: 'Trees have seeds because they are ' },
-				{catchT:0, cat: 'plant', trait: 'trick part', fact: 'Strawberries have seeds because they are ' },
-				{catchT:0, cat: 'plant', trait: 'simple attr', fact: 'Strawberries are tasty because they are ' },
+				{QID: 1, catchT:0, cat: 'plant', trait: 'simple part', fact: 'Tulips have leaves because they are ' },
+				{QID: 2, catchT:0, cat: 'plant', trait: 'trick attr', fact: 'Tulips are beautiful because they are ' },
+				{QID: 3, catchT:0, cat: 'plant', trait: 'trick attr', fact: 'Redwoods are beautiful because they are ' },
+				{QID: 4, catchT:0, cat: 'plant', trait: 'trick part', fact: 'Trees have seeds because they are ' },
+				{QID: 5, catchT:0, cat: 'plant', trait: 'trick part', fact: 'Strawberries have seeds because they are ' },
+				{QID: 6, catchT:0, cat: 'plant', trait: 'simple attr', fact: 'Strawberries are tasty because they are ' },
 				// VEHICLES
-				{catchT:0, cat: 'vehicle', trait: 'simple part', fact: 'Ferraris have tires because they are ' },
-				{catchT:0, cat: 'vehicle', trait: 'trick attr', fact: 'Ferraris are fast because they are ' },
-				{catchT:0, cat: 'vehicle', trait: 'trick attr', fact: 'Boeing 747s are fast because they are ' },
-				{catchT:0, cat: 'vehicle', trait: 'trick part', fact: 'Vans have steering wheels because they are ' },
-				{catchT:0, cat: 'vehicle', trait: 'trick part', fact: 'Motorboats have steering wheels because they are ' },
-				{catchT:0, cat: 'vehicle', trait: 'simple attr', fact: 'Motorboats are fun because they are ' },
+				{QID: 7, catchT:0, cat: 'vehicle', trait: 'simple part', fact: 'Ferraris have tires because they are ' },
+				{QID: 8, catchT:0, cat: 'vehicle', trait: 'trick attr', fact: 'Ferraris are fast because they are ' },
+				{QID: 9, catchT:0, cat: 'vehicle', trait: 'trick attr', fact: 'Boeing 747s are fast because they are ' },
+				{QID: 10, catchT:0, cat: 'vehicle', trait: 'trick part', fact: 'Vans have steering wheels because they are ' },
+				{QID: 11, catchT:0, cat: 'vehicle', trait: 'trick part', fact: 'Motorboats have steering wheels because they are ' },
+				{QID: 12, catchT:0, cat: 'vehicle', trait: 'simple attr', fact: 'Motorboats are fun because they are ' },
 				// ANIMALS
-				{catchT:0, cat: 'animal', trait: 'simple part', fact: 'Tigers have fur because they are ' },
-				{catchT:0, cat: 'animal', trait: 'trick attr', fact: 'Tigers are smart because they are ' },
-				{catchT:0, cat: 'animal', trait: 'trick attr', fact: 'Chimpanzees are smart because they are ' },
-				{catchT:0, cat: 'animal', trait: 'trick part', fact: 'Salmon have fins because they are ' },
-				{catchT:0, cat: 'animal', trait: 'trick part', fact: 'Dolphins have fins because they are ' },
-				{catchT:0, cat: 'animal', trait: 'simple attr', fact: 'Dolphins are friendly because they are ' },
+				{QID: 13, catchT:0, cat: 'animal', trait: 'simple part', fact: 'Tigers have fur because they are ' },
+				{QID: 14, catchT:0, cat: 'animal', trait: 'trick attr', fact: 'Tigers are smart because they are ' },
+				{QID: 15, catchT:0, cat: 'animal', trait: 'trick attr', fact: 'Chimpanzees are smart because they are ' },
+				{QID: 16, catchT:0, cat: 'animal', trait: 'trick part', fact: 'Salmon have fins because they are ' },
+				{QID: 17, catchT:0, cat: 'animal', trait: 'trick part', fact: 'Dolphins have fins because they are ' },
+				{QID: 18, catchT:0, cat: 'animal', trait: 'simple attr', fact: 'Dolphins are friendly because they are ' },
 				// CATCH
-				{catchT: 1, check: 'Can tigers fly?    ' },
-				{catchT: 1, check: 'Are Ferraris boats?    ' },
-				{catchT: 1, check: 'Do trees have roots?    ' }
+				{QID: 19, catchT: 1, check: 'Can tigers fly?    ' },
+				{QID: 20, catchT: 1, check: 'Are Ferraris boats?    ' },
+				{QID: 21, catchT: 1, check: 'Do trees have roots?    ' }
 			]),
 
 			present_handle : function(stim){
 				exp.trial_type = 'critical';
-				_s.isCatch = true;
+				_s.isCatch = false;
 				$('#explanation').focus();
 				$('#txt').text(stim.fact);
 				this.init_slider();
 				_s.trial = {
+					'QID' : stim.QID,
 					'trait' : stim.trait,
 					'cat' : stim.cat,
 					'fact' : stim.fact,
 				};
 				_s.startT = Date.now();
+				exp.trial_order.push(stim.QID);
 			},
 			catch_trial_handle : function(stim) {
 				exp.trial_type = 'catch';
-				_s.isCatch = false;
+				_s.isCatch = true;
 				$('#explanation').focus();
 				$('#txt').text(stim.check);
 				this.init_slider();
 				_s.trial = {
+					'QID' : stim.QID,
 					'check' : stim.check,
 				};
 				_s.startT = Date.now();
-			},
+				exp.trial_order.push(stim.QID);			},
 			init_slider : function() {
 				$("#slider1").css('width' , 3*(exp.width/4)).centerhin();
 				$(".slider-lbl1 ").css('right' , (exp.width/4) *3.2 +20);
@@ -169,6 +172,7 @@ function init() {
 
 	exp.trials=[];
 	exp.check_trials=[];
+	exp.trial_order = [];
 	exp.sandbox=0;
 	exp.slides = make_slides(exp);
 
