@@ -12,7 +12,7 @@ function make_slides(f) {
 		name: "instructions",
 		start: function() {
 			exp.startT = Date.now();
-			console.log('This version last updated at 10:45 AM on 7/3/14');
+			console.log('This version last updated at 1:48 PM on 7/3/14');
 		},
 		button : function() {
 			exp.go();
@@ -50,7 +50,10 @@ function make_slides(f) {
 				{QID: 20, catchT: 1, check: 'Are Ferraris boats?    ' },
 				{QID: 21, catchT: 1, check: 'Do trees have roots?    ' }
 			]),
-
+			
+			start: function() {
+				exp.num_presented = 0;
+			},
 			present_handle : function(stim){
 				exp.trial_type = 'critical';
 				_s.isCatch = false;
@@ -59,6 +62,7 @@ function make_slides(f) {
 				this.init_slider();
 				_s.trial = {
 					'QID' : stim.QID,
+					'presented' : exp.num_presented, // 0 is first
 					'trait' : stim.trait,
 					'cat' : stim.cat,
 					'fact' : stim.fact,
@@ -74,10 +78,12 @@ function make_slides(f) {
 				this.init_slider();
 				_s.trial = {
 					'QID' : stim.QID,
+					'presented' : exp.num_presented,
 					'check' : stim.check,
 				};
 				_s.startT = Date.now();
-				exp.trial_order.push(stim.QID);			},
+				exp.trial_order.push(stim.QID);
+			},
 			init_slider : function() {
 				$("#slider1").css('width' , 3*(exp.width/4)).centerhin();
 				$(".slider-lbl1 ").css('right' , (exp.width/4) *3.2 +20);
@@ -109,6 +115,7 @@ function make_slides(f) {
 						else exp.trials.push(_s.trial);
 						$('#explanation').val("");
 						$('#help2').hide();
+						exp.num_presented ++;
 						_stream.apply(this);
 					}
 				}
@@ -152,6 +159,7 @@ function make_slides(f) {
 				exp.data= {
 					"trials" : exp.trials,
 					"check_trials" : exp.check_trials,
+					"trial_order" : exp.trial_order,
 					"system" : exp.system,
 					"condition" : exp.condition,
 					"subject_information" : exp.subj_data,
