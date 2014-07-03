@@ -12,7 +12,7 @@ function make_slides(f) {
 		name: "instructions",
 		start: function() {
 			exp.startT = Date.now();
-			console.log('This version last updated at 3:33 PM on 7/2/14');
+			console.log('This version last updated at 5:27 PM on 7/2/14');
 		},
 		button : function() {
 			exp.go();
@@ -146,12 +146,12 @@ function make_slides(f) {
 			start : function(){
 
 				exp.data= {
-					trials : exp.trials,
-					check_trials : exp.check_trials,
-					system : exp.system,
-					condition : exp.condition,
-					subject_information : exp.subj_data,
-					time : (Date.now() - exp.startT)/1000
+					"trials" : exp.trials,
+					"check_trials" : exp.check_trials,
+					"system" : exp.system,
+					"condition" : exp.condition,
+					"subject_information" : exp.subj_data,
+					"time" : (Date.now() - exp.startT)/1000
 				};
 				setTimeout(function() {turk.submit(exp.data);}, 1000);
 			}
