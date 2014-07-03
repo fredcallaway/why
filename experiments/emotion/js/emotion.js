@@ -669,7 +669,6 @@ function make_slides(f) {
                         age : $('input:text[name="age"]').val(),
                         sex : $('input[name="sex"]:checked').val(),
                         education : $('select[name="education"]').val(),
-                        workerId : turk.workerId
                     };
 
                 exp.data= {
@@ -678,7 +677,6 @@ function make_slides(f) {
                     "condition" : exp.condition,
                     "subject_information" : exp.subj_data
                 };
-                //setTimeout(function() {turk.submit(exp.subj_data);}, 1000);
                 setTimeout(function() {turk.submit(exp.data);}, 1000);
 
                 exp.go();
@@ -731,8 +729,6 @@ function init() {
 
     exp.system =
         {
-            workerId : turk.workerId,
-            cond : exp.condition,
             Browser : BrowserDetect.browser,
             OS : BrowserDetect.OS,
             screenH: screen.height,
