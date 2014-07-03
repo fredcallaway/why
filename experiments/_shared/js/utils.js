@@ -929,7 +929,7 @@ function preload() {
 //     'img/blahblahblah.jpg'
 // ]);
 
-function exp_sizing(){
+exp_sizing=function(){
     exp.width=800;
     exp.height=600;
     $('.slide').css('width', exp.width);
