@@ -672,6 +672,15 @@ function make_slides(f) {
                         workerId : turk.workerId
                     };
 
+                exp.data= {
+                    "trials" : exp.data_trials,
+                    "system" : exp.system,
+                    "condition" : exp.condition,
+                    "subject_information" : exp.subj_data
+                };
+                //setTimeout(function() {turk.submit(exp.subj_data);}, 1000);
+                setTimeout(function() {turk.submit(exp.data);}, 1000);
+
                 exp.go();
                 return false;
             }
@@ -683,14 +692,6 @@ function make_slides(f) {
         {
             name : "thanks",
             start : function(){
-
-                exp.data= {
-                    trials : exp.data_trials,
-                    system : exp.system,
-                    condition : exp.condition
-                };
-                setTimeout(function() {turk.submit(exp.subj_data);}, 1000);
-                setTimeout(function() {turk.submit(exp.data);}, 1000);
             }
         }
     );
