@@ -12,7 +12,7 @@ function make_slides(f) {
 		name: "instructions",
 		start: function() {
 			exp.startT = Date.now();
-			console.log('This version last updated at 5:27 PM on 7/2/14');
+			console.log('This version last updated at 5:51 PMM on 7/2/14');
 		},
 		button : function() {
 			exp.go();
@@ -53,6 +53,7 @@ function make_slides(f) {
 
 			present_handle : function(stim){
 				exp.trial_type = 'critical';
+				_s.isCatch = true;
 				$('#explanation').focus();
 				$('#txt').text(stim.fact);
 				this.init_slider();
@@ -65,7 +66,7 @@ function make_slides(f) {
 			},
 			catch_trial_handle : function(stim) {
 				exp.trial_type = 'catch';
-				_s.isCatch = true;
+				_s.isCatch = false;
 				$('#explanation').focus();
 				$('#txt').text(stim.check);
 				this.init_slider();
