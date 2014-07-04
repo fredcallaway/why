@@ -549,7 +549,7 @@ function set_condition(){
     var eleven_1_name = get_pusher_name();
     $('.eleven_1_name').each(function(){$(this).text(eleven_1_name);});
 
-    var eleven_2_name = get_wife_name();
+    var eleven_2_name = get_husband_name();
     $('.eleven_2_name').each(function(){$(this).text(eleven_2_name);});
 
     var twelve_name = get_nine_name();
