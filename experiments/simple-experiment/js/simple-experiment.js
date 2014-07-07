@@ -105,16 +105,15 @@ function make_slides(f) {
     name : "subj_info",
     submit : function(e){
       //if (e.preventDefault) e.preventDefault(); // I don't know what this means.
-      exp.data.subj_data =
-        {
-          language : $("#language").val(),
-          enjoyment : $("#enjoyment").val(),
-          asses : $('input[name="assess"]:checked').val(),
-          age : $("#age").val(),
-          gender : $("#gender").val(),
-          education : $("#education").val(),
-          comments : $("#comments").val(),
-        };
+      exp.data.subj_data = {
+        language : $("#language").val(),
+        enjoyment : $("#enjoyment").val(),
+        asses : $('input[name="assess"]:checked').val(),
+        age : $("#age").val(),
+        gender : $("#gender").val(),
+        education : $("#education").val(),
+        comments : $("#comments").val(),
+      };
       exp.go(); //use exp.go() if and only if there is no "present" data.
     }
   });
@@ -122,6 +121,12 @@ function make_slides(f) {
   slides.thanks = slide({
     name : "thanks",
     start : function() {
+      exp.data= {
+          "trials" : exp.data_trials,
+          "system" : exp.system,
+          "condition" : exp.condition,
+          "subject_information" : exp.subj_data
+      };
       setTimeout(function() {turk.submit(exp.data);}, 1000);
     }
   });

@@ -25,7 +25,7 @@ function make_slides(f) {
                         sure: $('input[name="sure"]:checked').val()
                     };
                     exp.data_trials.push(res);
-                    _stream.apply(this);
+                    exp.go();
                     return false;
                 }
             }
@@ -51,7 +51,7 @@ function make_slides(f) {
                         sure: $('input[name="sure2"]:checked').val()
                     };
                     exp.data_trials.push(res);
-                    _stream.apply(this);
+                    exp.go();
                     return false;
                 }
             }
@@ -77,7 +77,7 @@ function make_slides(f) {
                         sure: $('input[name="sure3"]:checked').val()
                     };
                     exp.data_trials.push(res);
-                    _stream.apply(this);
+                    exp.go();
                     return false;
                 }
             }
@@ -103,7 +103,7 @@ function make_slides(f) {
                         sure: $('input[name="sure4"]:checked').val()
                     };
                     exp.data_trials.push(res);
-                    _stream.apply(this);
+                    exp.go();
                     return false;
                 }
             }
@@ -128,7 +128,7 @@ function make_slides(f) {
                         sure: $('input[name="sure5"]:checked').val()
                     };
                     exp.data_trials.push(res);
-                    _stream.apply(this);
+                    exp.go();
                     return false;
                 }
             }
@@ -153,7 +153,7 @@ function make_slides(f) {
                         sure: $('input[name="sure6"]:checked').val()
                     };
                     exp.data_trials.push(res);
-                    _stream.apply(this);
+                    exp.go();
                     return false;
                 }
             }
@@ -178,7 +178,7 @@ function make_slides(f) {
                         sure: $('input[name="sure7"]:checked').val()
                     };
                     exp.data_trials.push(res);
-                    _stream.apply(this);
+                    exp.go();
                     return false;
                 }
             }
@@ -203,7 +203,7 @@ function make_slides(f) {
                         sure: $('input[name="sure8"]:checked').val()
                     };
                     exp.data_trials.push(res);
-                    _stream.apply(this);
+                    exp.go();
                     return false;
                 }
             }
@@ -228,7 +228,7 @@ function make_slides(f) {
                         sure: $('input[name="sure9"]:checked').val()
                     };
                     exp.data_trials.push(res);
-                    _stream.apply(this);
+                    exp.go();
                     return false;
                 }
             }
@@ -253,7 +253,7 @@ function make_slides(f) {
                         sure: $('input[name="sure10"]:checked').val()
                     };
                     exp.data_trials.push(res);
-                    _stream.apply(this);
+                    exp.go();
                     return false;
                 }
             }
@@ -278,7 +278,7 @@ function make_slides(f) {
                         sure: $('input[name="sure11"]:checked').val()
                     };
                     exp.data_trials.push(res);
-                    _stream.apply(this);
+                    exp.go();
                     return false;
                 }
             }
@@ -303,63 +303,50 @@ function make_slides(f) {
                         sure: $('input[name="sure12"]:checked').val()
                     };
                     exp.data_trials.push(res);
-                    _stream.apply(this);
+                    exp.go();
                     return false;
                 }
             }
         }
     );
 
+    slides.subj_info =  slide({
+      name : "subj_info",
+      submit : function(e){
+        //if (e.preventDefault) e.preventDefault(); // I don't know what this means.
+        exp.data.subj_data =
+          {
+            language : $("#language").val(),
+            enjoyment : $("#enjoyment").val(),
+            asses : $('input[name="assess"]:checked').val(),
+            age : $("#age").val(),
+            gender : $("#gender").val(),
+            education : $("#education").val(),
+            comments : $("#comments").val(),
+          };
+        exp.go(); //use exp.go() if and only if there is no "present" data.
+      }
+    });
 
-    slides.subj_info = slide(
-        {
-            name : "subj_info",
-            start : function () {
-                $('#subj_info_form').submit(this.button);
-            },
-            button : function(e){
-                if (e.preventDefault) e.preventDefault();
-                exp.subj_data =
-                    {
-                        language: $('select[name="language"]').val(),
-                        enjoyment: $('select[name="enjoyment"]').val(),
-                        assess: $('input[name="assess"]:checked').val(),
-                        age : $('input:text[name="age"]').val(),
-                        sex : $('input[name="sex"]:checked').val(),
-                        education : $('select[name="education"]').val(),
-                    };
-
-                exp.data= {
-                    "trials" : exp.data_trials,
-                    "system" : exp.system,
-                    "condition" : exp.condition,
-                    "subject_information" : exp.subj_data
-                };
-                setTimeout(function() {turk.submit(exp.data);}, 1000);
-
-                exp.go();
-                return false;
-            }
-
-        }
-    );
-
-    slides.thanks = slide(
-        {
-            name : "thanks",
-            start : function(){
-            }
-        }
-    );
+    slides.thanks = slide({
+      name : "thanks",
+      start : function() {
+        exp.data= {
+            "trials" : exp.data_trials,
+            "system" : exp.system,
+            "condition" : exp.condition,
+            "subject_information" : exp.subj_data
+        };
+        setTimeout(function() {turk.submit(exp.data);}, 1000);
+      }
+    });
 
     return slides;
 };
 
 function init() {
-    jquery_extensions();
     $('.slide').hide();
     $('body').css('visibility','visible');
-    exp_sizing();
 
     exp.data_trials=[];
     exp.sandbox=0;

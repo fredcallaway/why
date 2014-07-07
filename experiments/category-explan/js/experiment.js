@@ -86,8 +86,8 @@ function make_slides(f) {
 			},
 			init_slider : function() {
 				$("#slider1").css('width' , 3*(exp.width/4)).centerhin();
-				$(".slider-lbl1 ").css('right' , (exp.width/4) *3.2 +20);
-				$(".slider-lbl2 ").css('left' , (exp.width/4) *3.2 +20);
+				/*$(".slider-lbl1 ").css('right' , (exp.width/4) *3.2 +20);
+				$(".slider-lbl2 ").css('left' , (exp.width/4) *3.2 +20);*/
 				_s.sliderPost=null;
 				$("#slider1").slider({
 					range: "min",
@@ -98,7 +98,7 @@ function make_slides(f) {
 						_s.sliderPost = ui.value/100; // sliderPost in 0..1
 					}
 				});
-				$("#slider1").mousedown(function(){$("#slider1 a").css('display', 'inherit');});
+				$("#slider1").mousedown(function(){$("#slider1 .ui-slider-handle").css('display', 'inherit');});
 				$("#slider1").slider("option","value",0); //reset slider ()
 				$(".ui-slider-handle").css('display', 'none');
 			},
@@ -122,52 +122,38 @@ function make_slides(f) {
 			},
 		});
 
-
-
-	//!subj_info
-	slides.subj_info =  slide(
-		{
-			name : "subj_info",
-			start : function () {
-				$('#subj_info_form').submit(this.button);
-			},
-			button : function(e){
-				if (e.preventDefault) e.preventDefault();
-				exp.subj_data =
-					{
-						language: $('select[name="language"]').val(),
-						enjoyment: $('select[name="enjoyment"]').val(),
-						assess: $('input[name="assess"]:checked').val(),
-						age : $('input:text[name="age"]').val(),
-						sex : $('input[name="sex"]:checked').val(),
-						education : $('select[name="education"]').val(),
-						workerId : turk.workerId
-					};
-				exp.go();
-				return false;
-			}
-
+	slides.subj_info =  slide({
+		name : "subj_info",
+		submit : function(e){
+			//if (e.preventDefault) e.preventDefault(); // I don't know what this means.
+			exp.data.subj_data = {
+				language : $("#language").val(),
+				enjoyment : $("#enjoyment").val(),
+				asses : $('input[name="assess"]:checked').val(),
+				age : $("#age").val(),
+				gender : $("#gender").val(),
+				education : $("#education").val(),
+				comments : $("#comments").val(),
+			};
+			exp.go(); //use exp.go() if and only if there is no "present" data.
 		}
-	);
+	});
 
-	
-	slides.thanks = slide(
-		{
-			name : "thanks",
-			start : function(){
-
-				exp.data= {
-					"trials" : exp.trials,
-					"check_trials" : exp.check_trials,
-					"trial_order" : exp.trial_order,
-					"system" : exp.system,
-					"condition" : exp.condition,
-					"subject_information" : exp.subj_data,
-					"time" : (Date.now() - exp.startT)/1000
-				};
-				setTimeout(function() {turk.submit(exp.data);}, 1000);
-			}
-		});
+	slides.thanks = slide({
+		name : "thanks",
+		start : function() {
+			exp.data= {
+				"trials" : exp.trials,
+				"check_trials" : exp.check_trials,
+				"trial_order" : exp.trial_order,
+				"system" : exp.system,
+				"condition" : exp.condition,
+				"subject_information" : exp.subj_data,
+				"time" : (Date.now() - exp.startT)/1000
+			};
+			setTimeout(function() {turk.submit(exp.data);}, 1000);
+		}
+	});
 	return slides;
 }
 
@@ -176,7 +162,6 @@ function init() {
 	jquery_extensions();
 	$('.slide').hide();
 	$('body').css('visibility','visible');
-	exp_sizing();
 
 	exp.trials=[];
 	exp.check_trials=[];
@@ -196,17 +181,17 @@ function init() {
 	else{
 		$('#start-button').click(function(){experiment_proceed();});
 	}
-    exp.system =
-        {
-            workerId : turk.workerId,
-            cond : exp.condition,
-            Browser : BrowserDetect.browser,
-            OS : BrowserDetect.OS,
-            screenH: screen.height,
-            screenUH: exp.height,
-            screenW: screen.width,
-            screenUW: exp.width
-        };
+		exp.system =
+				{
+						workerId : turk.workerId,
+						cond : exp.condition,
+						Browser : BrowserDetect.browser,
+						OS : BrowserDetect.OS,
+						screenH: screen.height,
+						screenUH: exp.height,
+						screenW: screen.width,
+						screenUW: exp.width
+				};
 	exp.go();
 
 }
