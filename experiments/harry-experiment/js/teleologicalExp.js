@@ -201,58 +201,44 @@ function make_slides(f) {
         });
 
 
+  slides.subj_info =  slide({
+    name : "subj_info",
+    submit : function(e){
+      //if (e.preventDefault) e.preventDefault(); // I don't know what this means.
+      exp.subj_data = {
+        language : $("#language").val(),
+        enjoyment : $("#enjoyment").val(),
+        asses : $('input[name="assess"]:checked').val(),
+        age : $("#age").val(),
+        gender : $("#gender").val(),
+        education : $("#education").val(),
+        comments : $("#comments").val(),
+      };
+      exp.go(); //use exp.go() if and only if there is no "present" data.
+    }
+  });
 
-    //!subj_info
-    
-    slides.subj_info =  slide(
-        {
-            name : "subj_info",
-            start : function () {
-                $('#subj_info_form').submit(this.button);
-            },
-            button : function(e){
-                if (e.preventDefault) e.preventDefault();
-                exp.subj_data =
-                    [{
-                        language: $('select[name="language"]').val(),
-                        enjoyment: $('select[name="enjoyment"]').val(),
-                        assess: $('input[name="assess"]:checked').val(),
-                        age : $('input:text[name="age"]').val(),
-                        sex : $('input[name="sex"]:checked').val(),
-                        education : $('select[name="education"]').val(),
-                        workerId : turk.workerId
-                    }];
+  slides.thanks = slide({
+    name : "thanks",
+    start : function() {
+      exp.data= {
+          "trials" : exp.data_trials,
+          "system" : exp.system,
+          "condition" : exp.condition,
+          "subject_information" : exp.subj_data
+      };
+      setTimeout(function() {turk.submit(exp.data);}, 1000);
+    }
+  });
 
-                exp.go();
-                return false;
-            }
-
-        }
-    );
-
-    
-    slides.thanks = slide(
-        {
-            name : "thanks",
-            start : function(){
-
-                exp.data= {
-                    trials : exp.data_trials,
-                    system : exp.system,
-                    condition : exp.condition
-                };
-                setTimeout(function() {turk.submit(exp.data);}, 1000);
-            }
-        });
-    return slides;
+  return slides;
 };
 
 /// init ///
 function init() {
-    jquery_extensions();
+    //jquery_extensions();
     $('.slide').hide();
     $('body').css('visibility','visible');
-    exp_sizing();
 
     //make_stims();
 
@@ -276,7 +262,7 @@ function init() {
     }
 
     exp.system =
-        [{
+        {
             workerId : turk.workerId,
             cond : exp.condition,
             Browser : BrowserDetect.browser,
@@ -285,7 +271,7 @@ function init() {
             screenUH: exp.height,
             screenW: screen.width,
             screenUW: exp.width
-        }];
+        };
 
     exp.go();
 
