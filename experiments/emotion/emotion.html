@@ -1,0 +1,352 @@
+<html>
+  <head>
+    <title>
+    Experiment 1, Julie Nam
+    </title>
+    <!--JS-->
+
+    <!-- general utilities -->
+    <script src="../_shared/js/jquery-min.js "></script>
+    <script src="../_shared/js/underscore-min.js"></script>
+    <script src="../_shared/js/underscore.string.min.js"></script>
+    <script src="../_shared/js/mmturkey.js"></script>
+    <script src="../_shared/js/browserCheck.js"></script>
+    <script src="../_shared/js/utils.js"></script>
+    <script src="../_shared/js/jquery-ui.js"></script>
+    <script src="../_shared/js/sprintf-.7.js"></script>
+    <script src="../_shared/js/seedrandom.js"></script>
+    <script src="../_shared/js/ecosystem.js"></script>
+
+    <!-- experiment specific helper functions -->
+    <script src="js/local-utils.js"></script>
+
+    <!-- experiment utilities -->
+    <script src="../_shared/js/exp.js"></script>
+    <script src="../_shared/js/stream.js"></script>
+
+    <!-- for graphics -->
+    <script src="../_shared/js/raphael-min.js"></script>
+
+    <!-- filter subjects -->
+    <script src="../_shared/js/prune_ss.js"></script>
+
+    <!-- experiment file -->
+    <script src="js/emotion.js"></script>
+
+
+    <!--CSS-->
+    <link href="//code.jquery.com/ui/1.9.1/themes/overcast/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <link href="../_shared/css/table/style.css" rel="stylesheet" type="text/css"/>
+    <link href="../_shared/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="../_shared/css/curtain.css" rel="stylesheet" type="text/css"/>
+    <link href="../_shared/css/style_within.css" rel="stylesheet" type="text/css"/>
+    <link href="../_shared/css/form.css" rel="stylesheet" type="text/css"/>
+    <link href="css/local-style.css" rel="stylesheet" type="text/css"/>
+
+
+  </head>
+
+  <body onload="init();" style="visibility:hidden">
+    <noscript>This task requires JavaScript.</noscript>
+
+    <div id="exp" class="exp">
+      <div class="slide_wrapper">
+        <div class="slide" id="i0" >
+          <img src="../_shared/images/cocologo.png" id="cocologo">
+          </p><p style="text-align: center; font-weight: bold">Stanford COCO Lab</p>
+          <p id="instruct-text" class="padding">You will see some scenarios and answer questions about why certain events may have happened. The HIT should take ~3 minute(s). Thank you!</p>
+          <button id="start-button" type="button">Start Experiment</button>
+          </p><p style="font-size: 0.8em">Legal information: By answering the following questions, you are participating in a study being performed by cognitive scientists in the Stanford Department of Psychology. If you have questions about this research, please contact Julie Nam at <a href="mailto://julienam@stanford.edu">julienam@stanford.edu</a> or Noah Goodman, at ngoodman@stanford.edu. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences. Your anonymity is assured; the researchers who have requested your participation will not receive any personal information about you.</p>
+        </div>
+
+        <div id="scenario_1" class="slide js">
+          <div id="prompt"></p><p style= "color: red;"><span class="pusher_name"></span> just pushed <span class="pushee_name"></span> away from her.</p></div>
+          <div class="question_A"><span class="pusher_name"></span> pushed <span class="pushee_name"></span> away from her because... <br/>
+          <input id="res_text_1" type="text" size="80"/>. <br/><br/>
+          How confident are you about this explanation?</div>
+             <div class = "radio">
+                  <label><input type="radio"  name="sure" value="1"/>Not very confident</label>
+                  <label><input type="radio"  name="sure" value="2"/>Moderately confident</label>
+                  <label><input type="radio"  name="sure" value="3"/>Very confident</label>
+                </div>
+                  <br/>
+          <button type="submit" class ="space" onclick="_s.button();">Submit</button>
+        </div>
+
+        <div id="scenario_2" class="slide js">
+          <div id="prompt"></p><p style= "color: red;"><span class="wife_name"></span> and <span class="husband_name"></span> are hugging.</p></div>
+          <div class="question_A"><span class="wife_name"></span> and <span class="husband_name"></span> are hugging because... <br/>
+          <input id="res_text_2" type="text" size="80"/>. <br/><br/>
+          How confident are you about this explanation?</div>
+             <div class = "radio">
+                 <label><input type="radio"  name="sure2" value="1"/>Not very confident</label>
+                  <label><input type="radio"  name="sure2" value="2"/>Moderately confident</label>
+                  <label><input type="radio"  name="sure2" value="3"/>Very confident</label>
+                </div><br/>
+          <button type="submit" class ="space" onclick="_s.button();">Submit</button>
+        </div>
+
+        <div id="scenario_3" class="slide js">
+          <div id="prompt"></p><p style= "color: red;"><span class="runner_name"></span> is walking.</p></div>
+          <div class="question_A"><span class="runner_name"></span> is walking because... <br/>
+          <input id="res_text_3" type="text" size="80"/>. <br/><br/>
+          How confident are you about this explanation?</div>
+             <div class = "radio">
+                  <label><input type="radio"  name="sure3" value="1"/>Not very confident</label>
+                  <label><input type="radio"  name="sure3" value="2"/>Moderately confident</label>
+                  <label><input type="radio"  name="sure3" value="3"/>Very confident</label>
+                </div><br/>
+          <button type="submit" class ="space" onclick="_s.button();">Submit</button>
+        </div>
+      
+        <div id="scenario_4" class="slide js">
+          <div id="prompt"></p><p style= "color: red;"><span class="crier_name"></span> is crying.</p></div>
+          <div class="question_A"><span class="crier_name"></span> is crying because... <br/>
+          <input id="res_text_4" type="text" size="80"/>. <br/><br/>
+          How confident are you about this explanation?</div>
+             <div class = "radio">
+                  <label><input type="radio"  name="sure4" value="1"/>Not very confident</label>
+                  <label><input type="radio"  name="sure4" value="2"/>Moderately confident</label>
+                  <label><input type="radio"  name="sure4" value="3"/>Very confident</label>
+                </div> <br/>
+          <button type="submit" class ="space" onclick="_s.button();">Submit</button>
+        </div>
+
+          <div id="scenario_5" class="slide js">
+          <div id="prompt"></p><p style= "color: red;"><span class="five_name"></span> is laughing.</p></div>
+          <div class="question_A"><span class="five_name"></span> is laughing because... <br/>
+          <input id="res_text_5" type="text" size="80"/>. <br/><br/>
+          How confident are you about this explanation?</div>
+             <div class = "radio">
+                  <label><input type="radio"  name="sure5" value="1"/>Not very confident</label>
+                  <label><input type="radio"  name="sure5" value="2"/>Moderately confident</label>
+                  <label><input type="radio"  name="sure5" value="3"/>Very confident</label>
+                </div> <br/>
+          <button type="submit" class ="space" onclick="_s.button();">Submit</button>
+        </div>
+
+        <div id="scenario_6" class="slide js">
+          <div id="prompt"></p><p style= "color: red;"><span class="six_name"></span> is running fast.</p></div>
+          <div class="question_A"><span class="six_name"></span> is running fast because... <br/>
+          <input id="res_text_6" type="text" size="80"/>. <br/><br/>
+          How confident are you about this explanation?</div>
+             <div class = "radio">
+                  <label><input type="radio"  name="sure6" value="1"/>Not very confident</label>
+                  <label><input type="radio"  name="sure6" value="2"/>Moderately confident</label>
+                  <label><input type="radio"  name="sure6" value="3"/>Very confident</label>
+                </div> <br/>
+          <button type="submit" class ="space" onclick="_s.button();">Submit</button>
+        </div>
+
+        <div id="scenario_7" class="slide js">
+          <div id="prompt"></p><p style= "color: red;"><span class="seven_name"></span> is dancing.</p></div>
+          <div class="question_A"><span class="seven_name"></span> is dancing because... <br/>
+          <input id="res_text_7" type="text" size="80"/>. <br/><br/>
+          How confident are you about this explanation?</div>
+             <div class = "radio">
+                  <label><input type="radio"  name="sure7" value="1"/>Not very confident</label>
+                  <label><input type="radio"  name="sure7" value="2"/>Moderately confident</label>
+                  <label><input type="radio"  name="sure7" value="3"/>Very confident</label>
+                </div> <br/>
+          <button type="submit" class ="space" onclick="_s.button();">Submit</button>
+        </div>
+
+        <div id="scenario_8" class="slide js">
+          <div id="prompt"></p><p style= "color: red;"><span class="eight_name"></span> is humming.</p></div>
+          <div class="question_A"><span class="eight_name"></span> is humming because... <br/>
+          <input id="res_text_8" type="text" size="80"/>. <br/><br/>
+          How confident are you about this explanation?</div>
+             <div class = "radio">
+                  <label><input type="radio"  name="sure8" value="1"/>Not very confident</label>
+                  <label><input type="radio"  name="sure8" value="2"/>Moderately confident</label>
+                  <label><input type="radio"  name="sure8" value="3"/>Very confident</label>
+                </div> <br/>
+          <button type="submit" class ="space" onclick="_s.button();">Submit</button>
+        </div>
+
+        <div id="scenario_9" class="slide js">
+          <div id="prompt"></p><p style= "color: red;"><span class="nine_name"></span> opened eyes widely.</p></div>
+          <div class="question_A"><span class="nine_name"></span> opened eyes widely because... <br/>
+          <input id="res_text_9" type="text" size="80"/>. <br/><br/>
+          How confident are you about this explanation?</div>
+             <div class = "radio">
+                  <label><input type="radio"  name="sure9" value="1"/>Not very confident</label>
+                  <label><input type="radio"  name="sure9" value="2"/>Moderately confident</label>
+                  <label><input type="radio"  name="sure9" value="3"/>Very confident</label>
+                </div> <br/>
+          <button type="submit" class ="space" onclick="_s.button();">Submit</button>
+        </div>
+
+        <div id="scenario_10" class="slide js">
+          <div id="prompt"></p><p style= "color: red;"><span class="ten_1_name"></span> and <span class="ten_2_name"></span> are watching a movie together.</p></div>
+          <div class="question_A"><span class="ten_1_name"></span> and <span class="ten_2_name"></span> are watching a movie together because... <br/>
+          <input id="res_text_10" type="text" size="80"/>. <br/><br/>
+          How confident are you about this explanation?</div>
+             <div class = "radio">
+                  <label><input type="radio"  name="sure10" value="1"/>Not very confident</label>
+                  <label><input type="radio"  name="sure10" value="2"/>Moderately confident</label>
+                  <label><input type="radio"  name="sure10" value="3"/>Very confident</label>
+                </div> <br/>
+          <button type="submit" class ="space" onclick="_s.button();">Submit</button>
+        </div>
+
+        <div id="scenario_11" class="slide js">
+      <div id="prompt"></p><p style= "color: red;"><span class="eleven_1_name"></span> and <span class="eleven_2_name"></span> are crying together.</p></div>
+          <div class="question_A"><span class="eleven_1_name"></span> and <span class="eleven_2_name"></span> are crying together because... <br/>
+          <input id="res_text_11" type="text" size="80"/>. <br/><br/>
+          How confident are you about this explanation?</div>
+             <div class = "radio">
+                  <label><input type="radio"  name="sure11" value="1"/>Not very confident</label>
+                  <label><input type="radio"  name="sure11" value="2"/>Moderately confident</label>
+                  <label><input type="radio"  name="sure11" value="3"/>Very confident</label>
+                </div> <br/>
+          <button type="submit" class ="space" onclick="_s.button();">Submit</button>
+        </div>
+
+        <div id="scenario_12" class="slide js">
+          <div id="prompt"></p><p style= "color: red;"><span class="twelve_name"></span> just sighed.</p></div>
+          <div class="question_A"><span class="twelve_name"></span> sighed because... <br/>
+          <input id="res_text_12" type="text" size="80"/>. <br/><br/>
+          How confident are you about this explanation?</div>
+             <div class = "radio">
+                  <label><input type="radio"  name="sure12" value="1"/>Not very confident</label>
+                  <label><input type="radio"  name="sure12" value="2"/>Moderately confident</label>
+                  <label><input type="radio"  name="sure12" value="3"/>Very confident</label>
+                </div> <br/>
+          <button type="submit" class ="space" onclick="_s.button();">Submit</button>
+        </div>
+
+
+        <div class="slide js"  id="subj_info">
+          <div>
+            <form id="subj_info_form">
+              <div class="long_form">
+                <fieldset>
+                  <legend>Additional information</legend>
+                  <p class="info">
+                    Answering these questions is optional, but will help us understand your answers.</p>
+
+                  <p>Did you read the instructions and do you think you did
+                    the HIT correctly?</p>
+                  <label>
+                    <input type="radio"  name="assess" value="No"/>
+                    No
+                  </label>
+                  <label> 
+                    <input type="radio"  name="assess" value="Yes"/>
+                    Yes
+                  </label>
+                  <label>
+                    <input type="radio"  name="assess" value="Confused"/>
+                    I was confused
+                  </label>
+
+                  <p>Sex</p>
+
+                  <label>
+                    <input type="radio" name="sex" value="Male"/>
+                    Male
+                  </label>
+                  <label>
+                    <input type="radio" name="sex" value="Female"/>
+                    Female
+                  </label>
+
+                  <p>Age</p>
+                  <input type="text" name="age" value="0"/>
+
+                  <p>Level Of Education</p>
+                  <select name="education">
+                    <label>
+                      <option name="education" value="-1"/>
+
+                    </label>
+                    <label>
+                      <option name="education" value="0"/>
+                      Some High School
+                    </label>
+                    <label>
+                      <option name="education" value="1"/>
+                      Graduated High School
+                    </label>
+                    <label>
+                      <option name="education" value="2"/>
+                      Some College
+                    </label>
+                    <br/>
+                    <label>
+                      <option name="education" value="3"/>
+                      Graduated College
+                    </label>
+                    <label>
+                      <option name="education" value="4"/>
+                      Hold a higher degree
+                    </label>
+                  </select>
+
+                  <p>Native Language</p>
+                  <label>
+                    <option  value="-1"/>
+
+                  </label>
+                  <select name="language">
+                    <label>
+                      <option  value="English"/>
+                      English
+                    </label>
+                    <label>
+                      <option  value="Spanish"/>
+                      Spanish
+                    </label>
+                    <label>
+                      <option  value="French"/>
+                      French
+                    </label>
+                    <br/>
+                    <label>
+                      <option  value="Mandarin"/>
+                      Mandarin
+                    </label>
+                    <label>
+                      <option  value="German"/>
+                      German
+                    </label>
+                    <label>
+                      <option  value="Other"/>
+                      Other
+                    </label>
+                  </select>
+
+                  <p>Did you enjoy the hit?</p>
+                  <select name="enjoyment">
+                    <option value="-1"></option>
+                    <option value="0">Worse than the Average HIT</option>
+                    <option value="1" >An Average HIT</option>
+                    <option value="2">Better than average HIT</option>
+                  </select>
+
+                </fieldset>
+
+                <button type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div id="thanks" class="slide js" >
+          <p  class="big">Thanks for your Time!<br/></p>
+          <p id="bonus_feedback" class="big"><p>
+        </div>
+
+
+        <div id="progress">
+          <h2 style="margin-bottom:10px">Progress</h2>
+          <p id="phase" class="progress_text"></p>
+
+          <div id="pb1"></div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -12,7 +12,7 @@ function make_slides(f) {
 		name: "instructions",
 		start: function() {
 			exp.startT = Date.now();
-			console.log('This version last updated at 1:48 PM on 7/3/14');
+			console.log('This version last updated at 8:20 AM on 7/3/14');
 		},
 		button : function() {
 			exp.go();
@@ -25,61 +25,41 @@ function make_slides(f) {
 			name : "repeated_stims",
 			present:shuffle([
 				// PLANTS
-				{QID: 1, catchT:0, cat: 'plant', trait: 'simple part', fact: 'Tulips have leaves because they are ' },
-				{QID: 2, catchT:0, cat: 'plant', trait: 'trick attr', fact: 'Tulips are beautiful because they are ' },
-				{QID: 3, catchT:0, cat: 'plant', trait: 'trick attr', fact: 'Redwoods are beautiful because they are ' },
-				{QID: 4, catchT:0, cat: 'plant', trait: 'trick part', fact: 'Trees have seeds because they are ' },
-				{QID: 5, catchT:0, cat: 'plant', trait: 'trick part', fact: 'Strawberries have seeds because they are ' },
-				{QID: 6, catchT:0, cat: 'plant', trait: 'simple attr', fact: 'Strawberries are tasty because they are ' },
+				{QID: 1, cat: 'plant', trait: 'simple part', txt: 'Tulips have leaves because they are ' },
+				{QID: 2, cat: 'plant', trait: 'trick attr', txt: 'Tulips are beautiful because they are ' },
+				{QID: 3, cat: 'plant', trait: 'trick attr', txt: 'Redwoods are beautiful because they are ' },
+				{QID: 4, cat: 'plant', trait: 'trick part', txt: 'Trees have seeds because they are ' },
+				{QID: 5, cat: 'plant', trait: 'trick part', txt: 'Strawberries have seeds because they are ' },
+				{QID: 6, cat: 'plant', trait: 'simple attr', txt: 'Strawberries are tasty because they are ' },
 				// VEHICLES
-				{QID: 7, catchT:0, cat: 'vehicle', trait: 'simple part', fact: 'Ferraris have tires because they are ' },
-				{QID: 8, catchT:0, cat: 'vehicle', trait: 'trick attr', fact: 'Ferraris are fast because they are ' },
-				{QID: 9, catchT:0, cat: 'vehicle', trait: 'trick attr', fact: 'Boeing 747s are fast because they are ' },
-				{QID: 10, catchT:0, cat: 'vehicle', trait: 'trick part', fact: 'Vans have steering wheels because they are ' },
-				{QID: 11, catchT:0, cat: 'vehicle', trait: 'trick part', fact: 'Motorboats have steering wheels because they are ' },
-				{QID: 12, catchT:0, cat: 'vehicle', trait: 'simple attr', fact: 'Motorboats are fun because they are ' },
+				{QID: 7, cat: 'vehicle', trait: 'simple part', txt: 'Ferraris have tires because they are ' },
+				{QID: 8, cat: 'vehicle', trait: 'trick attr', txt: 'Ferraris are fast because they are ' },
+				{QID: 9, cat: 'vehicle', trait: 'trick attr', txt: 'Boeing 747s are fast because they are ' },
+				{QID: 10, cat: 'vehicle', trait: 'trick part', txt: 'Vans have steering wheels because they are ' },
+				{QID: 11, cat: 'vehicle', trait: 'trick part', txt: 'Motorboats have steering wheels because they are ' },
+				{QID: 12, cat: 'vehicle', trait: 'simple attr', txt: 'Motorboats are fun because they are ' },
 				// ANIMALS
-				{QID: 13, catchT:0, cat: 'animal', trait: 'simple part', fact: 'Tigers have fur because they are ' },
-				{QID: 14, catchT:0, cat: 'animal', trait: 'trick attr', fact: 'Tigers are smart because they are ' },
-				{QID: 15, catchT:0, cat: 'animal', trait: 'trick attr', fact: 'Chimpanzees are smart because they are ' },
-				{QID: 16, catchT:0, cat: 'animal', trait: 'trick part', fact: 'Salmon have fins because they are ' },
-				{QID: 17, catchT:0, cat: 'animal', trait: 'trick part', fact: 'Dolphins have fins because they are ' },
-				{QID: 18, catchT:0, cat: 'animal', trait: 'simple attr', fact: 'Dolphins are friendly because they are ' },
+				{QID: 13, cat: 'animal', trait: 'simple part', txt: 'Tigers have fur because they are ' },
+				{QID: 14, cat: 'animal', trait: 'trick attr', txt: 'Tigers are smart because they are ' },
+				{QID: 15, cat: 'animal', trait: 'trick attr', txt: 'Chimpanzees are smart because they are ' },
+				{QID: 16, cat: 'animal', trait: 'trick part', txt: 'Salmon have fins because they are ' },
+				{QID: 17, cat: 'animal', trait: 'trick part', txt: 'Dolphins have fins because they are ' },
+				{QID: 18, cat: 'animal', trait: 'simple attr', txt: 'Dolphins are friendly because they are ' },
 				// CATCH
-				{QID: 19, catchT: 1, check: 'Can tigers fly?    ' },
-				{QID: 20, catchT: 1, check: 'Are Ferraris boats?    ' },
-				{QID: 21, catchT: 1, check: 'Do trees have roots?    ' }
+				{ QID: 19, cat: 'CHECK', trait: 'none', txt: 'Can tigers fly? ' },
+				{ QID: 20, cat: 'CHECK', trait: 'none', txt: 'Are Ferraris boats? ' },
+				{ QID: 21, cat: 'CHECK', trait: 'none', txt: 'Do trees have roots? ' }
 			]),
-			
-			start: function() {
-				exp.num_presented = 0;
-			},
+
 			present_handle : function(stim){
-				exp.trial_type = 'critical';
-				_s.isCatch = false;
 				$('#explanation').focus();
-				$('#txt').text(stim.fact);
+				$('#txt').text(stim.txt);
 				this.init_slider();
 				_s.trial = {
 					'QID' : stim.QID,
-					'presented' : exp.num_presented, // 0 is first
-					'trait' : stim.trait,
 					'cat' : stim.cat,
-					'fact' : stim.fact,
-				};
-				_s.startT = Date.now();
-				exp.trial_order.push(stim.QID);
-			},
-			catch_trial_handle : function(stim) {
-				exp.trial_type = 'catch';
-				_s.isCatch = true;
-				$('#explanation').focus();
-				$('#txt').text(stim.check);
-				this.init_slider();
-				_s.trial = {
-					'QID' : stim.QID,
-					'presented' : exp.num_presented,
-					'check' : stim.check,
+					'trait' : stim.trait,
+					'text' : stim.txt
 				};
 				_s.startT = Date.now();
 				exp.trial_order.push(stim.QID);
@@ -111,11 +91,9 @@ function make_slides(f) {
 					if (_s.trial.confidence === null) $('#help2').show(); //no confidence
 					else { //explanation and confidence given
 						_s.trial.time_taken = (Date.now() - _s.startT)/1000; //in seconds
-						if (_s.isCatch) exp.check_trials.push(_s.trial);
-						else exp.trials.push(_s.trial);
+						exp.trials.push(_s.trial);
 						$('#explanation').val("");
 						$('#help2').hide();
-						exp.num_presented ++;
 						_stream.apply(this);
 					}
 				}
@@ -158,7 +136,6 @@ function make_slides(f) {
 
 				exp.data= {
 					"trials" : exp.trials,
-					"check_trials" : exp.check_trials,
 					"trial_order" : exp.trial_order,
 					"system" : exp.system,
 					"condition" : exp.condition,
@@ -179,7 +156,6 @@ function init() {
 	exp_sizing();
 
 	exp.trials=[];
-	exp.check_trials=[];
 	exp.trial_order = [];
 	exp.sandbox=0;
 	exp.slides = make_slides(exp);
