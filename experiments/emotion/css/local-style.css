@@ -1,0 +1,67 @@
+.radio {
+    text-align: left;
+    font-family: "Times New Roman";
+    font-size: 15px;
+    padding: 10px;
+}
+
+.question_A {
+    margin-top: 45px;
+    text-align: left;
+    margin-left: 15px;
+}
+
+input[type='radio'], label {
+    vertical-align: middle;
+}
+
+.questions_B {
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 40px;
+    margin-right: 20px;
+}
+
+#prompt {
+    margin: 30px;
+    border: 2px solid purple;
+    padding: 5px;
+    font-family: "Lucida Console";
+}
+
+.prompt_medium {
+    margin: 30px;
+    padding: 5px;
+    border: 2px solid purple;
+    color: blue;
+    font-family: "Lucida Console";
+}
+
+.prompt_long {
+    margin: 30px;
+    padding: 5px;
+    border: 2px solid purple;
+    color: green;
+    font-family: "Lucida Console";
+}
+
+div.long_form p.info{
+    margin:0 0 55px 0;
+    padding:0;
+    font-size: 15px;
+    color:black;
+}
+
+div.long_form p{
+    color:#036;
+    font-size: 15px;
+    margin: 20px 0 0 0;
+}
+
+div.long_form label{
+    font-size:15px;
+}
+
+#subj_info_form p{
+    max-width:100%;
+}

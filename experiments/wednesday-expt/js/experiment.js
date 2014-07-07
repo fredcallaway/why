@@ -10,59 +10,59 @@ function make_slides(f) {
     
     //Radio Buttons//
     slides.radio_buttons = slide(
-    	{
-    		name : "radio_buttons",	
-    		
+        {
+            name : "radio_buttons", 
+            
             present: [0, 1, 2, 3],
                       
             present_handle : function(stim) {
-            	console.log(stim);
-            	exp.data_trials.push(stim);
-            	
-            	//get scenario
-            	exp.questions = get_question();
-            	_(stim).shuffle;
-            	$('.why_question').each(function(){$(this).text(exp.questions['question']);});
-				$('.expl1').each(function(){$(this).text(exp.questions['expl_' + stim.expl1]);});
-				$('.expl2').each(function(){$(this).text(exp.questions['expl_' + stim.expl2]);});
-				},
+                console.log(stim);
+                exp.data_trials.push(stim);
+                
+                //get scenario
+                exp.questions = get_question();
+                _(stim).shuffle;
+                $('.why_question').each(function(){$(this).text(exp.questions['question']);});
+                $('.expl1').each(function(){$(this).text(exp.questions['expl_' + stim.expl1]);});
+                $('.expl2').each(function(){$(this).text(exp.questions['expl_' + stim.expl2]);});
+                },
             
             //This makes sure subjects can't move on if they haven't given an answer                   
-    		button : function() {
-    			if ($('input[type=radio]:checked').size() > 0) {
-					_.last(exp.data_trials)["expl_chosen"] = [{
-					rad_button_resp : $('input[name="rad_button"]:checked').val()
-					}];
-					//This unselects the button for the next trial
-					$('input[name="rad_button"]').attr('checked',false);
-					_stream.apply(this);
-				} 
-    		}
-     	}
+            button : function() {
+                if ($('input[type=radio]:checked').size() > 0) {
+                    _.last(exp.data_trials)["expl_chosen"] = [{
+                    rad_button_resp : $('input[name="rad_button"]:checked').val()
+                    }];
+                    //This unselects the button for the next trial
+                    $('input[name="rad_button"]').attr('checked',false);
+                    _stream.apply(this);
+                } 
+            }
+        }
      );
      
      
      //SLIDER
      slides.slider = slide(
-     	{
-     		name : "slider",
-     		
-     		start : function() {
-     		},
-     		
+        {
+            name : "slider",
+            
+            start : function() {
+            },
+            
             present: [0, 1, 2, 3, 4, 5, 6, 7],
                       
             present_handle : function(stim) {
-            	exp.data_trials.push(stim);
+                exp.data_trials.push(stim);
                 this.init_sliders();
-            	exp.scenarios = get_scenarios();
-            	order_trials = exp.scenarios[1];
-            	exp.scenarios = exp.scenarios[0];
-            	$('.scenario').each(function(){$(this).text(exp.scenarios[order_trials[stim]]['scenario']);});
-				$('.expl').each(function(){$(this).text(exp.scenarios[order_trials[stim]]['expl' + order_trials.expl]);});
-				//$('.expl2').each(function(){$(this).text(exp.scenarios['expl2']);});
-			},
-			
+                exp.scenarios = get_scenarios();
+                order_trials = exp.scenarios[1];
+                exp.scenarios = exp.scenarios[0];
+                $('.scenario').each(function(){$(this).text(exp.scenarios[order_trials[stim]]['scenario']);});
+                $('.expl').each(function(){$(this).text(exp.scenarios[order_trials[stim]]['expl' + order_trials.expl]);});
+                //$('.expl2').each(function(){$(this).text(exp.scenarios['expl2']);});
+            },
+            
             button : function() {
                 //if(_.all(exp.sliderPost, function(x){return(x<500);})){
                     _.last(exp.data_trials)["version"]= "baseline";
@@ -107,25 +107,25 @@ function make_slides(f) {
                 
                 $(".ui-slider-handle").css('display', 'none');
             }
-      	}      
-	);
-	
-	slides.likert = slide(
-		{
-			name : "likert",
-			start : function() {
-			},
+        }      
+    );
+    
+    slides.likert = slide(
+        {
+            name : "likert",
+            start : function() {
+            },
             present: [0, 1, 2, 3, 4],
                       
             present_handle : function(stim) {
-            	console.log(stim);
-            	exp.data_trials.push(stim);
-            	
-            	//get scenario
-            	exp.question = get_questions();
-            	$('.why_question').each(function(){$(this).text(exp.question['question']);});
-				$('.expl').each(function(){$(this).text(exp.question['expl' + stim.expl]);});
-				},
+                console.log(stim);
+                exp.data_trials.push(stim);
+                
+                //get scenario
+                exp.question = get_questions();
+                $('.why_question').each(function(){$(this).text(exp.question['question']);});
+                $('.expl').each(function(){$(this).text(exp.question['expl' + stim.expl]);});
+                },
             
             //This makes sure subjects can't move on if they haven't given an answer                   
     		button : function() {
@@ -250,18 +250,14 @@ function make_slides(f) {
 			},
 			present : [{catchT: 1, item: 0},
 			{catchT: 1, item: 1},
-			{catchT: 1, item: 2},
 			{catchT: 0, item: 0},
 			{catchT: 0, item: 1},
 			{catchT: 0, item: 2},
-			{catchT: 1, item: 3},
+			{catchT: 1, item: 2},
 			{catchT: 0, item: 3},
 			{catchT: 0, item: 4},
-			{catchT: 0, item: 5},
-			{catchT: 1, item: 4},
-			{catchT: 0, item: 6},
-			{catchT: 0, item: 7},
-			{catchT: 1, item: 5}
+			{catchT: 1, item: 3},
+			{catchT: 1, item: 4}
 			],
 			
 			catch_trial_handle : function(stim) {
@@ -270,6 +266,7 @@ function make_slides(f) {
 			
 				exp.trial_type = "catch";
 				exp.data_trials.push(stim);
+				exp.item = stim["item"];
 				
 				//hide and show appropriate divs
 				$("#critical_trial").hide();
@@ -303,7 +300,7 @@ function make_slides(f) {
 				$("#catch_trial").hide();
 				$("#feedback").hide();
 				$("#critical_trial").show();
-				//$("#expl").focus();
+				$("#expl-text").focus();
 				exp.questions = get_questions();
 				exp.current_cond = exp.questions[stim["item"]];
             	
@@ -325,10 +322,10 @@ function make_slides(f) {
                     
                 //console.log(res);
                 if(exp.trial_type==="critical" && !_.contains(_.values(res), "")){
-                	//get RT (in s)
-                	t2 = Date.now();
-                	time_on_slide = (t2 - t1)/6000;
-                	
+                    //get RT (in s)
+                    t2 = Date.now();
+                    time_on_slide = (t2 - t1)/6000;
+                    
                     //res["answered"]= 1 * ! _.isEmpty(_.filter(_.values(res), function(x){ return !isNumber(x);}));
                     
                     //put response & trial data in exp.data_trials
@@ -336,7 +333,12 @@ function make_slides(f) {
                     //_.last(exp.data_trials)["answered"]=res["answered"];
                     _.last(exp.data_trials)["trial_type"]=exp.trial_type;
                     _.last(exp.data_trials)["time_on_slide"] = time_on_slide;
-                    _.last(exp.data_trials)["condition"] = exp.current_cond;
+                    _.last(exp.data_trials)["disease"] = exp.current_cond["disease"];
+                    _.last(exp.data_trials)["protein"] = exp.current_cond["protein"];
+                    _.last(exp.data_trials)["fever"] = exp.current_cond["fever"];
+                    _.last(exp.data_trials)["question"] = exp.current_cond["question"];
+                    _.last(exp.data_trials)["protein"] = exp.current_cond["protein"];
+                    _.last(exp.data_trials)["info_types"] = exp.current_cond["condition"];
                 //clear text box, move to next trial
                 $('input[name="expl"]').val('');
 				_stream.apply(this);
@@ -352,7 +354,7 @@ function make_slides(f) {
     					ans_chosen = exp.ans_display[0];
     				} else { ans_chosen = exp.ans_display[1]; }
     				
-    				if (ans_chosen === "wrong_ans") {
+    				if (ans_chosen === "wrong_ans" && exp.item < 2) {
     					$('#feedback').show();
     				} else {
 					
@@ -360,6 +362,12 @@ function make_slides(f) {
 						_.last(exp.data_trials)["ans_chosen"] = ans_chosen;
 						_.last(exp.data_trials)["trial_type"]=exp.trial_type;
 						_.last(exp.data_trials)["time_on_slide"] = time_on_slide;
+						_.last(exp.data_trials)["disease"] = [];
+						_.last(exp.data_trials)["protein"] = [];
+						_.last(exp.data_trials)["fever"] = [];
+						_.last(exp.data_trials)["question"] = [];
+						_.last(exp.data_trials)["protein"] = [];
+						_.last(exp.data_trials)["info_types"] = [];
 						//This unselects the button for the next trial
 						$('input[name="radio_button"]').attr('checked',false);
 						$('#feedback').hide();
@@ -578,31 +586,23 @@ function make_slides(f) {
 
     //!subj_info
     
-    slides.subj_info =  slide(
-        {
-            name : "subj_info",
-            start : function () {
-                $('#subj_info_form').submit(this.button);
-            },
-            button : function(e){
-                if (e.preventDefault) e.preventDefault();
-                exp.subj_data =
-                    [{
-                        language: $('select[name="language"]').val(),
-                        enjoyment: $('select[name="enjoyment"]').val(),
-                        assess: $('input[name="assess"]:checked').val(),
-                        age : $('input:text[name="age"]').val(),
-                        sex : $('input[name="sex"]:checked').val(),
-                        education : $('select[name="education"]').val(),
-                        workerId : turk.workerId
-                    }];
-				exp.end = Date.now();
-                exp.go();
-                return false;
-            }
-
-        }
-    );
+	  slides.subj_info =  slide({
+		name : "subj_info",
+		submit : function(e){
+		  //if (e.preventDefault) e.preventDefault(); // I don't know what this means.
+		  exp.subj_data =
+			{
+			  language : $("#language").val(),
+			  enjoyment : $("#enjoyment").val(),
+			  asses : $('input[name="assess"]:checked').val(),
+			  age : $("#age").val(),
+			  gender : $("#gender").val(),
+			  education : $("#education").val(),
+			  comments : $("#comments").val(),
+			};
+		  exp.go(); //use exp.go() if and only if there is no "present" data.
+		}
+	  });
 
     
     slides.thanks = slide(
@@ -693,53 +693,71 @@ var get_horse_name= function(){
 }();
 
 var get_scenarios = function() {
-	var scenarios = [{scenario: "Dummy Scenario 1", 
-					expl1: "Explanation 1", expl2: "Explanation 2"},
-					{scenario: "Dummy Scenario 2", 
-					expl1: "Explanation 1", expl2: "Explanation 2"},  
-					{scenario: "Dummy Scenario 3", 
-					expl1: "Explanation 1", expl2: "Explanation 2"}, 
-					{scenario: "Dummy Scenario 4", 
-					expl1: "Explanation 1", expl2: "Explanation 2"}];
-	var order_trials = [{scen: 1, expl: 1}, {scen: 1, expl: 2}, {scen: 2, expl: 1}, {scen: 2, expl: 2},
-						{scen: 3, expl: 1}, {scen: 3, expl: 2}, {scen: 4, expl: 1}, {scen: 4, expl: 2}];
-	order_trials = _(order_trials).shuffle();
-	return function() {
-		return [scenarios, order_trials];
-	};
+    var scenarios = [{scenario: "Dummy Scenario 1", 
+                    expl1: "Explanation 1", expl2: "Explanation 2"},
+                    {scenario: "Dummy Scenario 2", 
+                    expl1: "Explanation 1", expl2: "Explanation 2"},  
+                    {scenario: "Dummy Scenario 3", 
+                    expl1: "Explanation 1", expl2: "Explanation 2"}, 
+                    {scenario: "Dummy Scenario 4", 
+                    expl1: "Explanation 1", expl2: "Explanation 2"}];
+    var order_trials = [{scen: 1, expl: 1}, {scen: 1, expl: 2}, {scen: 2, expl: 1}, {scen: 2, expl: 2},
+                        {scen: 3, expl: 1}, {scen: 3, expl: 2}, {scen: 4, expl: 1}, {scen: 4, expl: 2}];
+    order_trials = _(order_trials).shuffle();
+    return function() {
+        return [scenarios, order_trials];
+    };
 }();
 
-var get_questions = function() {
-	var questions = [{disease: "D", protein: "X", fever: "NA", condition: "disease and protein",
-	question : 'You know that an alien has Disease D and expresses Protein X. Why do they express Protein X?'},
-	{disease: "B", protein: "Y", fever: "NA", condition: "disease and protein",
-	question : 'You know that an alien has Disease B and expresses Protein Y. Why do they express Protein Y?'},
-	{disease: "A", protein: "NA", fever: "Y", condition: "disease and fever",
-	question : 'You know that an alien has Disease A and has a fever. Why do they have a fever?'},
-	{disease: "B", protein: "NA", fever: "Y", condition: "disease and fever",
-	question : 'You know that an alien has Disease B and has a fever. Why do they have a fever?'},
-	{disease: "C", protein: "NA", fever: "Y", condition: "disease and fever",
-	question : 'You know that an alien has Disease C and has a fever. Why do they have a fever?'},
-	{disease: "D", protein: "NA", fever: "Y", condition: "disease and fever",
-	question : 'You know that an alien has Disease D and has a fever. Why do they have a fever?'},
-	{disease: "NA", protein: "X", fever: "Y", condition: "protein and fever",
-	question : 'You know that an alien expresses Protein X and has a fever. Why do they have a fever?'},
-	{disease: "NA", protein: "Y", fever: "Y", condition: "protein and fever",
-	question : 'You know that an alien expresses Protein Y and has a fever. Why do they have a fever?'}];
+var get_questions = function() {	
+	var disease_protein_dir = [{disease: "A", protein: "X", fever: "N", 
+	question : "You know that an alien has Disease A and expresses Protein X. Why do they express Protein X?"},
+	{disease: "B", protein: "X", fever: "N",
+	question : "You know that an alien has Disease B and expresses Protein X. Why do they express Protein X?"},
+	{disease: "A", protein: "Y", fever: "N",
+ 	question : "You know that an alien has Disease A and expresses Protein Y. Why do they express Protein Y?"},
+	{disease: "C", protein: "Y", fever: "N",
+ 	question : "You know that an alien has Disease C and expresses Protein Y. Why do they express Protein Y?"},
+	{disease: "D", protein: "Y", fever: "N",
+ 	question : "You know that an alien has Disease D and expresses Protein Y. Why do they express Protein Y?"}]
+ 	
+ 	var disease_protein_indir = [{disease: "C", protein: "X", fever: "N",
+	question : "You know that an alien has Disease C and expresses Protein X. Why do they express Protein X?"},
+	{disease: "D", protein: "X", fever: "N", condition: "disease and protein",
+	question : 'You know that an alien has Disease D and has Protein X. Why do they have Protein X?'},
+	{disease: "B", protein: "Y", fever: "N", condition: "disease and protein",
+	question : 'You know that an alien has Disease B and has Protein Y. Why do they have Protein Y?'}]
 	
-// 	in case i want to use these in the future
-// 	var extra_questions = [{disease: "A", protein: "X", fever: "NA", 
-// 	question : "You know that an alien has Disease A and expresses Protein X. Why do they express Protein X?"},
-// 	{disease: "B", protein: "X", fever: "NA",
-// 	question : "You know that an alien has Disease B and expresses Protein X. Why do they express Protein X?"},
-// 	{disease: "C", protein: "X", fever: "NA",
-// 	question : "You know that an alien has Disease C and expresses Protein X. Why do they express Protein X?"},
-// 	{disease: "D", protein: "Y", fever: "NA",
-// 	question : "You know that an alien has Disease D and expresses Protein Y. Why do they express Protein Y?"},
-// 	{disease: "A", protein: "Y", fever: "NA",
-// 	question : "You know that an alien has Disease A and expresses Protein Y. Why do they express Protein Y?"},
-// 	{disease: "C", protein: "Y", fever: "NA",
-// 	question : "You know that an alien has Disease C and expresses Protein Y. Why do they express Protein Y?"}];
+	var disease_fever_dir = [{disease: "A", protein: "N", fever: "Y", condition: "disease and fever",
+	question : 'You know that an alien has Disease A and has a fever. Why do they have a fever?'}] 
+	
+	var disease_fever_indir = [{disease: "B", protein: "N", fever: "Y", condition: "disease and fever",
+	question : 'You know that an alien has Disease B and has a fever. Why do they have a fever?'},
+	{disease: "C", protein: "N", fever: "Y", condition: "disease and fever",
+	question : 'You know that an alien has Disease C and has a fever. Why do they have a fever?'},
+	{disease: "D", protein: "N", fever: "Y", condition: "disease and fever",
+	question : 'You know that an alien has Disease D and has a fever. Why do they have a fever?'}]
+	
+	var protein_fever = [{disease: "N", protein: "X", fever: "Y", condition: "protein and fever",
+	question : 'You know that an alien has Protein X and has a fever. Why do they have a fever?'},
+	{disease: "N", protein: "Y", fever: "Y", condition: "protein and fever",
+	question : 'You know that an alien has Protein Y and has a fever. Why do they have a fever?'}]
+	
+	var questions = [];
+	
+	_(disease_protein_dir).shuffle();
+	questions.push(disease_protein_dir[0]);
+	
+	_(disease_protein_indir).shuffle();
+	questions.push(disease_protein_indir[0]);
+	
+	questions.push(disease_fever_dir[0]);
+	
+	_(disease_fever_indir).shuffle();
+	questions.push(disease_fever_indir[0]);
+	
+	_(protein_fever).shuffle();
+	questions.push(protein_fever[0]);
 	
 	questions = _(questions).shuffle();
 	
@@ -751,11 +769,11 @@ var get_questions = function() {
 var get_comprehension_questions = function() {
 	var comp_questions = [{comp_question: "How many aliens out of 100 have Disease B?",
 	wrong_ans: "2", right_ans: "10"},
-	{comp_question: "What happens when an alien expresses Protein X and Protein Y?",
+	{comp_question: "What happens when an alien has Protein X and Protein Y?",
 	wrong_ans: "They get Disease C.", right_ans: "They get a Fever."},
-	{comp_question: "True or False: If an alien has Disease C, they always express Protein X.",
+	{comp_question: "True or False: If an alien has Disease C, they always have Protein X.",
 	wrong_ans: "True", right_ans: "False"},
-	{comp_question: "When an alien has Disease B, which protein do they always express?",
+	{comp_question: "When an alien has Disease B, which protein do they always have?",
 	wrong_ans: "Protein Y", right_ans: "Protein X"},
 	{comp_question: "Which disease do more aliens have?", 
 	wrong_ans: "Disease D", right_ans: "Disease C"},
@@ -768,6 +786,3 @@ var get_comprehension_questions = function() {
 		return comp_questions;
 	}	
 }();
-	
-	
-	
