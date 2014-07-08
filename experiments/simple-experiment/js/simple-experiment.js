@@ -2,7 +2,11 @@ function make_slides(f) {
   var   slides = {};
 
   slides.i0 = slide({
-     name : "i0"
+     name : "i0",
+     start: function() {
+      console.log('this version last updated at 11:23 AM on Tuesday, July 8, 2014');
+      exp.startT = Date.now()
+     }
   });
 
   slides.instructions = slide({
@@ -39,7 +43,7 @@ function make_slides(f) {
       });
     },
     log_responses : function() {
-      exp.data.trials.push({
+      exp.data_trials.push({
         "trial_type" : "one_slider",
         "sentence_type" : "generic",
         "response" : exp.sliderPost
@@ -92,7 +96,7 @@ function make_slides(f) {
     log_responses : function() {
       for (var i=0; i<this.sentence_types.length; i++) {
         var sentence_type = this.sentence_types[i];
-        exp.data.trials.push({
+        exp.data_trials.push({
           "trial_type" : "multi_slider",
           "sentence_type" : sentence_type,
           "response" : exp.sliderPost[i]
@@ -125,7 +129,8 @@ function make_slides(f) {
           "trials" : exp.data_trials,
           "system" : exp.system,
           "condition" : exp.condition,
-          "subject_information" : exp.subj_data
+          "subject_information" : exp.subj_data,
+          "time" : (Date.now() - exp.startT)/1000
       };
       setTimeout(function() {turk.submit(exp.data);}, 1000);
     }
@@ -139,6 +144,7 @@ function init() {
   //blocks of the experiment:
   exp.structure=["i0", "instructions", "familiarization", "one_slider", "multi_slider", 'subj_info', 'thanks'];
   
+  exp.data_trials = [];
   //make corresponding slides:
   exp.slides = make_slides(exp);
 
@@ -149,13 +155,13 @@ function init() {
     if (turk.previewMode) {
       $("#mustaccept").show();
     } else {
-      $("#start_button").click(function() {$("#mustaccept").show();})
+      $("#start_button").click(function() {$("#mustaccept").show();});
       exp.go();
     }
   });
 
-  exp.data.condition = {}; //can randomize between subject conditions here
-  exp.data.system = {
+  exp.condition = {}; //can randomize between subject conditions here
+  exp.system = {
       Browser : BrowserDetect.browser,
       OS : BrowserDetect.OS,
       screenH: screen.height,
