@@ -30,10 +30,10 @@ function make_slides(f) {
 			for (var i=0; i<this.direction_nums.length; i++) {
 				var direction_num = this.direction_nums[i];
 				var direction = stim[direction_num];
-				$("#multi_slider_table").append('<tr class="slider_row"><td class="slider_target" id="direction' + i + '">' + '...because they are '+direction + '</td><td colspan="2"><div id="slider' + i + '" class="slider">-------[ ]--------</div></td></tr>');
+				$("#multi_slider_table").append('<tr class="slider_row"><td class="slider_target" id="direction' + i + '">' + direction + '</td><td colspan="2"><div id="slider' + i + '" class="slider">-------[ ]--------</div></td></tr>');
 				utils.match_row_height("#multi_slider_table", ".slider_target");
 			}
-			this.init_sliders(this.direction_nums.length);
+			this.init_sliders(this.direction_nums);
 			exp.sliderPost = [];
 		},
 		present_handle : function(stim) {
@@ -53,12 +53,13 @@ function make_slides(f) {
 			exp.sliderPost = [];
 		},
 		button : function() {
-			this.log_responses();
+			if (! this.stim.catchT) this.log_responses();
+			else this.log_catch_trial();
 			_stream.apply(this); //use _stream.apply(this); if and only if there is "present" data.
 		},
-		init_sliders : function(explanation_types) {
-			for (var i=0; i<explanation_types.length; i++) {
-				var explanation_type = explanation_types[i];
+		init_sliders : function(labels) {
+			for (var i=0; i<labels.length; i++) {
+				var label = labels[i];
 				utils.make_slider("#slider" + i, this.make_slider_callback(i));
 			}
 		},
@@ -85,14 +86,14 @@ function make_slides(f) {
 			}
 		},
 		log_catch_trial : function() {
-			performance = {};
+			var performance = {};
 			for (var i=0; i<this.direction_nums.length; i++) {
 				var direction_num = this.direction_nums[i];
 				var direction = this.stim[direction_num];
 				//check if slider is in right direction
 				var correct = (direction == 'right') ? 1:0;
 				if (Math.abs(correct - exp.sliderPost[i]) < 0.4) performance[direction_num] = 'pass';
-				else perfromance[direction_num] = 'FAIL';
+				else performance[direction_num] = 'FAIL';
 			}
 			exp.catch_trials.push(performance);
 		}
@@ -121,7 +122,7 @@ function make_slides(f) {
 		start : function() {
 			exp.data = {
 				"trials" : exp.trials,
-				"check_trials" : exp.check_trials,
+				"catch_trials" : exp.catch_trials,
 				"system" : exp.system,
 				"condition" : exp.condition,
 				"subject_information" : exp.subj_data,
@@ -135,6 +136,17 @@ function make_slides(f) {
 }
 /// init ///
 function init() {
+	exp.trials = [];
+	exp.catch_trials = [];
+	exp.condition = Math.round(Math.random());
+	exp.system = {
+		Browser : BrowserDetect.browser,
+		OS : BrowserDetect.OS,
+		screenH: screen.height,
+		screenUH: exp.height,
+		screenW: screen.width,
+		screenUW: exp.width
+	};
 	//blocks of the experiment:
 	exp.structure=["i0", "instructions", "multi_slider", 'subj_info', 'thanks'];
 	
@@ -152,17 +164,6 @@ function init() {
 			exp.go();
 		}
 	});
-	exp.trials = [];
-	exp.check_trials = [];
-	exp.condition = 1; //{0, 1}  //can randomize between subject conditions here
-	exp.system = {
-		Browser : BrowserDetect.browser,
-		OS : BrowserDetect.OS,
-		screenH: screen.height,
-		screenUH: exp.height,
-		screenW: screen.width,
-		screenUW: exp.width
-	};
 	exp.go(); //show first slide
 }
 
@@ -301,7 +302,7 @@ function get_stims() {
 	stims = [];
 	for (var i = 0; i < all_stims.length; i++) {
 		stim = all_stims[i];
-		if (stim.qtype%2 == 1) {
+		if (stim.qtype % 2 == exp.condition) {
 			stims.push(stim);
 		}
 	}
@@ -309,6 +310,6 @@ function get_stims() {
 		{catchT: 1, one:'left', two:'left', three:'right', four:'right'},
 		{catchT: 1, one:'right', two:'left', three:'right', four:'right'},
 		{catchT: 1, one:'right', two:'left', three:'left', four:'left'}
-	)
+	);
 	return _.shuffle(stims);
 }
