@@ -4,6 +4,7 @@ function make_slides(f) {
 	slides.i0 = slide({
 		name : "i0",
 		start: function() {
+			exp.startT = Date.now();
 			console.log('this version last updated at 6:39 PM on 7/7/14');
 		}
 	});
@@ -20,6 +21,20 @@ function make_slides(f) {
 		present : get_stims(),
 
 		start: function() {
+		},
+		catch_trial_handle : function(stim) {
+			this.stim = stim;
+			$("#explanandum").text("Slide each slider all the way in the direction indicated");
+			this.direction_nums = ['one', 'two', 'three', 'four'];
+			$(".slider_row").remove();
+			for (var i=0; i<this.direction_nums.length; i++) {
+				var direction_num = this.direction_nums[i];
+				var direction = stim[direction_num];
+				$("#multi_slider_table").append('<tr class="slider_row"><td class="slider_target" id="direction' + i + '">' + '...because they are '+direction + '</td><td colspan="2"><div id="slider' + i + '" class="slider">-------[ ]--------</div></td></tr>');
+				utils.match_row_height("#multi_slider_table", ".slider_target");
+			}
+			this.init_sliders();
+			exp.sliderPost = [];
 		},
 		present_handle : function(stim) {
 			this.stim = stim;
@@ -57,7 +72,7 @@ function make_slides(f) {
 				var explanation_type = this.explanation_types[i];
 				var explanation = this.stim.explanations[explanation_type];
 				if (explanation !== null) {
-					exp.data.trials.push({
+					exp.trials.push({
 						"cat" : this.stim.cat,
 						"qtype" : this.stim.qtype,
 						"trait" : this.stim.trait,
@@ -68,40 +83,26 @@ function make_slides(f) {
 					});
 				}
 			}
+		},
+		log_catch_trial : function() {
+			performance = {};
+			for (var i=0; i<this.direction_nums.length; i++) {
+				var direction_num = this.direction_nums[i];
+				var direction = this.stim[direction_num];
+				//check if slider is in right direction
+				var correct = (direction == 'right') ? 1:0;
+				if (Math.abs(correct - exp.sliderPost[i]) < 0.4) performance[direction_num] = 'pass';
+				else perfromance[direction_num] = 'FAIL';
+			}
+			exp.catch_trials.push(performance);
 		}
 	});
-
-
-
-	// slide.rankings = slide({
-	//   name : "rankings",
-	//   present: [],
-	//   present_handle: function() {
-	//   },
-	//   button : function(){
-	//     exp.go();
-	//   }
-	// });
-
-	// slide.forced_choice = slide({
-	//   name: "forced_choice",
-	//   start: function(){
-			
-	//   },
-	//   button: function(){
-	//     exp.go();
-	//   },
-	//   present_handle: function() {
-	//     $('#forced_choice');
-	//   },
-	// });
-
 
 	slides.subj_info =  slide({
 		name : "subj_info",
 		submit : function(e){
 			//if (e.preventDefault) e.preventDefault(); // I don't know what this means.
-			exp.data.subj_data =
+			exp.subj_data =
 				{
 					language : $("#language").val(),
 					enjoyment : $("#enjoyment").val(),
@@ -118,6 +119,14 @@ function make_slides(f) {
 	slides.thanks = slide({
 		name : "thanks",
 		start : function() {
+			exp.data = {
+				"trials" : exp.trials,
+				"check_trials" : exp.check_trials,
+				"system" : exp.system,
+				"condition" : exp.condition,
+				"subject_information" : exp.subj_data,
+				"time" : (Date.now() - exp.startT)/1000
+			};
 			setTimeout(function() {turk.submit(exp.data);}, 1000);
 		}
 	});
@@ -143,8 +152,10 @@ function init() {
 			exp.go();
 		}
 	});
-	exp.data.condition = 1; //{0, 1}  //can randomize between subject conditions here
-	exp.data.system = {
+	exp.trials = [];
+	exp.check_trials = [];
+	exp.condition = 1; //{0, 1}  //can randomize between subject conditions here
+	exp.system = {
 		Browser : BrowserDetect.browser,
 		OS : BrowserDetect.OS,
 		screenH: screen.height,
@@ -157,42 +168,42 @@ function init() {
 
 function get_stims() {
 	all_stims = [
-		{cat: 'plant', qtype: 1, trait: 'attr', explanandum: 'Strawberries are tasty', explanations: {
+		{catchT: 0, cat: 'plant', qtype: 1, trait: 'attr', explanandum: 'Strawberries are tasty', explanations: {
 			sub: 'berries',
 			basic: 'fruits',
 			sup: 'plants',
 			adj: 'sweet',
 			other: null
 			}},
-		{cat: 'plant', qtype: 2, trait: 'part', explanandum: 'Tulips have leaves', explanations: {
+		{catchT: 0, cat: 'plant', qtype: 2, trait: 'part', explanandum: 'Tulips have leaves', explanations: {
 			sub: null,
 			basic: 'flowers',
 			sup: 'plants',
 			adj: 'colorful',
 			other: 'decorations'
 			}},
-		{cat: 'plant', qtype: 3, trait: 'attr', explanandum: 'Tulips are beautiful', explanations: {
+		{catchT: 0, cat: 'plant', qtype: 3, trait: 'attr', explanandum: 'Tulips are beautiful', explanations: {
 			sub: null,
 			basic: 'flowers',
 			sup: 'plants',
 			adj: 'colorful',
 			other: 'decorations'
 			}},
-		{cat: 'plant', qtype: 4, trait: 'attr', explanandum: 'Redwoods are beautiful', explanations: {
+		{catchT: 0, cat: 'plant', qtype: 4, trait: 'attr', explanandum: 'Redwoods are beautiful', explanations: {
 			sub: 'evergreens',
 			basic: 'trees',
 			sup: 'plants',
 			adj: 'tall',
 			other: null
 			}},
-		{cat: 'plant', qtype: 5, trait: 'part', explanandum: 'Redwoods have seeds', explanations: {
+		{catchT: 0, cat: 'plant', qtype: 5, trait: 'part', explanandum: 'Redwoods have seeds', explanations: {
 			sub: 'evergreens',
 			basic: 'trees',
 			sup: 'plants',
 			adj: 'reproductive',
 			other: null
 			}},
-		{cat: 'plant', qtype: 6, trait: 'part', explanandum: 'Strawberries have seeds', explanations: {
+		{catchT: 0, cat: 'plant', qtype: 6, trait: 'part', explanandum: 'Strawberries have seeds', explanations: {
 			sub: 'berries',
 			basic: 'fruits',
 			sup: 'plants',
@@ -200,42 +211,42 @@ function get_stims() {
 			other: null
 			}},
 
-		{cat: 'vehicle', qtype: 1, trait: 'attr', explanandum: 'Speedboats are fun', explanations: {
+		{catchT: 0, cat: 'vehicle', qtype: 1, trait: 'attr', explanandum: 'Speedboats are fun', explanations: {
 			sub: 'motorboats',
 			basic: 'boats',
 			sup: 'vehicles',
 			adj: 'fast',
 			other: null
 			}},
-		{cat: 'vehicle', qtype: 2, trait: 'part', explanandum: 'Ferraris have tires', explanations: {
+		{catchT: 0, cat: 'vehicle', qtype: 2, trait: 'part', explanandum: 'Ferraris have tires', explanations: {
 			sub: 'sports cars',
 			basic: 'cars',
 			sup: 'vehicles',
 			adj: 'aerodynamic',
 			other: null
 			}},
-		{cat: 'vehicle', qtype: 3, trait: 'attr', explanandum: 'Ferraris are fast', explanations: {
+		{catchT: 0, cat: 'vehicle', qtype: 3, trait: 'attr', explanandum: 'Ferraris are fast', explanations: {
 			sub: 'sports cars',
 			basic: 'cars',
 			sup: 'vehicles',
 			adj: 'aerodynamic',
 			other: null
 			}},
-		{cat: 'vehicle', qtype: 4, trait: 'attr', explanandum: 'Boeing 747s are fast', explanations: {
+		{catchT: 0, cat: 'vehicle', qtype: 4, trait: 'attr', explanandum: 'Boeing 747s are fast', explanations: {
 			sub: 'jets',
 			basic: 'planes',
 			sup: 'vehicles',
 			adj: 'powerful',
 			other: null
 			}},
-		{cat: 'vehicle', qtype: 5, trait: 'part', explanandum: 'Camries have steering wheels', explanation: {
+		{catchT: 0, cat: 'vehicle', qtype: 5, trait: 'part', explanandum: 'Camries have steering wheels', explanations: {
 			sub: 'sedan',
 			basic: 'cars',
 			sup: 'vehicles',
 			adj: 'maneuverable',
 			other: null
 			}},
-		{cat: 'vehicle', qtype: 6, trait: 'part', explanandum: 'Speedboats have steering wheels', explanations: {
+		{catchT: 0, cat: 'vehicle', qtype: 6, trait: 'part', explanandum: 'Speedboats have steering wheels', explanations: {
 			sub: 'motorboats',
 			basic: 'boats',
 			sup: 'vehicles',
@@ -243,42 +254,42 @@ function get_stims() {
 			other: null
 			}},
 
-		{cat: 'animal', qtype: 1, trait: 'attr', explanandum: 'Dolphins are social', explanations: {
+		{catchT: 0, cat: 'animal', qtype: 1, trait: 'attr', explanandum: 'Dolphins are social', explanations: {
 			sub: null,
 			basic: 'mammals',
 			sup: 'animals',
 			adj: 'intelligent',
 			other: 'swimmers'
 			}},
-		{cat: 'animal', qtype: 2, trait: 'part', explanandum: 'Tigers have fur', explanations: {
+		{catchT: 0, cat: 'animal', qtype: 2, trait: 'part', explanandum: 'Tigers have fur', explanations: {
 			sub: 'cats',
 			basic: 'mammals',
 			sup: 'animals',
 			adj: null,
 			other: 'predators'
 			}},
-		{cat: 'animal', qtype: 3, trait: 'attr', explanandum: 'Tigers are smart', explanations: {
+		{catchT: 0, cat: 'animal', qtype: 3, trait: 'attr', explanandum: 'Tigers are smart', explanations: {
 			sub: 'cats',
 			basic: 'mammals',
 			sup: 'animals',
 			adj: null,
 			other: 'predators'
 			}},
-		{cat: 'animal', qtype: 4, trait: 'attr', explanandum: 'Chimpanzees are smart', explanations: {
+		{catchT: 0, cat: 'animal', qtype: 4, trait: 'attr', explanandum: 'Chimpanzees are smart', explanations: {
 			sub: 'primates',
 			basic: 'mammals',
 			sup: 'animals',
 			adj: 'social',
 			other: null
 			}},
-		{cat: 'animal', qtype: 5, trait: 'part', explanandum: 'Salmon have fins', explanations: {
+		{catchT: 0, cat: 'animal', qtype: 5, trait: 'part', explanandum: 'Salmon have fins', explanations: {
 			sub: null,
 			basic: 'fish',
 			sup: 'animals',
 			adj: 'aquatic',
 			other: 'swimmers'
 			}},
-		{cat: 'animal', qtype: 6, trait: 'part', explanandum: 'Dolphins have fins', explanations: {
+		{catchT: 0, cat: 'animal', qtype: 6, trait: 'part', explanandum: 'Dolphins have fins', explanations: {
 			sub: null,
 			basic: 'mammals',
 			sup: 'animals',
@@ -294,5 +305,10 @@ function get_stims() {
 			stims.push(stim);
 		}
 	}
+	stims.push( //catch trials
+		{catchT: 1, one:'left', two:'left', three:'right', four:'right'},
+		{catchT: 1, one:'right', two:'left', three:'right', four:'right'},
+		{catchT: 1, one:'right', two:'left', three:'left', four:'left'}
+	)
 	return _.shuffle(stims);
 }
