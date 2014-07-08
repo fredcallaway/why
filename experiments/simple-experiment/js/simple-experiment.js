@@ -5,7 +5,7 @@ function make_slides(f) {
      name : "i0",
      start: function() {
       console.log('this version last updated at 11:23 AM on Tuesday, July 8, 2014');
-      exp.startT = Date.now()
+      exp.startT = Date.now();
      }
   });
 
@@ -47,19 +47,21 @@ function make_slides(f) {
         "trial_type" : "one_slider",
         "sentence_type" : "generic",
         "response" : exp.sliderPost
-      })
+      });
     }
   });
 
   slides.multi_slider = slide({
     name : "multi_slider",
-    present : [
+    present : _.shuffle([
       {"critter":"Wugs", "property":"fur"},
       {"critter":"Blicks", "property":"fur"},
       {"critter":"Wugs", "property":"spots"},
       {"critter":"Blicks", "property":"spots"},
-    ],
+      {catchT: 1, one:'left', two:'left', three:'right', four:'right', five: 'left'},
+    ]),
     present_handle : function(stim) {
+      this.stim = stim; //FRED: allows you to access stim in helpers
       this.sentence_types = _.shuffle(["generic", "negation", "always", "sometimes", "usually"]);
       var sentences = {
         "generic": stim.critter + " have " + stim.property + ".",
@@ -74,12 +76,27 @@ function make_slides(f) {
         var sentence = sentences[sentence_type];
         $("#multi_slider_table").append('<tr class="slider_row"><td class="slider_target" id="sentence' + i + '">' + sentence + '</td><td colspan="2"><div id="slider' + i + '" class="slider">-------[ ]--------</div></td></tr>');
         utils.match_row_height("#multi_slider_table", ".slider_target");
-      };
+      }
       this.init_sliders(this.sentence_types);
       exp.sliderPost = [];
     },
+    catch_trial_handle : function(stim) { //FRED: catch trials tell the subject to move the sliders to left or right
+      this.stim = stim; //FRED: allows you to access stim in helpers
+      $('#ms_instruction').text("Slide each slider all the way in the direction indicated");
+      this.direction_nums = ['one', 'two', 'three', 'four', 'five'];
+      $(".slider_row").remove();
+      for (var i=0; i<this.direction_nums.length; i++) {
+        var direction_num = this.direction_nums[i];
+        var direction = stim[direction_num];
+        $("#multi_slider_table").append('<tr class="slider_row"><td class="slider_target" id="direction' + i + '">' + direction + '</td><td colspan="2"><div id="slider' + i + '" class="slider">-------[ ]--------</div></td></tr>');
+        utils.match_row_height("#multi_slider_table", ".slider_target");
+      }
+      this.init_sliders(this.direction_nums);
+      exp.sliderPost = [];
+    },
     button : function() {
-      this.log_responses();
+      if (! this.stim.catchT) this.log_responses(); //FRED: added if statement to handle catch trials
+      else this.log_catch_trial();
       _stream.apply(this); //use _stream.apply(this); if and only if there is "present" data.
     },
     init_sliders : function(sentence_types) {
@@ -102,6 +119,20 @@ function make_slides(f) {
           "response" : exp.sliderPost[i]
         });
       }
+    },
+    // FRED: a catch trial is recorded as one object with (direction_nums.length) 
+    //       properties, each of which is either 'pass' or 'FAIL'
+    log_catch_trial : function() {
+      var performance = {};
+      for (var i=0; i<this.direction_nums.length; i++) {
+        var direction_num = this.direction_nums[i];
+        var direction = this.stim[direction_num];
+        //check if slider is in right direction
+        var correct = (direction == 'right') ? 1:0;
+        if (Math.abs(correct - exp.sliderPost[i]) < 0.4) performance[direction_num] = 'pass';
+        else performance[direction_num] = 'FAIL';
+      }
+      exp.catch_trials.push(performance);
     }
   });
 
@@ -127,6 +158,7 @@ function make_slides(f) {
     start : function() {
       exp.data= {
           "trials" : exp.data_trials,
+          "catch_trials" : exp.catch_trials,
           "system" : exp.system,
           "condition" : exp.condition,
           "subject_information" : exp.subj_data,
@@ -137,10 +169,21 @@ function make_slides(f) {
   });
 
   return slides;
-};
+}
 
 /// init ///
 function init() {
+  exp.trials = [];
+  exp.catch_trials = [];
+  exp.condition = {}; //can randomize between subject conditions here
+  exp.system = {
+      Browser : BrowserDetect.browser,
+      OS : BrowserDetect.OS,
+      screenH: screen.height,
+      screenUH: exp.height,
+      screenW: screen.width,
+      screenUW: exp.width
+    };
   //blocks of the experiment:
   exp.structure=["i0", "instructions", "familiarization", "one_slider", "multi_slider", 'subj_info', 'thanks'];
   
@@ -160,15 +203,5 @@ function init() {
     }
   });
 
-  exp.condition = {}; //can randomize between subject conditions here
-  exp.system = {
-      Browser : BrowserDetect.browser,
-      OS : BrowserDetect.OS,
-      screenH: screen.height,
-      screenUH: exp.height,
-      screenW: screen.width,
-      screenUW: exp.width
-    };
-   
   exp.go(); //show first slide
-};
+}
