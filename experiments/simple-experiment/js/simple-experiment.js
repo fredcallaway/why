@@ -75,7 +75,7 @@ function make_slides(f) {
         $("#multi_slider_table").append('<tr class="slider_row"><td class="slider_target" id="sentence' + i + '">' + sentence + '</td><td colspan="2"><div id="slider' + i + '" class="slider">-------[ ]--------</div></td></tr>');
         utils.match_row_height("#multi_slider_table", ".slider_target");
       };
-      this.init_sliders();
+      this.init_sliders(this.sentence_types);
       exp.sliderPost = [];
     },
     button : function() {
@@ -83,8 +83,8 @@ function make_slides(f) {
       _stream.apply(this); //use _stream.apply(this); if and only if there is "present" data.
     },
     init_sliders : function(sentence_types) {
-      for (var i=0; i<this.sentence_types.length; i++) {
-        var sentence_type = this.sentence_types[i];
+      for (var i=0; i<sentence_types.length; i++) {
+        var sentence_type = sentence_types[i];
         utils.make_slider("#slider" + i, this.make_slider_callback(i));
       }
     },
